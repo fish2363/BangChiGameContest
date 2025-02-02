@@ -7,8 +7,11 @@ public class Enemy : MonoBehaviour
     [field: SerializeField] public EnemyDataSO EnemyData;
     
     public Rigidbody2D RbCompo { get; private set; }
+    public Animator AnimatorCompo { get; private set; }
     protected Dictionary<EnemyStateType, EnemyState> StateEnum = new Dictionary<EnemyStateType, EnemyState>();
     private EnemyStateType currentState;
+
+    private float _currentScaleX;
     
     public Transform TargetTrm { get; private set; }
     
@@ -16,6 +19,8 @@ public class Enemy : MonoBehaviour
     public virtual void Awake()
     {
         RbCompo = GetComponent<Rigidbody2D>();
+        AnimatorCompo = GetComponentInChildren<Animator>();
+        _currentScaleX = transform.localScale.x;
     }
     
     public void TransitionState(EnemyStateType newState)
@@ -57,13 +62,14 @@ public class Enemy : MonoBehaviour
 
     public void EnemyRotation()
     {
+        Debug.Log(TargetTrm.position);
         if (TargetTrm.position.x > transform.position.x)
         {
-            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(_currentScaleX, transform.localScale.y, transform.localScale.z);
         }
         else
         {
-            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(_currentScaleX * -1, transform.localScale.y, transform.localScale.z);
         }
     }
     
