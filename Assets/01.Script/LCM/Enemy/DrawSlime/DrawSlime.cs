@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class DrawSlime : Enemy
 {
+    [SerializeField] private float _attackDashPower;
     public override void Awake()
     {
         base.Awake();
@@ -21,5 +22,18 @@ public class DrawSlime : Enemy
             }
         }
         TransitionState(EnemyStateType.Idle);
+    }
+
+    public override void Attack()
+    {
+        Debug.Log("공격");
+        RbCompo.AddForce(GetMovementDirection().normalized * _attackDashPower, ForceMode2D.Impulse);
+    }
+
+    public override void Dead()
+    {
+        OnDeadEvent?.Invoke();
+        TransitionState(EnemyStateType.Dead);
+        Debug.Log("죽음");
     }
 }

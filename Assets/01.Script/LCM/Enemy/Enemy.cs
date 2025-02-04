@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     [field: SerializeField] public EnemyDataSO EnemyData;
     
@@ -14,6 +15,8 @@ public class Enemy : MonoBehaviour
     private float _currentScaleX;
     
     public Transform TargetTrm { get; private set; }
+    
+    public UnityEvent OnDeadEvent;
     
     
     public virtual void Awake()
@@ -62,7 +65,6 @@ public class Enemy : MonoBehaviour
 
     public void EnemyRotation()
     {
-        Debug.Log(TargetTrm.position);
         if (TargetTrm.position.x > transform.position.x)
         {
             transform.localScale = new Vector3(_currentScaleX, transform.localScale.y, transform.localScale.z);
@@ -72,6 +74,9 @@ public class Enemy : MonoBehaviour
             transform.localScale = new Vector3(_currentScaleX * -1, transform.localScale.y, transform.localScale.z);
         }
     }
+
+    public abstract void Attack();
+    public abstract void Dead();
     
     
 #if UNITY_EDITOR
