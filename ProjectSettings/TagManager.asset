@@ -12,8 +12,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Ground
+  - Player
   - 
   - 
   - 
@@ -53,6 +53,9 @@ TagManager:
     locked: 0
   - name: Bullet
     uniqueID: 3498581995
+    locked: 0
+  - name: Effect
+    uniqueID: 2605030821
     locked: 0
   m_RenderingLayers:
   - Default

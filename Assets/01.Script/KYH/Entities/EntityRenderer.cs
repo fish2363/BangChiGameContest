@@ -17,10 +17,10 @@ public class EntityRenderer : MonoBehaviour, IEntityComponent
         SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void SetParam(string param, bool value) => _animator.SetBool(Animator.StringToHash(param),value);
-    public void SetParam(string param, int value) => _animator.SetInteger(Animator.StringToHash(param), value);
-    public void SetParam(string param, float value) => _animator.SetFloat(Animator.StringToHash(param), value);
-    public void SetParam(string param) => _animator.SetTrigger(Animator.StringToHash(param));
+    public void SetParam(AnimParamSO param, bool value) => _animator.SetBool(param.hashValue,value);
+    public void SetParam(AnimParamSO param, int value) => _animator.SetInteger(param.hashValue, value);
+    public void SetParam(AnimParamSO param, float value) => _animator.SetFloat(param.hashValue, value);
+    public void SetParam(AnimParamSO param) => _animator.SetTrigger(param.hashValue);
 
     public void FlipController(float xVelocity)
     {

@@ -3,8 +3,10 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour,IDamageable
 {
+    public delegate void OnDamageHandler(float damage, Vector2 direction, Vector2 knockBackPower, bool isPowerAttack, Entity dealer);
+    public event OnDamageHandler OnDamage;
     protected Dictionary<Type, IEntityComponent> _components;
 
     protected virtual void Awake()
@@ -15,20 +17,20 @@ public abstract class Entity : MonoBehaviour
         ComponentInitialize();
         AfterInitialize();
     }
-    
-    private void AddComponentToDictionary()
+
+    protected virtual void AddComponentToDictionary()
     {
         GetComponentsInChildren<IEntityComponent>(true).ToList().ForEach(compo => _components.Add(compo.GetType(),compo));
     }
 
-    private void ComponentInitialize()
+    protected virtual void ComponentInitialize()
     {
         _components.Values.ToList().ForEach(compo => compo.Initialize(this));
     }
 
-    private void AfterInitialize()
+    protected virtual void AfterInitialize()
     {
-        _components.Values.OfType<AfterInit>().ToList().ForEach(compo => compo.AfterInitialize());
+        _components.Values.OfType<IAfterInit>().ToList().ForEach(compo => compo.AfterInitialize());
     }
 
     public T GetCompo<T>(bool isDerived /*서브클래스 탐색 여부*/= false) where T : IEntityComponent //반드시 IEntityComponent를 구현해야 함
@@ -44,4 +46,7 @@ public abstract class Entity : MonoBehaviour
 
         return default(T);//없음 널 뱉음
     }
+
+    public void ApplyDamage(float damage, Vector2 direction, Vector2 knockBackPower, bool isPowerAttack, Entity dealer)
+            => OnDamage?.Invoke(damage, direction, knockBackPower, isPowerAttack, dealer);
 }
