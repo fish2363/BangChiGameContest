@@ -4,18 +4,21 @@ public abstract class EntityState
 {
     protected Entity _entity;
 
+    protected AnimParamSO _animParam;
     protected bool _isTriggerCall;
 
     protected EntityRenderer _renderer;
 
-    public EntityState(Entity entity)
+    public EntityState(Entity entity, AnimParamSO animParam)
     {
         _entity = entity;
+        _animParam = animParam;
         _renderer = _entity.GetCompo<EntityRenderer>(true);
     }
 
     public virtual void Enter()
     {
+        _renderer.SetParam(_animParam, true);
         _isTriggerCall = false;
     }
 
@@ -26,7 +29,11 @@ public abstract class EntityState
 
     public virtual void Exit()
     {
+        _renderer.SetParam(_animParam, false);
     }
 
-    public virtual void AnimationEndTrigger() => _isTriggerCall = true;
+    public virtual void AnimationEndTrigger()
+    {
+        _isTriggerCall = true;
+    }
 }
