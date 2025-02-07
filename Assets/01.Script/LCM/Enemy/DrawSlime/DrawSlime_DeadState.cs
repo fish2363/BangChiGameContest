@@ -10,7 +10,8 @@ public class DrawSlime_DeadState : EnemyState
     protected override void EnterState()
     {
         base.EnterState();
-        _enemy.Dead();
+        //_enemy.Dead();
         _enemy.RbCompo.linearVelocity = Vector2.zero;
+        _enemy.gameObject.layer = LayerMask.NameToLayer("DeadBody");
     }
 }

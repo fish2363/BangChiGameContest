@@ -26,7 +26,6 @@ public class DrawSlime : Enemy
 
     public override void Attack()
     {
-        Debug.Log("공격");
         RbCompo.AddForce(GetMovementDirection().normalized * _attackDashPower, ForceMode2D.Impulse);
     }
 
@@ -34,6 +33,13 @@ public class DrawSlime : Enemy
     {
         OnDeadEvent?.Invoke();
         TransitionState(EnemyStateType.Dead);
-        Debug.Log("죽음");
+    }
+
+    private void LateUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            Dead();
+        }
     }
 }

@@ -13,6 +13,8 @@ public abstract class Enemy : MonoBehaviour
     private EnemyStateType currentState;
 
     private float _currentScaleX;
+
+    public bool isAttackAnimationEnd { get; set; } = false;
     
     public Transform TargetTrm { get; private set; }
     
@@ -58,9 +60,21 @@ public abstract class Enemy : MonoBehaviour
         return Physics2D.OverlapCircle(transform.position, EnemyData.targetingRange, EnemyData.whatIsPlayer);
     }
 
+    private float lastAttackTime = -Mathf.Infinity;
+
     public bool CanAttackPlayer()
     {
-        return Physics2D.OverlapCircle(transform.position, EnemyData.attackRange, EnemyData.whatIsPlayer);
+        bool isPlayerInRange = Physics2D.OverlapCircle(transform.position, EnemyData.attackRange, EnemyData.whatIsPlayer);
+
+        bool isCooldownOver = Time.time >= lastAttackTime + EnemyData.attackCoolTime;
+
+        if (isPlayerInRange && isCooldownOver)
+        {
+            lastAttackTime = Time.time;
+            return true;
+        }
+    
+        return false; // 공격 불가능
     }
 
     public void EnemyRotation()
@@ -73,6 +87,11 @@ public abstract class Enemy : MonoBehaviour
         {
             transform.localScale = new Vector3(_currentScaleX * -1, transform.localScale.y, transform.localScale.z);
         }
+    }
+
+    public void HandleAttackAnimationEnd()
+    {
+        isAttackAnimationEnd = true;
     }
 
     public abstract void Attack();
