@@ -2,17 +2,26 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Entity : MonoBehaviour,IDamageable
 {
     public delegate void OnDamageHandler(float damage, Vector2 direction, Vector2 knockBackPower, bool isPowerAttack, Entity dealer);
     public event OnDamageHandler OnDamage;
+
+    public UnityEvent OnHit;
+    public UnityEvent OnDead;
+
+    public bool IsDead { get; set; } //사망처리 체크를 위한 거 해놓고
+    public int DeadBodyLayer { get; private set; }
+
     protected Dictionary<Type, IEntityComponent> _components;
 
     protected virtual void Awake()
     {
-        _components = new Dictionary<Type, IEntityComponent>();
+        DeadBodyLayer = LayerMask.NameToLayer("DeadBody"); //레이어 값 셋팅
 
+        _components = new Dictionary<Type, IEntityComponent>();
         AddComponentToDictionary();
         ComponentInitialize();
         AfterInitialize();
@@ -20,7 +29,7 @@ public abstract class Entity : MonoBehaviour,IDamageable
 
     protected virtual void AddComponentToDictionary()
     {
-        GetComponentsInChildren<IEntityComponent>(true).ToList().ForEach(compo => _components.Add(compo.GetType(),compo));
+        GetComponentsInChildren<IEntityComponent>(true).ToList().ForEach(compo => _components.Add(compo.GetType(), compo));
     }
 
     protected virtual void ComponentInitialize()
@@ -31,7 +40,18 @@ public abstract class Entity : MonoBehaviour,IDamageable
     protected virtual void AfterInitialize()
     {
         _components.Values.OfType<IAfterInit>().ToList().ForEach(compo => compo.AfterInitialize());
+        OnHit.AddListener(HandleHit);
+        OnDead.AddListener(HandleDead);
     }
+
+    protected virtual void OnDestroy()
+    {
+        OnHit.RemoveListener(HandleHit);
+        OnDead.RemoveListener(HandleDead);
+    }
+
+    protected abstract void HandleHit();
+    protected abstract void HandleDead();
 
     public T GetCompo<T>(bool isDerived /*서브클래스 탐색 여부*/= false) where T : IEntityComponent //반드시 IEntityComponent를 구현해야 함
     {

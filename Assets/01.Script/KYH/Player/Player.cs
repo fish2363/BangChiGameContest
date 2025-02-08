@@ -28,7 +28,6 @@ public class Player : Entity
     }
     private void HandleAnimationEnd()
     {
-        Debug.Log("³ª ³¡³µ¾î");
         _stateMachine.CurrentState.AnimationEndTrigger();
     }
     public void ChangeState(string newState) => _stateMachine.ChangeState(newState);
@@ -44,5 +43,15 @@ public class Player : Entity
     {
         base.AfterInitialize();
         GetCompo<EntityAnimationTrigger>().OnAnimationEnd += HandleAnimationEnd;
+    }
+
+    protected override void HandleHit()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override void HandleDead()
+    {
+        throw new System.NotImplementedException();
     }
 }
