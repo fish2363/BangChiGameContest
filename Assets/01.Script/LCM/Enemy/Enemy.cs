@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : Entity
 {
     [field: SerializeField] public EnemyDataSO EnemyData;
     
@@ -16,18 +16,31 @@ public abstract class Enemy : MonoBehaviour
 
     public bool isAttackAnimationEnd { get; set; } = false;
     
-    public Transform TargetTrm { get; private set; }
+    protected EntityAnimationTrigger AnimTriggerCompo  { get; private set; }
     
-    public UnityEvent OnDeadEvent;
+    public Transform TargetTrm { get; private set; }
     
     
     public virtual void Awake()
     {
         RbCompo = GetComponent<Rigidbody2D>();
         AnimatorCompo = GetComponentInChildren<Animator>();
+        AnimTriggerCompo = GetCompo<EntityAnimationTrigger>();
         _currentScaleX = transform.localScale.x;
     }
-    
+
+    private void Start()
+    {
+        AnimTriggerCompo.OnAnimationEnd += () => isAttackAnimationEnd = true;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        // ReSharper disable once EventUnsubscriptionViaAnonymousDelegate
+        AnimTriggerCompo.OnAnimationEnd -= () => isAttackAnimationEnd = true;
+    }
+
     public void TransitionState(EnemyStateType newState)
     {
         StateEnum[currentState].Exit();
@@ -89,7 +102,7 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public void HandleAttackAnimationEnd()
+    private void HandleAttackAnimationEnd()
     {
         isAttackAnimationEnd = true;
     }

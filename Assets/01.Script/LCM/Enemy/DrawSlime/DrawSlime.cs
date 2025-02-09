@@ -16,12 +16,21 @@ public class DrawSlime : Enemy
                 EnemyState state = Activator.CreateInstance(t, new object[] { this }) as EnemyState;
                 StateEnum.Add(stateType, state);
             }
-            catch (Exception e)
+            catch
             {
                 // ignored
             }
         }
         TransitionState(EnemyStateType.Idle);
+    }
+
+    protected override void HandleHit()
+    {
+    }
+
+    protected override void HandleDead()
+    {
+        Dead();
     }
 
     public override void Attack()
@@ -31,15 +40,6 @@ public class DrawSlime : Enemy
 
     public override void Dead()
     {
-        OnDeadEvent?.Invoke();
         TransitionState(EnemyStateType.Dead);
-    }
-
-    private void LateUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Dead();
-        }
     }
 }
