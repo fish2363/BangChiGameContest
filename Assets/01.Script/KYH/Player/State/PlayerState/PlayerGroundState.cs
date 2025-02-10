@@ -57,7 +57,7 @@ public class PlayerGroundState : EntityState
 
     protected virtual void HandleAttackKeyPress()
     {
-        if (_mover.IsGroundDetected())
+        if (_mover.IsGroundDetected() && !_player.isBannedAttack)
             _player.ChangeState("ATTACK");
     }
 

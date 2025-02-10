@@ -51,6 +51,9 @@ TagManager:
   - name: Player
     uniqueID: 3153563389
     locked: 0
+  - name: ChatBox
+    uniqueID: 2168412897
+    locked: 0
   - name: Bullet
     uniqueID: 3498581995
     locked: 0
