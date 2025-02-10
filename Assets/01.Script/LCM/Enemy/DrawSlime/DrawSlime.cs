@@ -26,16 +26,17 @@ public class DrawSlime : Enemy
 
     protected override void HandleHit()
     {
+        
     }
 
-    protected override void HandleDead()
-    {
-        Dead();
-    }
+    protected override void HandleDead() => Dead();
 
     public override void Attack()
     {
-        RbCompo.AddForce(GetMovementDirection().normalized * _attackDashPower, ForceMode2D.Impulse);
+        Vector2 movementDirection = GetMovementDirection().normalized;
+
+        RbCompo.AddForce(movementDirection * _attackDashPower, ForceMode2D.Impulse);
+        RbCompo.AddForce(Vector2.up * 2f, ForceMode2D.Impulse); // 살짝 위로 뛰도록
     }
 
     public override void Dead()

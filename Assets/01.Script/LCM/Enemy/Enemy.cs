@@ -20,12 +20,15 @@ public abstract class Enemy : Entity
     
     public Transform TargetTrm { get; private set; }
     
+    [SerializeField] private LayerMask _whatIsGround;
+    [SerializeField] private Transform _groundChecker;
+    
     
     public virtual void Awake()
     {
         RbCompo = GetComponent<Rigidbody2D>();
         AnimatorCompo = GetComponentInChildren<Animator>();
-        AnimTriggerCompo = GetCompo<EntityAnimationTrigger>();
+        AnimTriggerCompo = transform.Find("Visual").GetComponent<EntityAnimationTrigger>();
         _currentScaleX = transform.localScale.x;
     }
 
@@ -46,6 +49,11 @@ public abstract class Enemy : Entity
         StateEnum[currentState].Exit();
         currentState = newState;
         StateEnum[currentState].Enter();
+    }
+
+    public bool GroundCheck()
+    {
+        return Physics2D.OverlapBox(_groundChecker.position, EnemyData.groundCheckerBoxSize, 0, _whatIsGround);
     }
 
 
@@ -118,6 +126,8 @@ public abstract class Enemy : Entity
         Gizmos.DrawWireSphere(transform.position, EnemyData.targetingRange);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, EnemyData.attackRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(_groundChecker.position, EnemyData.groundCheckerBoxSize);
         Gizmos.color = Color.white;
     }
 #endif

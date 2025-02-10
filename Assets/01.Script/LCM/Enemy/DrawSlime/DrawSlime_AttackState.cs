@@ -17,7 +17,7 @@ public class DrawSlime_AttackState : EnemyState
     public override void UpdateState()
     {
         base.UpdateState();
-        if(_enemy.isAttackAnimationEnd)
+        if(_enemy.isAttackAnimationEnd && _enemy.GroundCheck())
             _enemy.TransitionState(EnemyStateType.Move);
     }
 

@@ -5,6 +5,8 @@ public class EnemyDataSO : ScriptableObject
 {
     [Header("Movement")]
     public float movementSpeed;
+
+    public Vector2 groundCheckerBoxSize;
     
     
     [Header("Combat")]
