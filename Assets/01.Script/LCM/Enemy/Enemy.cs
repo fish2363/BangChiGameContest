@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : Entity
 {
     [field: SerializeField] public EnemyDataSO EnemyData;
     
@@ -13,24 +13,47 @@ public abstract class Enemy : MonoBehaviour
     private EnemyStateType currentState;
 
     private float _currentScaleX;
+
+    public bool isAttackAnimationEnd { get; set; } = false;
+    
+    protected EntityAnimationTrigger AnimTriggerCompo  { get; private set; }
     
     public Transform TargetTrm { get; private set; }
     
-    public UnityEvent OnDeadEvent;
+    [SerializeField] private LayerMask _whatIsGround;
+    [SerializeField] private Transform _groundChecker;
     
     
     public virtual void Awake()
     {
         RbCompo = GetComponent<Rigidbody2D>();
         AnimatorCompo = GetComponentInChildren<Animator>();
+        AnimTriggerCompo = transform.Find("Visual").GetComponent<EntityAnimationTrigger>();
         _currentScaleX = transform.localScale.x;
     }
-    
+
+    private void Start()
+    {
+        AnimTriggerCompo.OnAnimationEnd += () => isAttackAnimationEnd = true;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        // ReSharper disable once EventUnsubscriptionViaAnonymousDelegate
+        AnimTriggerCompo.OnAnimationEnd -= () => isAttackAnimationEnd = true;
+    }
+
     public void TransitionState(EnemyStateType newState)
     {
         StateEnum[currentState].Exit();
         currentState = newState;
         StateEnum[currentState].Enter();
+    }
+
+    public bool GroundCheck()
+    {
+        return Physics2D.OverlapBox(_groundChecker.position, EnemyData.groundCheckerBoxSize, 0, _whatIsGround);
     }
 
 
@@ -58,9 +81,21 @@ public abstract class Enemy : MonoBehaviour
         return Physics2D.OverlapCircle(transform.position, EnemyData.targetingRange, EnemyData.whatIsPlayer);
     }
 
+    private float lastAttackTime = -Mathf.Infinity;
+
     public bool CanAttackPlayer()
     {
-        return Physics2D.OverlapCircle(transform.position, EnemyData.attackRange, EnemyData.whatIsPlayer);
+        bool isPlayerInRange = Physics2D.OverlapCircle(transform.position, EnemyData.attackRange, EnemyData.whatIsPlayer);
+
+        bool isCooldownOver = Time.time >= lastAttackTime + EnemyData.attackCoolTime;
+
+        if (isPlayerInRange && isCooldownOver)
+        {
+            lastAttackTime = Time.time;
+            return true;
+        }
+    
+        return false; // 공격 불가능
     }
 
     public void EnemyRotation()
@@ -75,6 +110,11 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
+    private void HandleAttackAnimationEnd()
+    {
+        isAttackAnimationEnd = true;
+    }
+
     public abstract void Attack();
     public abstract void Dead();
     
@@ -86,6 +126,8 @@ public abstract class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, EnemyData.targetingRange);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, EnemyData.attackRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(_groundChecker.position, EnemyData.groundCheckerBoxSize);
         Gizmos.color = Color.white;
     }
 #endif
