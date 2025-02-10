@@ -21,7 +21,7 @@ public class IdleState : PlayerGroundState
         float facingDir = _renderer.FacingDirection;
         if (Mathf.Abs(facingDir + xInput) > 1.5f && _mover.IsWallDetected(facingDir)) return;
 
-        if (Mathf.Abs(xInput) > 0)
+        if (Mathf.Abs(xInput) > 0 && _mover.CanManualMove)
         {
             _player.ChangeState("MOVE");
         }

@@ -34,6 +34,7 @@ public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInit
 
     public void ApplyDamage(float damage, Vector2 direction, Vector2 knockBackPower, bool isPowerAttack, Entity dealer)
     {
+        print("生焼たたたたたたたたたたたたたたたたたたたたたたたたた");
         if (_entity.IsDead) return; //戚耕 宋精 橿汐脊艦陥.
 
         _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, maxHealth);
@@ -48,7 +49,6 @@ public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInit
     {
         _entity.OnHit?.Invoke();
         OnKnockback?.Invoke(knockBackPower);
-
         if (_currentHealth <= 0)
         {
             _entity.OnDead?.Invoke();

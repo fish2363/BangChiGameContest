@@ -31,6 +31,11 @@ public class EntityRenderer : MonoBehaviour, IEntityComponent
         }
     }
 
+    public void SeeRightDirection()
+    {
+        FacingDirection = 1f;
+    }
+
     private void Flip()
     {
         FacingDirection *= -1;

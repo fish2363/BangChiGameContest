@@ -12,6 +12,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
     private Entity _entity;
     private Player _player;
     private EntityMover _mover;
+    private EntityRenderer _renderer;
 
     public string[] currentDialogue { get; private set; }
 
@@ -27,6 +28,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         _entity = entity;
         _player = _entity as Player;
         _mover = _entity.GetCompo<EntityMover>();
+        _renderer = _entity.GetCompo<EntityRenderer>();
 
         _player.PlayerInput.OnAttackKeyPressed += HandleClick;
         dialogueChannel.AddListener<StartAConversation>(HandleSpeak);
@@ -66,6 +68,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
     private void EndTalk()
     {
         _mover.CanManualMove = true;
+        _player.isBannedAttack = false;
         talkNum = 0;
         HideChatBox();
     }
@@ -80,7 +83,13 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
 
     private void HandleSpeak(StartAConversation events)
     {
-        if (events.isStop) _mover.CanManualMove = false;
+        if (events.isStop)
+        {
+            _mover.CanManualMove = false;
+            _mover.StopImmediately(true);
+            _renderer.SeeRightDirection();
+        }
+
         _player.isBannedAttack = true;
         currentDialogue = events.dialogue;
         StartCoroutine(TypingRoutine(currentDialogue[talkNum]));

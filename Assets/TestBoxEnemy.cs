@@ -3,15 +3,34 @@ using UnityEngine;
 
 public class TestBoxEnemy : Entity
 {
-    private void Awake()
+    [SerializeField] private Rigidbody2D RbCompo;
+
+    protected override void AfterInitialize()
     {
+        base.AfterInitialize();
         GetCompo<EntityHealth>().OnKnockback += HandleKnockBack;
     }
 
-    private void HandleKnockBack(Vector2 obj)
+    private void HandleKnockBack(Vector2 knockBackForce)
     {
         float knockBackTime = 0.5f;
-        _mover.KnockBack(knockBackForce, knockBackTime);
+        KnockBack(knockBackForce, knockBackTime);
+    }
+
+    public void AddForceToEntity(Vector2 force)
+            => RbCompo.AddForce(force, ForceMode2D.Impulse);
+    public void StopImmediately(bool isYAxisToo)
+    {
+        if (isYAxisToo)
+            RbCompo.linearVelocity = Vector2.zero;
+        else
+            RbCompo.linearVelocityX = 0;
+    }
+
+    private void KnockBack(Vector2 knockBackForce, float knockBackTime)
+    {
+        StopImmediately(true);
+        AddForceToEntity(knockBackForce);
     }
 
     protected override void HandleDead()
