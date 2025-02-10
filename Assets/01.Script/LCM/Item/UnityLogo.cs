@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,7 +5,7 @@ using UnityEngine.Playables;
 
 public class UnityLogo : MonoBehaviour, ITakeable
 {
-    [SerializeField] private PlayableDirector _cutScene;
+    private PlayableDirector _cutScene;
 
     [SerializeField] private float _playerCheckRadius;
 
@@ -24,6 +22,12 @@ public class UnityLogo : MonoBehaviour, ITakeable
     private Tweener _tweener;
 
     private bool _isAlreadyTake = false;
+
+    private void Awake()
+    {
+        _cutScene = GetComponent<PlayableDirector>();
+    }
+
     private void Start()
     {
         _firstItemYPosition = transform.position.y;
@@ -37,13 +41,15 @@ public class UnityLogo : MonoBehaviour, ITakeable
     public void TakeItem()
     {
         _isAlreadyTake = true;
+        _interactionKey.SetActive(false);
         _tweener.Kill();
-        Debug.Log("누름");
-        //_cutScene.Play();
+        _cutScene.Play();
     }
 
     public void ShowInteraction()
     {
+        if(_isAlreadyTake) return;
+        
         if (CanTakeItem())
         {
             _interactionKey.SetActive(true);
