@@ -1,7 +1,19 @@
+using System;
 using UnityEngine;
 
 public class TestBoxEnemy : Entity
 {
+    private void Awake()
+    {
+        GetCompo<EntityHealth>().OnKnockback += HandleKnockBack;
+    }
+
+    private void HandleKnockBack(Vector2 obj)
+    {
+        float knockBackTime = 0.5f;
+        _mover.KnockBack(knockBackForce, knockBackTime);
+    }
+
     protected override void HandleDead()
     {
         if (IsDead) return;
