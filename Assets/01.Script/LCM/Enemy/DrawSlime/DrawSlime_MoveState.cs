@@ -4,12 +4,12 @@ public class DrawSlime_MoveState : EnemyState
 {
     public DrawSlime_MoveState(Enemy enemy) : base(enemy, EnemyStateType.Move.ToString())
     {
-        
     }
 
     public override void FixedUpdateState()
     {
         base.UpdateState();
+        if (!_enemy.CanMove) return;
         _enemy.TargetingPlayer();
         
         Vector2 moveDir = _enemy.GetMovementDirection();

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,10 +23,12 @@ public abstract class Enemy : Entity
     
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Transform _groundChecker;
-    
-    
-    public virtual void Awake()
+
+    public bool CanMove { get; set; } = true; //넉백당하거나 기절시 이동불가
+
+    protected override void Awake()
     {
+        base.Awake();
         RbCompo = GetComponent<Rigidbody2D>();
         AnimatorCompo = GetComponentInChildren<Animator>();
         AnimTriggerCompo = transform.Find("Visual").GetComponent<EntityAnimationTrigger>();
@@ -117,8 +120,25 @@ public abstract class Enemy : Entity
 
     public abstract void Attack();
     public abstract void Dead();
-    
-    
+
+    public void AddForceToEntity(Vector2 force)
+            => RbCompo.AddForce(force, ForceMode2D.Impulse);
+    public void StopImmediately(bool isYAxisToo)
+    {
+        if (isYAxisToo)
+            RbCompo.linearVelocity = Vector2.zero;
+        else
+            RbCompo.linearVelocityX = 0;
+    }
+
+    public void KnockBack(Vector2 force, float time)
+    {
+        CanMove = false;
+        StopImmediately(true);
+        AddForceToEntity(force);
+        DOVirtual.DelayedCall(time, () => CanMove = true);
+    }
+
 #if UNITY_EDITOR
     protected virtual void OnDrawGizmos()
     {

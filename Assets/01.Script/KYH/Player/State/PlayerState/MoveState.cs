@@ -19,9 +19,10 @@ public class MoveState : PlayerGroundState
 
         float xInput = _player.PlayerInput.InputDirection.x;
 
-        _mover.SetMovementX(xInput);
+        if(_mover.CanManualMove)
+            _mover.SetMovementX(xInput);
 
-        if (Mathf.Approximately(xInput, 0) || _mover.IsWallDetected(_renderer.FacingDirection))
+        if (Mathf.Approximately(xInput, 0) || _mover.IsWallDetected(_renderer.FacingDirection) || !_mover.CanManualMove)
         {
             _player.ChangeState("IDLE");
         }
