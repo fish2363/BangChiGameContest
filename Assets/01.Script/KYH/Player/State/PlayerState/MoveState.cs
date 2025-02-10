@@ -16,6 +16,7 @@ public class MoveState : PlayerGroundState
     public override void Update()
     {
         base.Update();
+
         float xInput = _player.PlayerInput.InputDirection.x;
 
         _mover.SetMovementX(xInput);
@@ -29,7 +30,7 @@ public class MoveState : PlayerGroundState
     protected override void HandleAttackKeyPress()
     {
         float overDashTime = 0.3f;
-        if (_stateTimer + overDashTime < Time.time)
+        if (_stateTimer + overDashTime < Time.time && !_player.isBannedAttack)
         {
             _player.ChangeState("DASH_ATTACK");
         }

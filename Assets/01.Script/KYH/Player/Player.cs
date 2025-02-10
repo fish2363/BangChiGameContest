@@ -12,6 +12,8 @@ public class Player : Entity
     [SerializeField]
     private StateListSO playerFSM;
 
+    public bool isBannedAttack { get; set; } = false;
+
     protected override void Awake()
     {
         base.Awake();
