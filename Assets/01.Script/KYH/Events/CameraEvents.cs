@@ -8,6 +8,7 @@ public static class CameraEvents
 {
     public static PanEvent PanEvent = new();
     public static SwapCameraEvent SwapCameraEvent = new();
+    public static PerlinShake CameraShakeEvent = new();
 }
 
 public class PanEvent : GameEvent
@@ -23,4 +24,10 @@ public class SwapCameraEvent : GameEvent
     public CinemachineCamera leftCamera;
     public CinemachineCamera rightCamera;
     public Vector2 moveDirection;
+}
+
+public class PerlinShake : GameEvent
+{
+    public float intensity;
+    public float second;
 }
