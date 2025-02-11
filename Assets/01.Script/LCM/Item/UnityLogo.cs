@@ -1,11 +1,11 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.Playables;
 
 public class UnityLogo : MonoBehaviour, ITakeable
 {
-    private PlayableDirector _cutScene;
 
     [SerializeField] private float _playerCheckRadius;
 
@@ -23,10 +23,9 @@ public class UnityLogo : MonoBehaviour, ITakeable
 
     private bool _isAlreadyTake = false;
 
-    private void Awake()
-    {
-        _cutScene = GetComponent<PlayableDirector>();
-    }
+    [SerializeField] private GameObject _blackCircle;
+    
+
 
     private void Start()
     {
@@ -43,7 +42,14 @@ public class UnityLogo : MonoBehaviour, ITakeable
         _isAlreadyTake = true;
         _interactionKey.SetActive(false);
         _tweener.Kill();
-        _cutScene.Play();
+        StartCoroutine(ItemEffect());
+    }
+
+    private IEnumerator ItemEffect()
+    {
+        yield return new WaitForSeconds(3f);
+
+        _blackCircle.transform.DOScale(1000f, 4f);
     }
 
     public void ShowInteraction()
