@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bear_IdleState : EnemyState
 {
-    public Bear_IdleState(Enemy enemy, string animBoolHash) : base(enemy, EnemyStateType.Idle.ToString())
+    public Bear_IdleState(Enemy enemy) : base(enemy, EnemyStateType.Idle.ToString())
     {
         
     }

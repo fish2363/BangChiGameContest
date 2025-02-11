@@ -17,7 +17,7 @@ public class Bear : Enemy
             }
             catch
             {
-                // ignored
+                // ignore
             }
         }
         TransitionState(EnemyStateType.Idle);
@@ -27,7 +27,6 @@ public class Bear : Enemy
     {
         base.AfterInitialize();
         GetCompo<EntityHealth>().OnKnockback += HandleKnockBack;
-        print("아");
     }
 
     protected override void OnDestroy()
@@ -51,7 +50,21 @@ public class Bear : Enemy
 
     public override void Attack()
     {
-        
+        Debug.Log("어택1");
+    }
+
+    public override void Attakc2()
+    {
+        Debug.Log("어택2");
+    }
+
+    public override void RandomAttack()
+    {
+        int rand = UnityEngine.Random.Range(0, 2);
+        if(rand == 0)
+            TransitionState(EnemyStateType.Attack);
+        else
+            TransitionState(EnemyStateType.Attack2);
     }
 
     public override void Dead()

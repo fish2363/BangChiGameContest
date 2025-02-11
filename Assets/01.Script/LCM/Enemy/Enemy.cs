@@ -118,8 +118,18 @@ public abstract class Enemy : Entity
         isAttackAnimationEnd = true;
     }
 
+    public virtual void RandomAttack()
+    {
+        
+    }
+
     public abstract void Attack();
     public abstract void Dead();
+
+    public virtual void Attakc2()
+    {
+        
+    }
 
     public void AddForceToEntity(Vector2 force)
             => RbCompo.AddForce(force, ForceMode2D.Impulse);
