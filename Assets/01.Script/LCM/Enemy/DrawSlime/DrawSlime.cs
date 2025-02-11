@@ -61,6 +61,10 @@ public class DrawSlime : Enemy
 
     public override void Dead()
     {
+        if (IsDead) return;
+        gameObject.layer = DeadBodyLayer;
+        IsDead = true;
+        print("꽥 디짐");
         TransitionState(EnemyStateType.Dead);
     }
 }

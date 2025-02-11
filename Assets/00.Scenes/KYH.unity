@@ -1480,7 +1480,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 000000004102c57feb1f88d019733433fd8ef7bba59d459be15a3f81
+  m_ApplyToSortingLayers: 000000004102c57feb1f88d019733433fd8ef7bba59d459be15a3f81f5f337f0
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -2196,7 +2196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &953980929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11391,7 +11391,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &2921491655454990171
+--- !u!1001 &2139464943
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11401,7 +11401,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3118491453254427202, guid: a2618c3acdf791a45b50382b55aa1911, type: 3}
       propertyPath: m_Name
-      value: DrawSlime
+      value: DrawSlime (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3531126619883348805, guid: a2618c3acdf791a45b50382b55aa1911, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3531126619883348805, guid: a2618c3acdf791a45b50382b55aa1911, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4314835949573858063, guid: a2618c3acdf791a45b50382b55aa1911, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11712,4 +11720,4 @@ SceneRoots:
   - {fileID: 953980931}
   - {fileID: 342760261}
   - {fileID: 6285668457742551018}
-  - {fileID: 2921491655454990171}
+  - {fileID: 2139464943}
