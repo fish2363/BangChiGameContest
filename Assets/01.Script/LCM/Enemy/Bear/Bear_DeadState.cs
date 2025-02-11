@@ -1,12 +1,11 @@
 using UnityEngine;
 
-public class DrawSlime_DeadState : EnemyState
+public class Bear_DeadState : EnemyState
 {
-    public DrawSlime_DeadState(Enemy enemy) : base(enemy, EnemyStateType.Dead.ToString())
+    public Bear_DeadState(Enemy enemy, string animBoolHash) : base(enemy, EnemyStateType.Dead.ToString())
     {
-        
     }
-
+    
     protected override void EnterState()
     {
         base.EnterState();

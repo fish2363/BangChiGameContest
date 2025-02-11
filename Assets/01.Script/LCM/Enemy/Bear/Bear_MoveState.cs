@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class DrawSlime_MoveState : EnemyState
+public class Bear_MoveState : EnemyState
 {
-    public DrawSlime_MoveState(Enemy enemy) : base(enemy, EnemyStateType.Move.ToString())
+    public Bear_MoveState(Enemy enemy, string animBoolHash) : base(enemy, EnemyStateType.Move.ToString())
     {
     }
-
     public override void FixedUpdateState()
     {
         base.UpdateState();

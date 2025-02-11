@@ -158,5 +158,6 @@ public enum EnemyStateType
     Idle,
     Move,
     Attack,
+    Attack2,
     Dead
 }
