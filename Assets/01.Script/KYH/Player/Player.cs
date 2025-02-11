@@ -11,6 +11,7 @@ public class Player : Entity
 
     [SerializeField]
     private StateListSO playerFSM;
+    private EntityMover _mover;
 
     public bool isBannedAttack { get; set; } = false;
 
@@ -38,22 +39,31 @@ public class Player : Entity
     private void OnDestroy()
     {
         GetCompo<EntityAnimationTrigger>().OnAnimationEnd -= HandleAnimationEnd;
+        GetCompo<EntityHealth>().OnKnockback -= HandleKnockBack;
         PlayerInput.ClearSubscription();
     }
 
     protected override void AfterInitialize()
     {
         base.AfterInitialize();
+        _mover = GetCompo<EntityMover>();
+        GetCompo<EntityHealth>().OnKnockback += HandleKnockBack;
         GetCompo<EntityAnimationTrigger>().OnAnimationEnd += HandleAnimationEnd;
     }
 
     protected override void HandleHit()
     {
-        throw new System.NotImplementedException();
+
+    }
+
+    private void HandleKnockBack(Vector2 knockBackForce)
+    {
+        float knockBackTime = 0.5f;
+        _mover.KnockBack(knockBackForce, knockBackTime);
     }
 
     protected override void HandleDead()
     {
-        throw new System.NotImplementedException();
+        print("²Ð µðÁü");
     }
 }
