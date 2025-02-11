@@ -64,6 +64,10 @@ public class Player : Entity
 
     protected override void HandleDead()
     {
+        if (IsDead) return;
+        gameObject.layer = DeadBodyLayer;
+        IsDead = true;
         print("²Ð µðÁü");
+        _stateMachine.ChangeState("DEAD");
     }
 }

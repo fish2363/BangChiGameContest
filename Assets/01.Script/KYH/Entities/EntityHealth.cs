@@ -4,12 +4,13 @@ using UnityEngine;
 public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInit
 {
     public float maxHealth;
-    private float _currentHealth;
+    public float _currentHealth { get; private set; }
 
     public event Action<Vector2> OnKnockback;
 
     private Entity _entity;
     private EntityFeedbackData _feedbackData;
+    [HideInInspector] public NotifyValue<float> hp = new();
 
     #region Initialize section
 
@@ -17,11 +18,11 @@ public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInit
     {
         _entity = entity;
         _feedbackData = _entity.GetCompo<EntityFeedbackData>();
+        _currentHealth = maxHealth;
     }
 
     public void AfterInitialize()
     {
-        _currentHealth = maxHealth;
         _entity.OnDamage += ApplyDamage;
     }
 
@@ -41,6 +42,8 @@ public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInit
         _feedbackData.LastAttackDirection = direction.normalized;
         _feedbackData.IsLastHitPowerAttack = isPowerAttack;
         _feedbackData.LastEntityWhoHit = dealer;
+
+        hp.Value = _currentHealth;
 
         AfterHitFeedbacks(knockBackPower);
     }
