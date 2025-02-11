@@ -26,7 +26,6 @@ public class DrawSlime_MoveState : EnemyState
 
         if (_enemy.CanTargetingPlayer() == false)
         {
-            Debug.Log("Change Idle");
             _enemy.TransitionState(EnemyStateType.Idle);
         }
     }

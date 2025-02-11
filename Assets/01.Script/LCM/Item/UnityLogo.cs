@@ -1,13 +1,12 @@
-using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class UnityLogo : MonoBehaviour, ITakeable
 {
-    [SerializeField] private PlayableDirector _cutScene;
 
     [SerializeField] private float _playerCheckRadius;
 
@@ -24,6 +23,11 @@ public class UnityLogo : MonoBehaviour, ITakeable
     private Tweener _tweener;
 
     private bool _isAlreadyTake = false;
+
+    [SerializeField] private GameObject _blackCircle;
+
+    public UnityEvent OnCameraShakeing;
+
     private void Start()
     {
         _firstItemYPosition = transform.position.y;
@@ -37,13 +41,29 @@ public class UnityLogo : MonoBehaviour, ITakeable
     public void TakeItem()
     {
         _isAlreadyTake = true;
+        _interactionKey.SetActive(false);
         _tweener.Kill();
-        Debug.Log("누름");
-        //_cutScene.Play();
+        StartCoroutine(ItemEffect());
+    }
+
+    private IEnumerator ItemEffect()
+    {
+        OnCameraShakeing?.Invoke();
+        yield return new WaitForSeconds(1.5f);
+        OnCameraShakeing?.Invoke();
+        yield return new WaitForSeconds(1.5f);
+
+        yield return _blackCircle.transform.DOScale(1000f, 4f).WaitForCompletion();
+
+        yield return new WaitForSeconds(0.5f);
+        
+        SceneManager.LoadScene("UnityScene");
     }
 
     public void ShowInteraction()
     {
+        if(_isAlreadyTake) return;
+        
         if (CanTakeItem())
         {
             _interactionKey.SetActive(true);
