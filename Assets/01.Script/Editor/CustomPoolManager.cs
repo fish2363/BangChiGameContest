@@ -6,7 +6,7 @@ using UnityEngine;
 public class CustomPoolManager : Editor
 {
     private readonly string _listSOName = "PoolList.asset";
-    private readonly string _prefabPath = "Assets/01.FirstShimhwa/08.SO/Pool"; // 주소는 폴더에 맞게 바꾸기
+    private readonly string _prefabPath = "Assets/05.SO/Pool"; // 주소는 폴더에 맞게 바꾸기
 
     public override void OnInspectorGUI()
     {

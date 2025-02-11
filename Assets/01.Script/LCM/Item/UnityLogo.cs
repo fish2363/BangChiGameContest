@@ -3,6 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UnityLogo : MonoBehaviour, ITakeable
 {
@@ -24,8 +25,8 @@ public class UnityLogo : MonoBehaviour, ITakeable
     private bool _isAlreadyTake = false;
 
     [SerializeField] private GameObject _blackCircle;
-    
 
+    public UnityEvent OnCameraShakeing;
 
     private void Start()
     {
@@ -47,9 +48,16 @@ public class UnityLogo : MonoBehaviour, ITakeable
 
     private IEnumerator ItemEffect()
     {
-        yield return new WaitForSeconds(3f);
+        OnCameraShakeing?.Invoke();
+        yield return new WaitForSeconds(1.5f);
+        OnCameraShakeing?.Invoke();
+        yield return new WaitForSeconds(1.5f);
 
-        _blackCircle.transform.DOScale(1000f, 4f);
+        yield return _blackCircle.transform.DOScale(1000f, 4f).WaitForCompletion();
+
+        yield return new WaitForSeconds(0.5f);
+        
+        SceneManager.LoadScene("UnityScene");
     }
 
     public void ShowInteraction()
