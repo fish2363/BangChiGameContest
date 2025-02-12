@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Cinemachine;
@@ -29,6 +30,7 @@ public class CameraManager : MonoBehaviour
 
         cameraChannel.AddListener<PanEvent>(HandleCameraPanning);
         cameraChannel.AddListener<SwapCameraEvent>(HandleSwapCamera);
+        cameraChannel.AddListener<PerlinShake>(HandleShakeCamera);
         currentCamera = FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None)
                         .FirstOrDefault(cam => cam.Priority == activeCameraPriority);
 
@@ -36,9 +38,16 @@ public class CameraManager : MonoBehaviour
         ChangeCamera(currentCamera);
     }
 
+    private void HandleShakeCamera(PerlinShake shakeEvt)
+    {
+        //CinemachineBasicMultiChannelPerlin 
+            //DOVirtual.DelayedCall(shakeEvt.second, () => impulseSource.GenerateImpulseWithVelocity(Vector3.zero));
+    }
+
     private void OnDestroy()
     {
         cameraChannel.RemoveListener<PanEvent>(HandleCameraPanning);
+        cameraChannel.RemoveListener<PerlinShake>(HandleShakeCamera);
         cameraChannel.RemoveListener<SwapCameraEvent>(HandleSwapCamera);
         KillTweenIfActive();
     }
