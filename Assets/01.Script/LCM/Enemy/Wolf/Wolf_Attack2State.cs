@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class Bear_AttackState : EnemyState
+public class Wolf_Attack2State : EnemyState
 {
-    public Bear_AttackState(Enemy enemy) : base(enemy, EnemyStateType.Attack.ToString())
+    public Wolf_Attack2State(Enemy enemy) : base(enemy, EnemyStateType.Attack2.ToString())
     {
     }
-
+    
     protected override void EnterState()
     {
         base.EnterState();
         _enemy.RbCompo.linearVelocity = Vector2.zero;
-        _enemy.Attack();
+        _enemy.Attakc2();
     }
     
     public override void UpdateState()

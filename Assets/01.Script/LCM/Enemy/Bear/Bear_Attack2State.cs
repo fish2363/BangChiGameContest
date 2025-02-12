@@ -10,7 +10,6 @@ public class Bear_Attack2State : EnemyState
     {
         base.EnterState();
         _enemy.RbCompo.linearVelocity = Vector2.zero;
-        _enemy.EnemyRotation();
         _enemy.Attakc2();
     }
     

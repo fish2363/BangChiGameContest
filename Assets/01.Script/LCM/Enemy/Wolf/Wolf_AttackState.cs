@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class Bear_AttackState : EnemyState
+public class Wolf_AttackState : EnemyState
 {
-    public Bear_AttackState(Enemy enemy) : base(enemy, EnemyStateType.Attack.ToString())
+    public Wolf_AttackState(Enemy enemy) : base(enemy, EnemyStateType.Attack.ToString())
     {
     }
-
     protected override void EnterState()
     {
         base.EnterState();
