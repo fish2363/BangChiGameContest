@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class Bear_IdleState : EnemyState
+public class Wolf_IdleState : EnemyState
 {
-    public Bear_IdleState(Enemy enemy) : base(enemy, EnemyStateType.Idle.ToString())
+    public Wolf_IdleState(Enemy enemy) : base(enemy, EnemyStateType.Idle.ToString())
     {
-        
     }
     
     protected override void EnterState()

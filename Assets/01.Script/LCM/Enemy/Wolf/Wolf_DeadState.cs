@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Bear_DeadState : EnemyState
+public class Wolf_DeadState : EnemyState
 {
-    public Bear_DeadState(Enemy enemy) : base(enemy, EnemyStateType.Dead.ToString())
+    public Wolf_DeadState(Enemy enemy) : base(enemy, EnemyStateType.Dead.ToString())
     {
     }
     

@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
 
-public class Bear : Enemy
+public class Wolf : Enemy
 {
+    
     protected override void Awake()
     {
         base.Awake();
@@ -11,13 +12,13 @@ public class Bear : Enemy
             try
             {
                 string enumName = stateType.ToString();
-                Type t = Type.GetType($"Bear_{enumName}State");
+                Type t = Type.GetType($"Wolf_{enumName}State");
                 EnemyState state = Activator.CreateInstance(t, new object[] { this }) as EnemyState;
                 StateEnum.Add(stateType, state);
             }
             catch
             {
-                // ignore
+                // ignored
             }
         }
         TransitionState(EnemyStateType.Idle);
@@ -28,7 +29,7 @@ public class Bear : Enemy
         base.AfterInitialize();
         GetCompo<EntityHealth>().OnKnockback += HandleKnockBack;
     }
-
+    
     protected override void OnDestroy()
     {
         base.OnDestroy();
@@ -37,7 +38,6 @@ public class Bear : Enemy
     
     private void HandleKnockBack(Vector2 knockBackForce)
     {
-        print("넉백");
         float knockBackTime = 0.5f;
         KnockBack(knockBackForce, knockBackTime);
     }
@@ -57,6 +57,14 @@ public class Bear : Enemy
     {
         
     }
+    public override void Dead()
+    {
+        if (IsDead) return;
+        gameObject.layer = DeadBodyLayer;
+        IsDead = true;
+        TransitionState(EnemyStateType.Dead);
+    }
+    
 
     public override void RandomAttack()
     {
@@ -65,13 +73,5 @@ public class Bear : Enemy
             TransitionState(EnemyStateType.Attack);
         else
             TransitionState(EnemyStateType.Attack2);
-    }
-
-    public override void Dead()
-    {
-        if (IsDead) return;
-        gameObject.layer = DeadBodyLayer;
-        IsDead = true;
-        TransitionState(EnemyStateType.Dead);
     }
 }

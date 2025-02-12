@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class Bear_MoveState : EnemyState
+public class Wolf_MoveState : EnemyState
 {
-    public Bear_MoveState(Enemy enemy) : base(enemy, EnemyStateType.Move.ToString())
+    public Wolf_MoveState(Enemy enemy) : base(enemy, EnemyStateType.Move.ToString())
     {
     }
-
+    
     public override void FixedUpdateState()
     {
         base.UpdateState();
