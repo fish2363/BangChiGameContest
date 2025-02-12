@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class WindowSceneLogic : MonoBehaviour
     private static extern IntPtr GetActiveWindow();
 
     private static IntPtr windowHandle;
+    private bool isfirewall = true;
 
     public static IntPtr GetWindowHandle()
     {
@@ -48,11 +50,69 @@ public class WindowSceneLogic : MonoBehaviour
         else
             return;
     }
-    public void LCMProfile(string appName, string appDescript)
+    public void Firewall(string appName, string appDescript)
+    {
+        if(!isfirewall)
+        {
+            if (Answer("방화벽을 켜시겠습니까?", "보안 시스템") == 1)
+            {
+                isfirewall = true;
+            }
+        }
+        else
+        {
+            if (Answer(appDescript, appName) == 1)
+            {
+                isfirewall = false;
+            }
+        }
+    }
+
+    public void Password(string appName, string appDescript)
+    {
+        if(isfirewall)
+        {
+            MessageBox(GetWindowHandle(), appName, appDescript, (uint)(0x00000000L | 0x00000030L));
+            return;
+        }
+        string desktop_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+
+        string saveFolder_path = desktop_path + "//Important Folders";
+        DirectoryInfo directoryInfo = new DirectoryInfo(saveFolder_path);
+        if (directoryInfo.Exists != true)
+        {
+            directoryInfo.Create();
+        }
+        string path = saveFolder_path + @"\Command.txt";
+        print(path + "에다가 만들기 성공");
+        var writer = new StreamWriter(File.Open(path, FileMode.OpenOrCreate));
+        writer.WriteLine(Environment.UserName);
+        writer.Close();
+
+        ProcessStartInfo startInfo = new ProcessStartInfo(path)
+        {
+            UseShellExecute = true
+        };
+        Process.Start(startInfo);
+    }
+
+    public void Photo(string appName, string appDescript)
     {
         if (Answer(appDescript, appName) == 1)
         {
-            Process.Start("https://ggm.gondr.net/user/profile/327");
+            string filePath = Application.dataPath + "/ScreenShot.png";
+            ProcessStartInfo startInfo = new ProcessStartInfo(filePath)
+            {
+                UseShellExecute = true
+            };
+            Process.Start(startInfo);
+
+            string strPath = Application.dataPath + "/ScreenShot.png";
+
+            print(strPath);
+
+            //Process.Start($"ms-photos:viewer?fileName={strPath}");
         }
         else
             return;
