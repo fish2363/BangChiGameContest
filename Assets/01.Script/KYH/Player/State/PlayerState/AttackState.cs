@@ -41,7 +41,7 @@ public class AttackState : EntityState
             atkDirection = Mathf.Sign(xInput);
 
         AttackDataSO attackData = _attackCompo.GetAttackData($"PlayerCombo{_comboCounter}");
-
+        _mover.EffectorPlayer.PlayEffect($"Combo{_comboCounter}AttackEffect");
         Vector2 movement = attackData.movement;
         movement.x *= atkDirection;
         _mover.AddForceToEntity(movement);

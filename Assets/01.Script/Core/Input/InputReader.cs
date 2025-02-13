@@ -53,4 +53,10 @@ public class InputReader : ScriptableObject, PlayerInput.IPlayerActions
         if (context.performed)
             OnAttackKeyPressed?.Invoke();
     }
+
+    public void OnCounter(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OnCounterKeyPressed?.Invoke();
+    }
 }

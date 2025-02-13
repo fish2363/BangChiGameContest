@@ -8,7 +8,11 @@ public class PlayerAttackCompo : MonoBehaviour, IEntityComponent, IAfterInit
 
     [SerializeField] private List<AttackDataSO> attackDataList;
 
-    
+    [Header("Counter attack settings")]
+    public float counterAttackDuration;
+    public AnimParamSO successCounterParam;
+    public LayerMask whatIsCounterable;
+
     private Player _player;
     private EntityRenderer _renderer;
     private EntityMover _mover;
@@ -81,10 +85,22 @@ public class PlayerAttackCompo : MonoBehaviour, IEntityComponent, IAfterInit
 
         if (success)
         {
+            _mover.EffectorPlayer.PlayEffect("HitEffect");
             Debug.Log($"<color=red>Damaged! - {damage}</color>");
         }
     }
 
+    public ICounterable GetCounterableTargetInRadius()
+    {
+        Vector3 center = damageCaster.transform.position;
+        Collider2D collider = damageCaster.GetCounterableTarget(center, whatIsCounterable);
+        //Collider2D collider = Physics2D.OverlapCircle(center, damageCaster.GetSize(), whatIsCounterable);
+        if (collider != null)
+            return collider.GetComponent<ICounterable>();
+        else
+            Debug.Log("½ÇÆÐ");
+        return default;
+    }
 
     public void AfterInitialize()
     {

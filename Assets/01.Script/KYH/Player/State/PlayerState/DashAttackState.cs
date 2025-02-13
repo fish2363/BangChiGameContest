@@ -28,7 +28,7 @@ public class DashAttackState : EntityState
         Vector2 movement = attackData.movement; //이따 만들께
         movement.x *= _renderer.FacingDirection;
         _mover.AddForceToEntity(movement);
-
+        _mover.EffectorPlayer.PlayEffect("DashAttackEffect");
         _attackCompo.SetAttackData(attackData);
     }
 
