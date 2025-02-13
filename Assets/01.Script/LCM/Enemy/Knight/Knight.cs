@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public class Knight : Enemy
 {
@@ -58,7 +57,7 @@ public class Knight : Enemy
         {
             _hitCount++;
         }
-        if (_entityHealth.maxHealth / 2 <= next)
+        if (_entityHealth.maxHealth / 2 >= next)
         {
             Debug.Log("2페이즈 진입");
             _isPageTwo = true;

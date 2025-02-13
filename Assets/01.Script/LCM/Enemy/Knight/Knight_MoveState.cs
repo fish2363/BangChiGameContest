@@ -15,7 +15,7 @@ public class Knight_MoveState : EnemyState
 
         if (_enemy.CanAttackPlayer())
         {
-            _enemy.TransitionState(EnemyStateType.Attack3);
+            _enemy.RandomAttack();
         }
         _enemy.IsCanShield();
         
