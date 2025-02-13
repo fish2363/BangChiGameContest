@@ -29,7 +29,6 @@ public class EnemyAttackCompo : MonoBehaviour,IEntityComponent,IAfterInit
 
     private void HandleAttackTrigger()
     {
-        float damage = 5f; //나중에 스탯기반으로 고침. 
         bool success = damageCaster.CastDamage(damage, knockBackForce, false);
 
         if (success)
