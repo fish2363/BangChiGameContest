@@ -1,25 +1,16 @@
-using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class AutoNpc : Npc
 {
     
     [SerializeField] private bool _randomChat;
     
-    [SerializeField] private float _waitTime = 2f;
     
-
-    private string _nowText;
-    private int _npcIndex;
-
-    private Text _text;
-
+    
     private bool _intoRangePlayer;
     
-    private bool _isTalking = false;
     
 
     private IEnumerator ChattingCoroutine()

@@ -169,5 +169,10 @@ public enum EnemyStateType
     Move,
     Attack,
     Attack2,
+    Attack3,
+    Attack4,
+    Defend,
+    Shield,
+    Run,
     Dead
 }

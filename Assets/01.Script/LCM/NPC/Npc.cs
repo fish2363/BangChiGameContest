@@ -1,7 +1,7 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Npc : MonoBehaviour
 {
@@ -14,6 +14,15 @@ public abstract class Npc : MonoBehaviour
     protected TextMeshPro _textBoxText;
     
     public List<string> NpcChatTexts = new List<string>();
+    
+    protected string _nowText;
+    protected int _npcIndex;
+
+    protected Text _text;
+
+    protected bool _isTalking = false;
+    
+    [SerializeField] protected float _waitTime = 2f;
     
     protected virtual void Awake()
     {
