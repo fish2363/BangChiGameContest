@@ -234,11 +234,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
       propertyPath: appName
-      value: "\uD504\uB85C\uD544"
+      value: "\uBCF4\uC548 \uC2DC\uC2A4\uD15C"
       objectReference: {fileID: 0}
     - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
       propertyPath: appDescript
-      value: "\uAC1C\uBC1C\uC790 1\uBA85\uC758 \uD504\uB85C\uD544\uC744 \uAC80\uC0C9\uD569\uB2C8\uB2E4."
+      value: "\uBC29\uD654\uBCBD\uC744 \uB044\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
       objectReference: {fileID: 0}
     - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
       propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.size
@@ -258,7 +258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
       propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LCMProfile
+      value: Firewall
       objectReference: {fileID: 0}
     - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
       propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -318,16 +318,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5653250765961267993, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
       propertyPath: m_Name
-      value: Profile:LCM
+      value: FireWall
       objectReference: {fileID: 0}
     - target: {fileID: 6586020949565985844, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
       propertyPath: m_text
-      value: Profile
+      value: "\uBC29\uD654\uBCBD"
       objectReference: {fileID: 0}
     - target: {fileID: 7577271834637477352, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0d3073db50751714498e0f4cf1577bdb, type: 3}
+      objectReference: {fileID: 21300000, guid: 2ec6cbb39971a0247a1ccbdc28733a44, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1177,6 +1177,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1163380387}
     m_Modifications:
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: appName
+      value: "\uAC1C\uBC1C\uC911.png"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: appDescript
+      value: "\uAC1C\uBC1C \uC2A4\uC0F7\uC785\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1135801778}
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Photo
+      objectReference: {fileID: 0}
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WindowSceneLogic, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2659979823957547279, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4499998
@@ -1219,12 +1255,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5653250765961267993, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
       propertyPath: m_Name
-      value: Notion
+      value: Photo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586020949565985844, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: m_text
+      value: Photo
       objectReference: {fileID: 0}
     - target: {fileID: 7577271834637477352, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f100c05db9385be458901482d0c808f1, type: 3}
+      objectReference: {fileID: 21300000, guid: edc9a2b6ca15dda45a17a63ea38d04eb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1332,7 +1372,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f27116a5d86d12d4eb781f2e372ababa, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1893,6 +1933,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1163380387}
     m_Modifications:
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: appName
+      value: "\uBC29\uD654\uBCBD \uB54C\uBB38\uC5D0 \uC811\uADFC\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: appDescript
+      value: "\uC54C\uB9BC"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1135801778}
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Password
+      objectReference: {fileID: 0}
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WindowSceneLogic, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1409691516032394219, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
+      propertyPath: OnInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2659979823957547279, guid: 8ec3814eb69218c419e5eb52f24188a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4199996
@@ -2243,7 +2315,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -4.157432}
+  m_Offset: {x: 6.761679, y: -4.157432}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2253,7 +2325,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 9.681695}
+  m_Size: {x: 14.523358, y: 9.681695}
   m_EdgeRadius: 0
 --- !u!1 &1387375961
 GameObject:
@@ -2426,7 +2498,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -4.157432}
+  m_Offset: {x: -11.2059765, y: -4.157432}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2436,7 +2508,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 9.681695}
+  m_Size: {x: 23.411953, y: 9.681695}
   m_EdgeRadius: 0
 --- !u!1 &1505770481
 GameObject:
@@ -2481,7 +2553,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f27116a5d86d12d4eb781f2e372ababa, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2505,7 +2577,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -4.952216}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2515,7 +2587,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 19.19, y: 0.46}
+  m_Size: {x: 19.19, y: 10.364431}
   m_EdgeRadius: 0
 --- !u!212 &1505770484
 SpriteRenderer:
@@ -3006,7 +3078,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -4.157432}
+  m_Offset: {x: -5.968904, y: -4.157432}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3016,7 +3088,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 9.681695}
+  m_Size: {x: 12.937808, y: 9.681695}
   m_EdgeRadius: 0
 --- !u!4 &1937294101 stripped
 Transform:
