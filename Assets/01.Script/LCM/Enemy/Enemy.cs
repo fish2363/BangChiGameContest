@@ -1,8 +1,6 @@
 using DG.Tweening;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public abstract class Enemy : Entity
 {
@@ -60,7 +58,7 @@ public abstract class Enemy : Entity
     }
 
 
-    private void Update() => StateEnum[currentState].UpdateState();
+    protected virtual void Update() => StateEnum[currentState].UpdateState();
 
     private void FixedUpdate() => StateEnum[currentState].FixedUpdateState();
 
@@ -147,6 +145,16 @@ public abstract class Enemy : Entity
         StopImmediately(true);
         AddForceToEntity(force);
         DOVirtual.DelayedCall(time, () => CanMove = true);
+    }
+
+    public virtual void IsCanShield()
+    {
+        
+    }
+
+    public virtual void CreateShield()
+    {
+        
     }
 
 #if UNITY_EDITOR

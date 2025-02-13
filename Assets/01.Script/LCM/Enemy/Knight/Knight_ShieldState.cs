@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Knight_AttackState : EnemyState
+public class Knight_ShieldState : EnemyState
 {
-    public Knight_AttackState(Enemy enemy) : base(enemy, EnemyStateType.Attack.ToString())
+    public Knight_ShieldState(Enemy enemy) : base(enemy, EnemyStateType.Shield.ToString())
     {
     }
     
@@ -18,10 +18,11 @@ public class Knight_AttackState : EnemyState
         if(_enemy.isAttackAnimationEnd)
             _enemy.TransitionState(EnemyStateType.Move);
     }
-    
+
     protected override void ExtiState()
     {
         base.ExtiState();
+        _enemy.CreateShield();
         _enemy.isAttackAnimationEnd = false;
     }
 }

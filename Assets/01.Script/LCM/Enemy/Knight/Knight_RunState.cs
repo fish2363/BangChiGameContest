@@ -18,6 +18,7 @@ public class Knight_RunState : EnemyState
         {
             _enemy.TransitionState(EnemyStateType.Idle);
         }
+        _enemy.IsCanShield();
 
         _enemy.TargetingPlayer();
         

@@ -1,15 +1,16 @@
 using UnityEngine;
 
-public class Knight_AttackState : EnemyState
+public class Knight_Attack3State : EnemyState
 {
-    public Knight_AttackState(Enemy enemy) : base(enemy, EnemyStateType.Attack.ToString())
+    public Knight_Attack3State(Enemy enemy) : base(enemy, EnemyStateType.Attack3.ToString())
     {
     }
-    
+
     protected override void EnterState()
     {
         base.EnterState();
         _enemy.RbCompo.linearVelocity = Vector2.zero;
+        _enemy.Attack();
     }
     
     public override void UpdateState()
