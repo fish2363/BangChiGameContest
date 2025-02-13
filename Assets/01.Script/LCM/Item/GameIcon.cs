@@ -5,9 +5,8 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class UnityLogo : MonoBehaviour, ITakeable
+public class GameIcon : MonoBehaviour, ITakeable
 {
-
     [SerializeField] private float _playerCheckRadius;
 
     [SerializeField] private LayerMask _whatIsPlayer;
@@ -24,7 +23,6 @@ public class UnityLogo : MonoBehaviour, ITakeable
 
     private bool _isAlreadyTake = false;
 
-    [SerializeField] private GameObject _blackCircle;
     
     [SerializeField] private string _sceneName;
 
@@ -54,8 +52,6 @@ public class UnityLogo : MonoBehaviour, ITakeable
         yield return new WaitForSeconds(1.5f);
         OnCameraShakeing?.Invoke();
         yield return new WaitForSeconds(1.5f);
-
-        yield return _blackCircle.transform.DOScale(1000f, 4f).WaitForCompletion();
 
         yield return new WaitForSeconds(0.5f);
         

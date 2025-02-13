@@ -482,10 +482,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8695012530575803359}
   - component: {fileID: 420528414962551353}
-  - component: {fileID: 2942800366296893417}
   - component: {fileID: 6612712074939615003}
   - component: {fileID: 3140619241189853531}
-  m_Layer: 0
+  - component: {fileID: 1250138007775803845}
+  m_Layer: 10
   m_Name: TestNpc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,26 +564,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2942800366296893417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7710064281335091161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 651eea7224f99d0479323238a78bafee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _randomChat: 0
-  _waitTime: 2
-  NpcChatTexts:
-  - "\uC548\uB155\uD558\uC2DC\uC624 \uB0AF\uC120\uC774\uC5EC"
-  - "\uB098\uB294 \uC790\uB124\uB97C \uC778\uB3C4\uD558\uB294 \uB098\uADF8\uB124\uC624"
-  - "\uC624\uB298 \uC800\uB141\uC73C\uB85C\uB294 \uC5F0\uC5B4\uD68C\uB97C \uBA39\uB294\uAC8C
-    \uC5B4\uB5BB\uC18C"
-  - "\uD558\uD558\uD558\uD558\uD558\uD558"
 --- !u!61 &6612712074939615003
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -657,6 +637,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1250138007775803845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7710064281335091161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 620fb54314ca8774387c9810a3d74677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _chatRadius: 2
+  _whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
+  NpcChatTexts:
+  - zzzzzz
+  - fdafdasfd
+  - gfshghhf
+  _randomChat: 1
+  _waitTime: 2
 --- !u!1 &8189699198417931807
 GameObject:
   m_ObjectHideFlags: 0
