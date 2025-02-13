@@ -1,9 +1,11 @@
 using System;
 using UnityEngine;
 
-public class DrawSlime : Enemy
+public class DrawSlime : Enemy, ICounterable
 {
+    private EntityAnimationTrigger _animationTrigger;
     [SerializeField] private float _attackDashPower;
+
     protected override void Awake()
     {
         base.Awake();
@@ -28,6 +30,8 @@ public class DrawSlime : Enemy
     {
         base.AfterInitialize();
         GetCompo<EntityHealth>().OnKnockback += HandleKnockBack;
+        _animationTrigger = GetCompo<EntityAnimationTrigger>();
+        _animationTrigger.OnCounterStatusChange += SetCounterStatus;
         print("아");
     }
 
@@ -35,6 +39,7 @@ public class DrawSlime : Enemy
     {
         base.OnDestroy();
         GetCompo<EntityHealth>().OnKnockback -= HandleKnockBack;
+        _animationTrigger.OnCounterStatusChange -= SetCounterStatus;
     }
 
     private void HandleKnockBack(Vector2 knockBackForce)
@@ -67,4 +72,23 @@ public class DrawSlime : Enemy
         print("꽥 디짐");
         TransitionState(EnemyStateType.Dead);
     }
+
+    #region Counter section
+    public bool CanCounter { get; private set; }
+    public Transform TargetTrm => transform;
+    public void ApplyCounter(float damage, Vector2 direction, Vector2 knockBackForce, bool isPowerAttack, Entity dealer)
+    {
+        //damage에 스턴시간, 크리티컬 등등의 정보객체 넘어와야 하는데 지금은 damage만 주니까 하드코딩
+        float stunTime = 2f;
+
+        CanCounter = false;
+
+        GetCompo<EntityHealth>().ApplyDamage(damage, direction, knockBackForce, isPowerAttack, dealer);
+        Debug.Log("<color=green>Counter success</color>");
+    }
+
+    private void SetCounterStatus(bool canCounter)
+        => CanCounter = canCounter;
+
+    #endregion
 }

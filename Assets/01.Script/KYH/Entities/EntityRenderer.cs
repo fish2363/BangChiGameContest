@@ -6,6 +6,7 @@ public class EntityRenderer : MonoBehaviour, IEntityComponent
     public SpriteRenderer SpriteRenderer { get; private set; }
 
     [field: SerializeField] public float FacingDirection { get; private set; } = 1f;
+    public event Action<bool> OnFlip;
 
     private Entity _entity;
     private Animator _animator;
@@ -27,6 +28,7 @@ public class EntityRenderer : MonoBehaviour, IEntityComponent
         float xMove = Mathf.Approximately(xVelocity, 0) ? 0 : Mathf.Sign(xVelocity);
         if(Mathf.Abs(xMove + FacingDirection) < 0.5f)
         {
+            OnFlip?.Invoke(Mathf.Abs(xMove + FacingDirection) < 0.5f);
             Flip();
         }
     }
