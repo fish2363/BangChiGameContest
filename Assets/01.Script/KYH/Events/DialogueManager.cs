@@ -17,7 +17,8 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
     public string[] currentDialogue { get; private set; }
 
     private TextMeshProUGUI chatText;
-    private CanvasGroup textBox;
+    private CanvasGroup textBoxCanvas;
+    private Image textBoxImage;
 
     bool isSkip;
     int talkNum;
@@ -30,15 +31,18 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         _mover = _entity.GetCompo<EntityMover>();
         _renderer = _entity.GetCompo<EntityRenderer>();
 
+        _renderer.OnFlip += Flip;
         _player.PlayerInput.OnAttackKeyPressed += HandleClick;
         dialogueChannel.AddListener<StartAConversation>(HandleSpeak);
 
-        textBox = GetComponentInChildren<CanvasGroup>();
+        textBoxCanvas = GetComponentInChildren<CanvasGroup>();
+        textBoxImage = textBoxCanvas.GetComponentInChildren<Image>();
         chatText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void OnDestroy()
     {
+        _renderer.OnFlip -= Flip;
         _player.PlayerInput.OnAttackKeyPressed -= HandleClick;
         dialogueChannel.RemoveListener<StartAConversation>(HandleSpeak);
     }
@@ -65,6 +69,15 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         StartCoroutine(TypingRoutine(currentDialogue[talkNum]));
     }
 
+    private void Flip(bool LeftOrRight)
+    {
+        if(LeftOrRight)
+            textBoxImage.transform.Rotate(0,180f,0);
+        else
+            textBoxImage.transform.Rotate(0, 0, 0);
+    }
+
+
     private void EndTalk()
     {
         _mover.CanManualMove = true;
@@ -74,11 +87,11 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
     }
     public void ShowChatBox()
     {
-        DOTween.To(() => textBox.alpha, x => textBox.alpha = x, 1, 0.2f);
+        DOTween.To(() => textBoxCanvas.alpha, x => textBoxCanvas.alpha = x, 1, 0.2f);
     }
     private void HideChatBox()
     {
-        DOTween.To(()=> textBox.alpha,x => textBox.alpha = x,0,0.2f);
+        DOTween.To(()=> textBoxCanvas.alpha,x => textBoxCanvas.alpha = x,0,0.2f);
     }
 
     private void HandleSpeak(StartAConversation events)
@@ -97,6 +110,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
 
     private IEnumerator TypingRoutine(string talk)
     {
+
         ShowChatBox();
         chatText.text = null;
 

@@ -19,7 +19,7 @@ public class JumpAttackState : EntityState
         _mover.StopImmediately(true);
         _mover.SetGravityScale(0.1f); //순간적으로 공중에 멈추도록
         _mover.CanManualMove = false;
-
+        _mover.EffectorPlayer.PlayEffect("JumpAttackEffect");
         SetAttackData();
     }
 

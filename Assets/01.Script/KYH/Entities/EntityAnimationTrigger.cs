@@ -5,6 +5,7 @@ public class EntityAnimationTrigger : MonoBehaviour,IEntityComponent
 {
     public event Action OnAnimationEnd;
     public event Action OnAttackTrigger;
+    public event Action<bool> OnCounterStatusChange;
 
     private Entity _entity;
 
@@ -16,4 +17,6 @@ public class EntityAnimationTrigger : MonoBehaviour,IEntityComponent
     private void AnimationEnd() => OnAnimationEnd?.Invoke();
     private void AttackTrigger() => OnAttackTrigger?.Invoke();
 
+    private void OpenCounterWindow() => OnCounterStatusChange?.Invoke(true);
+    private void CloseCounterWindow() => OnCounterStatusChange?.Invoke(false);
 }

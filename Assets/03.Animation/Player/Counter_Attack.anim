@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Attack
+  m_Name: Counter_Attack
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,19 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1979631787854523777, guid: b67abcdcb7e066a44b3aa37ba2291c43, type: 3}
-    - time: 0.083333336
-      value: {fileID: 8023165847492105588, guid: 394e3f1b29c99fd47a72cfd2691633dd, type: 3}
-    - time: 0.16666667
-      value: {fileID: -7986581613129396850, guid: 3b6f9d986cd27fb4a8da4a1f68336fcb, type: 3}
-    - time: 0.25
-      value: {fileID: 1864280404427851233, guid: da805f138af83224f9ee45e5bc289fe0, type: 3}
+      value: {fileID: 5918146547289525073, guid: 48a38aa7b18354247ade127d8867e1f0, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 12
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -50,16 +44,13 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1979631787854523777, guid: b67abcdcb7e066a44b3aa37ba2291c43, type: 3}
-    - {fileID: 8023165847492105588, guid: 394e3f1b29c99fd47a72cfd2691633dd, type: 3}
-    - {fileID: -7986581613129396850, guid: 3b6f9d986cd27fb4a8da4a1f68336fcb, type: 3}
-    - {fileID: 1864280404427851233, guid: da805f138af83224f9ee45e5bc289fe0, type: 3}
+    - {fileID: 5918146547289525073, guid: 48a38aa7b18354247ade127d8867e1f0, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 0.016666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -78,32 +69,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.083333336
-    functionName: OpenCounterWindow
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.16666667
-    functionName: AttackTrigger
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.25
-    functionName: AnimationEnd
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.33333334
-    functionName: CloseCounterWindow
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []
