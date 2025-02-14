@@ -10,11 +10,11 @@ public class BossBullet : Entity, IPoolable
 
     [SerializeField] private LayerMask _whatIsPlayer;
     [SerializeField] private float _radius;
-    
+
     private Rigidbody2D _rigidbody2D;
     [SerializeField] private float _speed;
-    
-    
+
+
     [SerializeField] private float _bulletLifeTime;
     private float _curTime;
 
@@ -22,9 +22,9 @@ public class BossBullet : Entity, IPoolable
     [SerializeField] private Vector2 _knockbackForce;
 
     private Vector2 _moveDir;
-    
+
     public UnityEvent OnDeadEvent;
-    
+
 
     protected override void Awake()
     {
@@ -34,12 +34,10 @@ public class BossBullet : Entity, IPoolable
 
     protected override void HandleHit()
     {
-        
     }
 
     protected override void HandleDead()
     {
-        
     }
 
 
@@ -56,7 +54,6 @@ public class BossBullet : Entity, IPoolable
     private void FixedUpdate()
     {
         _rigidbody2D.linearVelocity = _moveDir * _speed;
-        Debug.Log(_moveDir);
     }
 
     private void Update()
@@ -73,7 +70,8 @@ public class BossBullet : Entity, IPoolable
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            other.gameObject.GetComponentInChildren<EntityHealth>().ApplyDamage(_damage, transform.position, _knockbackForce, false, this);
+            other.gameObject.GetComponentInChildren<EntityHealth>()
+                .ApplyDamage(_damage, transform.position, _knockbackForce, false, this);
             PoolManager.Instance.Push(this);
             OnDeadEvent?.Invoke();
         }
@@ -83,6 +81,7 @@ public class BossBullet : Entity, IPoolable
     {
         _rigidbody2D.linearVelocity = Vector2.zero;
         _curTime = 0;
+        _moveDir = Vector2.zero;
     }
 
 #if UNITY_EDITOR

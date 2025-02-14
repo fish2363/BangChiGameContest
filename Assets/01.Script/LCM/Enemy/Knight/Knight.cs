@@ -224,21 +224,23 @@ public class Knight : Enemy
         {
             while (_attackPattern.Peek() == rand)
             {
-                rand = UnityEngine.Random.Range(0, 2);
+                rand = UnityEngine.Random.Range(0, 3);
             }
             
             _attackPattern.Push(rand);
             
             if(rand == 0)
                 TransitionState(EnemyStateType.Attack);
-            else
+            else if(rand == 1)
                 TransitionState(EnemyStateType.Attack2);
+            else
+                TransitionState(EnemyStateType.Attack3);
         }
         else
         {
             while (_attackPattern.Peek() == rand)
             {
-                rand = UnityEngine.Random.Range(0, 4);
+                rand = UnityEngine.Random.Range(0, 5);
             }
             
             _attackPattern.Push(rand);
@@ -248,8 +250,10 @@ public class Knight : Enemy
                 TransitionState(EnemyStateType.Attack2);
             else if (rand == 2)
                 TransitionState(EnemyStateType.Attack3);
+            else if (rand == 3)
+                TransitionState(EnemyStateType.Attack4);
             else
-                TransitionState(EnemyStateType.Attack4);          
+                TransitionState(EnemyStateType.Attack5);                
         }
     }
 
