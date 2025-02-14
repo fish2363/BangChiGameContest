@@ -51,7 +51,6 @@ public class UIManager : MonoBehaviour,IEntityComponent
             helpTextUI.text = obj.Text;
             helpTextUI.DOFade(1, 1f);
             isHelpText = true;
-            StartCoroutine(FadeOutTextRoutine(helpTextUI));
         }
         
     }

@@ -2035,7 +2035,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "\uB9C8\uC6B0\uC2A4 \uD074\uB9AD\uC73C\uB85C \uACF5\uACA9\uD558\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 86cdb158b6127e549bccd7c1d53fb79d, type: 2}
   m_sharedMaterial: {fileID: -4147972902854489042, guid: 86cdb158b6127e549bccd7c1d53fb79d, type: 2}
@@ -2062,10 +2062,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 109.77
-  m_fontSizeBase: 109.77
+  m_fontSize: 78.27
+  m_fontSizeBase: 78.27
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 50
   m_fontSizeMax: 513.2
   m_fontStyle: 0
@@ -146806,7 +146806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6343405067557562235, guid: c014ff3a1b3f1ef458d711283767583e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -55.7
+      value: -58.4
       objectReference: {fileID: 0}
     - target: {fileID: 6343405067557562235, guid: c014ff3a1b3f1ef458d711283767583e, type: 3}
       propertyPath: m_LocalPosition.y
