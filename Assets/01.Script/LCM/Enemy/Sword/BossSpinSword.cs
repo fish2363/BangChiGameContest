@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,7 +12,7 @@ public class BossSpinSword : Entity, IPoolable
     public string PoolName => _poolName;
     public GameObject ObjectPrefab => gameObject;
 
-    private void Start()
+    private void OnEnable()
     {
         StartCoroutine(SwordAttackCoroutine());
     }
@@ -19,7 +20,7 @@ public class BossSpinSword : Entity, IPoolable
     private IEnumerator SwordAttackCoroutine()
     {
         yield return new WaitForSeconds(_waitTime);
-        _spinEffect.Play();
+        _spinEffect.gameObject.SetActive(true);
         yield return new WaitForSeconds(_waitTime);
         OnExplosion?.Invoke();
         yield return new WaitForSeconds(0.1f);
@@ -28,7 +29,7 @@ public class BossSpinSword : Entity, IPoolable
 
     public void ResetItem()
     {
-        
+        _spinEffect.gameObject.SetActive(false);
     }
 
     protected override void HandleHit()

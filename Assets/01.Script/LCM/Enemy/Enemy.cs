@@ -143,6 +143,10 @@ public abstract class Enemy : Entity
     {
         
     }
+    public virtual void Attakc5()
+    {
+        
+    }
 
     public void AddForceToEntity(Vector2 force)
             => RbCompo.AddForce(force, ForceMode2D.Impulse);
@@ -194,12 +198,12 @@ public enum EnemyStateType
     Attack2,
     Attack3,
     Attack4,
+    Attack5,
     Defend,
     Shield,
     Run,
     Dead,
     PageTwo,
-    SpawnSword
 }
 
 [Serializable]

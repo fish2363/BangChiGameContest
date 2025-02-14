@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class Knight : Enemy
 {
+    private Stack<int> _attackPattern = new Stack<int>();
+    
     [SerializeField] private float _jumpPower;
     
     private bool _isPageTwo;
@@ -18,9 +20,11 @@ public class Knight : Enemy
     public UnityEvent OnDestroyShield;
     
     [SerializeField] private ParticleSystem _shieldParticle;
-    [SerializeField] private ParticleSystem _attack1Particle;
     [SerializeField] private ParticleSystem _attack2Particle;
     [SerializeField] private ParticleSystem _attack3Particle;
+    [SerializeField] private ParticleSystem _attack4EnergyParticle;
+    [SerializeField] private ParticleSystem _attack4Particle;
+    [SerializeField] private ParticleSystem _attack5Particle;
     
     
     [SerializeField] private ParticleSystem _pageTwoParticle;
@@ -40,6 +44,12 @@ public class Knight : Enemy
 
     private int _attackIndex;
 
+    [SerializeField] private PoolItemSO _spinSword;
+    [SerializeField] private float _spinSwordSpawnTime;
+    private float _curTime = 100000f;
+    
+    
+    [SerializeField] private PoolItemSO _bossBullet;
     protected override void Awake()
     {
         base.Awake();
@@ -62,6 +72,8 @@ public class Knight : Enemy
         
         EntityHealth.hp.OnValueChanged += HandleHpDown;
         TransitionState(EnemyStateType.Idle);
+        
+        _attackPattern.Push(1);
     }
     
 
@@ -86,10 +98,11 @@ public class Knight : Enemy
         StopAllCoroutines();
         _hitCount = 100;
         _shieldParticle.Stop();
-        //_attack1Particle.Stop();
         _attack2Particle.Stop();
         _attack3Particle.Stop();
         _auraParticle.Stop();
+        _attack4Particle.Stop();
+        _attack4EnergyParticle.Stop();
     }
 
     private IEnumerator PageTwoCoroutine()
@@ -103,6 +116,7 @@ public class Knight : Enemy
         TransitionState(EnemyStateType.Idle);
         CreateShield();
         _lastAbilityTime = Time.time;
+        _curTime = Time.time;
         _auraParticle.Play();
     }
 
@@ -154,6 +168,24 @@ public class Knight : Enemy
         StartCoroutine(Attack3Coroutine());
     }
 
+    public override void Attakc4()
+    {
+        _attackIndex = 3;
+        _enemyAttackCompo.AttackSetting(_knightAttacks[_attackIndex].damage, _knightAttacks[_attackIndex].force,
+            _knightAttacks[_attackIndex].attackBoxSize, _knightAttacks[_attackIndex].attackRadius, _knightAttacks[_attackIndex].castType);
+        StartCoroutine(Attack4Coroutine());
+    }
+
+    public override void Attakc5()
+    {
+        _attackIndex = 4;
+        _enemyAttackCompo.AttackSetting(_knightAttacks[_attackIndex].damage, _knightAttacks[_attackIndex].force,
+            _knightAttacks[_attackIndex].attackBoxSize, _knightAttacks[_attackIndex].attackRadius, _knightAttacks[_attackIndex].castType);
+        StartCoroutine(Attack5Coroutine());
+    }
+
+
+
     private IEnumerator Attack2Coroutine()
     {
         yield return new WaitForSeconds(0.65f);
@@ -168,13 +200,35 @@ public class Knight : Enemy
         _attack3Particle.transform.Rotate(180,0,0);
         _attack3Particle.Play();
     }
-
+    private IEnumerator Attack4Coroutine()
+    {
+        _attack4EnergyParticle.Play();
+        yield return new WaitForSeconds(1.6f);
+        _attack4Particle.Play();
+    }
+    private IEnumerator Attack5Coroutine()
+    {
+        _attack5Particle.Play();
+        yield return new WaitForSeconds(0.6f);
+        var bullet1 = PoolManager.Instance.Pop(_bossBullet.poolName) as MonoBehaviour;
+        bullet1.transform.position = transform.position;
+        yield return new WaitForSeconds(0.4f);
+        var bullet2 = PoolManager.Instance.Pop(_bossBullet.poolName) as MonoBehaviour;
+        bullet2.transform.position = transform.position;
+    }
 
     public override void RandomAttack()
     {
+        int rand = 0;
         if (!_isPageTwo)
         {
-            int rand = UnityEngine.Random.Range(0, 2);
+            while (_attackPattern.Peek() == rand)
+            {
+                rand = UnityEngine.Random.Range(0, 2);
+            }
+            
+            _attackPattern.Push(rand);
+            
             if(rand == 0)
                 TransitionState(EnemyStateType.Attack);
             else
@@ -182,15 +236,33 @@ public class Knight : Enemy
         }
         else
         {
-            int rand = UnityEngine.Random.Range(0, 3);
+            while (_attackPattern.Peek() == rand)
+            {
+                rand = UnityEngine.Random.Range(0, 4);
+            }
+            
+            _attackPattern.Push(rand);
             if(rand == 0)
                 TransitionState(EnemyStateType.Attack);
             else if(rand == 1)
                 TransitionState(EnemyStateType.Attack2);
-            else
+            else if (rand == 2)
                 TransitionState(EnemyStateType.Attack3);
+            else
+                TransitionState(EnemyStateType.Attack4);          
         }
     }
+
+    private void SpawnSpinSword()
+    {
+        if (_isPageTwo)
+        {
+            var spinsword = PoolManager.Instance.Pop(_spinSword.poolName) as MonoBehaviour;  
+            spinsword.transform.position = new Vector3(TargetTrm.position.x, 0,0);
+            _curTime = Time.time;
+        }
+    }
+
     public override void Dead()
     {
         if (IsDead) return;
@@ -243,5 +315,8 @@ public class Knight : Enemy
         if(!_isTakeShield || _isAlreadyExplosion) return;
         
         ShieldCooldown();
+        
+        if(Time.time >= _curTime + _spinSwordSpawnTime)
+            SpawnSpinSword();
     }
 }
