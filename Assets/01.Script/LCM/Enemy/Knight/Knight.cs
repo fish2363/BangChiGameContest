@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -26,7 +27,12 @@ public class Knight : Enemy
     private int _hitCount;
     private bool _isTakeShield = false;
     private bool _isAlreadyExplosion = false;
+
+    private EnemyAttackCompo _enemyAttackCompo;
     
+    public List<EnemyAttackStruct> _knightAttacks;
+
+    private int _attackIndex;
 
     protected override void Awake()
     {
@@ -45,6 +51,8 @@ public class Knight : Enemy
                 // ignore
             }
         }
+
+        _enemyAttackCompo = GetComponentInChildren<EnemyAttackCompo>();
 
         _entityHealth.hp.OnValueChanged += HandleHpDown;
         TransitionState(EnemyStateType.Idle);
@@ -90,22 +98,37 @@ public class Knight : Enemy
 
     public override void Attack()
     {
+        _attackIndex = 0;
+        _enemyAttackCompo.AttackSetting(_knightAttacks[_attackIndex].damage, _knightAttacks[_attackIndex].force,
+            _knightAttacks[_attackIndex].attackBoxSize, _knightAttacks[_attackIndex].attackRadius, _knightAttacks[_attackIndex].castType);
+    }
+
+    public override void Attakc2()
+    {
+        _attackIndex = 1;
+        _enemyAttackCompo.AttackSetting(_knightAttacks[_attackIndex].damage, _knightAttacks[_attackIndex].force,
+            _knightAttacks[_attackIndex].attackBoxSize, _knightAttacks[_attackIndex].attackRadius, _knightAttacks[_attackIndex].castType);
+        RbCompo.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
+        RbCompo.AddForce(transform.right * 2f, ForceMode2D.Impulse);
+    }
+    public override void Attakc3()
+    {
+        _attackIndex = 2;
+        _enemyAttackCompo.AttackSetting(_knightAttacks[_attackIndex].damage, _knightAttacks[_attackIndex].force,
+            _knightAttacks[_attackIndex].attackBoxSize, _knightAttacks[_attackIndex].attackRadius, _knightAttacks[_attackIndex].castType);
         StartCoroutine(AttackCoroutine());
     }
 
     private IEnumerator AttackCoroutine()
     {
         yield return new WaitForSeconds(0.6f);
+        _attackParticle.transform.Rotate(180,0,0);
         _attackParticle.Play();
         yield return new WaitForSeconds(0.8f);
+        _attackParticle.transform.Rotate(180,0,0);
         _attackParticle.Play();
     }
 
-    public override void Attakc2()
-    {
-        RbCompo.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
-        RbCompo.AddForce(transform.right * 2f, ForceMode2D.Impulse);
-    }
 
     public override void RandomAttack()
     {

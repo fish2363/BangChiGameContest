@@ -9,6 +9,7 @@ public class Knight_AttackState : EnemyState
     protected override void EnterState()
     {
         base.EnterState();
+        _enemy.Attack();
         _enemy.RbCompo.linearVelocity = Vector2.zero;
     }
     

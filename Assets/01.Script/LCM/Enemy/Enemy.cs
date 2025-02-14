@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
@@ -128,6 +129,16 @@ public abstract class Enemy : Entity
     {
         
     }
+    
+    public virtual void Attakc3()
+    {
+        
+    }
+    
+    public virtual void Attakc4()
+    {
+        
+    }
 
     public void AddForceToEntity(Vector2 force)
             => RbCompo.AddForce(force, ForceMode2D.Impulse);
@@ -183,4 +194,14 @@ public enum EnemyStateType
     Shield,
     Run,
     Dead
+}
+
+[Serializable]
+public struct EnemyAttackStruct
+{
+    public int damage;
+    public Vector2 force;
+    public Vector2 attackBoxSize;
+    public float attackRadius;
+    public OverlapDamageCaster.OverlapCastType castType;
 }

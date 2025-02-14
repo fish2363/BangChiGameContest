@@ -502,23 +502,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4810222610750262, guid: 6f2b99ffd381f2b4fb2774133eefc469, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8191521
+      value: 0.57357645
       objectReference: {fileID: 0}
     - target: {fileID: 4810222610750262, guid: 6f2b99ffd381f2b4fb2774133eefc469, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5735764
+      value: -0.8191521
       objectReference: {fileID: 0}
     - target: {fileID: 4810222610750262, guid: 6f2b99ffd381f2b4fb2774133eefc469, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4810222610750262, guid: 6f2b99ffd381f2b4fb2774133eefc469, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4810222610750262, guid: 6f2b99ffd381f2b4fb2774133eefc469, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 70
+      value: -110
       objectReference: {fileID: 0}
     - target: {fileID: 4810222610750262, guid: 6f2b99ffd381f2b4fb2774133eefc469, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -1207,6 +1207,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3710582137930861532}
     m_Modifications:
+    - target: {fileID: 1207318222550236630, guid: 1c8c2ed7d6b78d04cb095c2d4dadc609, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1207318222550236630, guid: 1c8c2ed7d6b78d04cb095c2d4dadc609, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.494
+      objectReference: {fileID: 0}
+    - target: {fileID: 1207318222550236630, guid: 1c8c2ed7d6b78d04cb095c2d4dadc609, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.072
+      objectReference: {fileID: 0}
+    - target: {fileID: 1207318222550236630, guid: 1c8c2ed7d6b78d04cb095c2d4dadc609, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1207318222550236630, guid: 1c8c2ed7d6b78d04cb095c2d4dadc609, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1207318222550236630, guid: 1c8c2ed7d6b78d04cb095c2d4dadc609, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1207318222550236630, guid: 1c8c2ed7d6b78d04cb095c2d4dadc609, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1207318222550236630, guid: 1c8c2ed7d6b78d04cb095c2d4dadc609, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485543682562883766, guid: 1c8c2ed7d6b78d04cb095c2d4dadc609, type: 3}
+      propertyPath: _xOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485543682562883766, guid: 1c8c2ed7d6b78d04cb095c2d4dadc609, type: 3}
+      propertyPath: _yOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485543682562883766, guid: 1c8c2ed7d6b78d04cb095c2d4dadc609, type: 3}
+      propertyPath: damageRadius
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485543682562883766, guid: 1c8c2ed7d6b78d04cb095c2d4dadc609, type: 3}
+      propertyPath: damageBoxSize.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485543682562883766, guid: 1c8c2ed7d6b78d04cb095c2d4dadc609, type: 3}
+      propertyPath: damageBoxSize.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485543682562883766, guid: 1c8c2ed7d6b78d04cb095c2d4dadc609, type: 3}
+      propertyPath: overlapCastType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4637857485570471088, guid: 1c8c2ed7d6b78d04cb095c2d4dadc609, type: 3}
       propertyPath: m_Name
       value: EnemyAttackCompo
@@ -1292,7 +1348,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.36, y: -2.45, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6088973958691528689}
   - {fileID: 7700088842065152536}
@@ -1675,6 +1731,22 @@ MonoBehaviour:
   _shieldParticle: {fileID: 1817180540}
   _attackParticle: {fileID: 1811041385}
   _shieldAttackCount: 2
+  _knightAttacks:
+  - damage: 1
+    force: {x: 2, y: 2}
+    attackBoxSize: {x: 1.3, y: 2}
+    attackRadius: 0
+    castType: 1
+  - damage: 1
+    force: {x: 2, y: 2}
+    attackBoxSize: {x: 1.4, y: 2.5}
+    attackRadius: 5
+    castType: 1
+  - damage: 1
+    force: {x: 2, y: 2}
+    attackBoxSize: {x: 4.5, y: 2}
+    attackRadius: 0
+    castType: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

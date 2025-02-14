@@ -10,7 +10,7 @@ public class Knight_Attack3State : EnemyState
     {
         base.EnterState();
         _enemy.RbCompo.linearVelocity = Vector2.zero;
-        _enemy.Attack();
+        _enemy.Attakc3();
     }
     
     public override void UpdateState()

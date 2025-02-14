@@ -9,6 +9,9 @@ public class OverlapDamageCaster : DamageCaster
     [SerializeField] protected OverlapCastType overlapCastType;
     [SerializeField] private Vector2 damageBoxSize;
     [SerializeField] private float damageRadius;
+    
+    [SerializeField] private float _xOffset;
+    [SerializeField] private float _yOffset;
 
     private Collider2D[] _hitResults;
 
@@ -16,6 +19,13 @@ public class OverlapDamageCaster : DamageCaster
     {
         base.InitCaster(owner);
         _hitResults = new Collider2D[maxHitCount];
+    }
+
+    public void CasterSizeSetting(Vector2 size, float radius, OverlapCastType type)
+    {
+        damageBoxSize = size;
+        damageRadius = radius;
+        overlapCastType = type;
     }
 
     public override bool CastDamage(float damage, Vector2 knockBack, bool isPowerAttack)
@@ -30,7 +40,7 @@ public class OverlapDamageCaster : DamageCaster
 
         for (int i = 0; i < cnt; i++)
         {
-            //ÇÇ°Ý ¹æÇâ ±¸ÇÏ±â ^_^
+            //ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ ^_^
             Vector2 direction = (_hitResults[i].transform.position - _owner.transform.position).normalized;
 
             knockBack.x *= Mathf.Sign(direction.x);
@@ -46,7 +56,7 @@ public class OverlapDamageCaster : DamageCaster
 
     public override void ApplyCounter(float damage, Vector2 direction, Vector2 knockBackForce, bool isPowerAttack, Entity dealer)
     {
-        //ÀÌ ºÎºÐÀº ³ªÁß¿¡ Åõ»çÃ¼ Ä³½ºÅÍ´Â ´Ù¸£°Ô ÇØ¾ßÇÑ´Ù.
+        //ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ Ä³ï¿½ï¿½ï¿½Í´ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ï¿½Ñ´ï¿½.
         if (_owner is ICounterable counterable)
         {
             counterable.ApplyCounter(damage, direction, knockBackForce, isPowerAttack, dealer);
