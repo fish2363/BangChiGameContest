@@ -8,7 +8,6 @@ public class Knight : Enemy
 {
     [SerializeField] private float _jumpPower;
     
-    [SerializeField] private EntityHealth _entityHealth;
     private bool _isPageTwo;
 
     [SerializeField] private float _takeShieldCoolTime;
@@ -19,7 +18,14 @@ public class Knight : Enemy
     public UnityEvent OnDestroyShield;
     
     [SerializeField] private ParticleSystem _shieldParticle;
-    [SerializeField] private ParticleSystem _attackParticle;
+    [SerializeField] private ParticleSystem _attack1Particle;
+    [SerializeField] private ParticleSystem _attack2Particle;
+    [SerializeField] private ParticleSystem _attack3Particle;
+    
+    
+    [SerializeField] private ParticleSystem _pageTwoParticle;
+    [SerializeField] private ParticleSystem _pageTwoExplosionParticle;
+    [SerializeField] private ParticleSystem _auraParticle;
 
     [SerializeField] private int _shieldAttackCount;
 
@@ -53,8 +59,8 @@ public class Knight : Enemy
         }
 
         _enemyAttackCompo = GetComponentInChildren<EnemyAttackCompo>();
-
-        _entityHealth.hp.OnValueChanged += HandleHpDown;
+        
+        EntityHealth.hp.OnValueChanged += HandleHpDown;
         TransitionState(EnemyStateType.Idle);
     }
     
@@ -65,11 +71,39 @@ public class Knight : Enemy
         {
             _hitCount++;
         }
-        if (_entityHealth.maxHealth / 2 >= next)
+        if (EntityHealth.maxHealth / 2 >= next && !_isPageTwo)
         {
             Debug.Log("2페이즈 진입");
             _isPageTwo = true;
+            TransitionState(EnemyStateType.PageTwo);
+            AllEffectEnd();
+            StartCoroutine(PageTwoCoroutine());
         }
+    }
+
+    private void AllEffectEnd()
+    {
+        StopAllCoroutines();
+        _hitCount = 100;
+        _shieldParticle.Stop();
+        //_attack1Particle.Stop();
+        _attack2Particle.Stop();
+        _attack3Particle.Stop();
+        _auraParticle.Stop();
+    }
+
+    private IEnumerator PageTwoCoroutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+        _pageTwoParticle.Play();
+        yield return new WaitForSeconds(3f);
+        _pageTwoExplosionParticle.Play();
+        yield return new WaitForSeconds(2f);
+        _hitCount = 0;
+        TransitionState(EnemyStateType.Idle);
+        CreateShield();
+        _lastAbilityTime = Time.time;
+        _auraParticle.Play();
     }
 
     protected override void AfterInitialize()
@@ -110,23 +144,29 @@ public class Knight : Enemy
             _knightAttacks[_attackIndex].attackBoxSize, _knightAttacks[_attackIndex].attackRadius, _knightAttacks[_attackIndex].castType);
         RbCompo.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
         RbCompo.AddForce(transform.right * 2f, ForceMode2D.Impulse);
+        StartCoroutine(Attack2Coroutine());
     }
     public override void Attakc3()
     {
         _attackIndex = 2;
         _enemyAttackCompo.AttackSetting(_knightAttacks[_attackIndex].damage, _knightAttacks[_attackIndex].force,
             _knightAttacks[_attackIndex].attackBoxSize, _knightAttacks[_attackIndex].attackRadius, _knightAttacks[_attackIndex].castType);
-        StartCoroutine(AttackCoroutine());
+        StartCoroutine(Attack3Coroutine());
     }
 
-    private IEnumerator AttackCoroutine()
+    private IEnumerator Attack2Coroutine()
+    {
+        yield return new WaitForSeconds(0.65f);
+        _attack2Particle.Play();
+    }
+    private IEnumerator Attack3Coroutine()
     {
         yield return new WaitForSeconds(0.6f);
-        _attackParticle.transform.Rotate(180,0,0);
-        _attackParticle.Play();
+        _attack3Particle.transform.Rotate(180,0,0);
+        _attack3Particle.Play();
         yield return new WaitForSeconds(0.8f);
-        _attackParticle.transform.Rotate(180,0,0);
-        _attackParticle.Play();
+        _attack3Particle.transform.Rotate(180,0,0);
+        _attack3Particle.Play();
     }
 
 
@@ -157,6 +197,7 @@ public class Knight : Enemy
         gameObject.layer = DeadBodyLayer;
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
+        AllEffectEnd();
     }
 
     public override void IsCanShield()
@@ -180,13 +221,11 @@ public class Knight : Enemy
         _nowTime = Time.time;
         _isTakeShield = true;
         _isAlreadyExplosion = false;
+        EntityHealth.IsShield = true;
     }
 
-    protected override void Update()
+    private void ShieldCooldown()
     {
-        base.Update();
-        if(!_isTakeShield || _isAlreadyExplosion) return;
-        
         if (Time.time >= _ShieldCoolTime + _nowTime || _hitCount >= _shieldAttackCount)
         {
             OnDestroyShield?.Invoke();
@@ -194,6 +233,15 @@ public class Knight : Enemy
             _isTakeShield = false;
             _isAlreadyExplosion = true;
             _hitCount = 0;
+            EntityHealth.IsShield = false;
         }
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if(!_isTakeShield || _isAlreadyExplosion) return;
+        
+        ShieldCooldown();
     }
 }

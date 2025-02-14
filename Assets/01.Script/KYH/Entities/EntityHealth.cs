@@ -12,6 +12,9 @@ public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInit
     private EntityFeedbackData _feedbackData;
     [HideInInspector] public NotifyValue<float> hp = new();
 
+    [HideInInspector] public bool IsShield { get; set; } = false;
+    [HideInInspector] public bool IsInvincibility { get; set; } = false;
+
     #region Initialize section
 
     public void Initialize(Entity entity)
@@ -35,10 +38,13 @@ public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInit
 
     public void ApplyDamage(float damage, Vector2 direction, Vector2 knockBackPower, bool isPowerAttack, Entity dealer)
     {
-        print("生焼たたたたたたたたたたたたたたたたたたたたたたたたた");
-        if (_entity.IsDead) return; //戚耕 宋精 橿汐脊艦陥.
+        print("鐃緒申鐃銃わ申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申鐃緒申");
+        if (_entity.IsDead || IsInvincibility) return; //鐃縮刻申 鐃緒申鐃緒申 鐃準汐鐃峻艦器申.
 
-        _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, maxHealth);
+        if(!IsShield)
+            _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, maxHealth);
+        else
+            _currentHealth = Mathf.Clamp(_currentHealth - damage / 2f, 0, maxHealth);
         _feedbackData.LastAttackDirection = direction.normalized;
         _feedbackData.IsLastHitPowerAttack = isPowerAttack;
         _feedbackData.LastEntityWhoHit = dealer;

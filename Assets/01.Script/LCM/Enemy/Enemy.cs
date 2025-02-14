@@ -2,10 +2,13 @@ using System;
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class Enemy : Entity
 {
     [field: SerializeField] public EnemyDataSO EnemyData;
+
+    public EntityHealth EntityHealth {get; private set;}
     
     public Rigidbody2D RbCompo { get; private set; }
     public Animator AnimatorCompo { get; private set; }
@@ -32,6 +35,7 @@ public abstract class Enemy : Entity
         AnimatorCompo = GetComponentInChildren<Animator>();
         AnimTriggerCompo = transform.Find("Visual").GetComponent<EntityAnimationTrigger>();
         _currentScaleX = transform.localScale.x;
+        EntityHealth = GetComponentInChildren<EntityHealth>();
     }
 
     private void Start()
@@ -193,7 +197,9 @@ public enum EnemyStateType
     Defend,
     Shield,
     Run,
-    Dead
+    Dead,
+    PageTwo,
+    SpawnSword
 }
 
 [Serializable]

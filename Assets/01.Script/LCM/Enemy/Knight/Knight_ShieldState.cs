@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Knight_ShieldState : EnemyState
 {
+    private float mass;
     public Knight_ShieldState(Enemy enemy) : base(enemy, EnemyStateType.Shield.ToString())
     {
     }
@@ -10,6 +11,9 @@ public class Knight_ShieldState : EnemyState
     {
         base.EnterState();
         _enemy.RbCompo.linearVelocity = Vector2.zero;
+        _enemy.EntityHealth.IsInvincibility = true;
+        mass = _enemy.RbCompo.mass;
+        _enemy.RbCompo.mass = 100;
     }
 
     public override void UpdateState()
@@ -24,5 +28,7 @@ public class Knight_ShieldState : EnemyState
         base.ExtiState();
         _enemy.CreateShield();
         _enemy.isAttackAnimationEnd = false;
+        _enemy.EntityHealth.IsInvincibility = false;
+        _enemy.RbCompo.mass = mass;
     }
 }
