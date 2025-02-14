@@ -35,7 +35,7 @@ public class CameraManager : MonoBehaviour
                         .FirstOrDefault(cam => cam.Priority == activeCameraPriority);
 
         Debug.Assert(currentCamera != null, $"Check camera priority, there is no active camera");
-        ChangeCamera(currentCamera);
+        ChangeCamera(currentCamera,true);
     }
 
     private void HandleShakeCamera(PerlinShake shakeEvt)
@@ -52,13 +52,18 @@ public class CameraManager : MonoBehaviour
         KillTweenIfActive();
     }
 
-    public void ChangeCamera(CinemachineCamera newCamera)
+    public void ChangeCamera(CinemachineCamera newCamera,bool isBatton)
     {
         currentCamera.Priority = disableCameraPriority; //현재 카메라 꺼주고
         Transform followTarget = currentCamera.Follow;
+        if (followTarget is null)
+            followTarget = FindAnyObjectByType<Player>().gameObject.transform;
+
         currentCamera = newCamera;
         currentCamera.Priority = activeCameraPriority;
-        currentCamera.Follow = followTarget;
+
+        if(isBatton)
+            currentCamera.Follow = followTarget;
 
         _positionComposer = currentCamera.GetComponent<CinemachinePositionComposer>();
         _originalTrackPosition = _positionComposer.TargetOffset;
@@ -67,9 +72,9 @@ public class CameraManager : MonoBehaviour
     private void HandleSwapCamera(SwapCameraEvent swapEvt)
     {
         if (currentCamera == swapEvt.leftCamera && swapEvt.moveDirection.x > 0)
-            ChangeCamera(swapEvt.rightCamera);
+            ChangeCamera(swapEvt.rightCamera,swapEvt.isBattonFollow);
         else if (currentCamera == swapEvt.rightCamera && swapEvt.moveDirection.x < 0)
-            ChangeCamera(swapEvt.leftCamera);
+            ChangeCamera(swapEvt.leftCamera, swapEvt.isBattonFollow);
     }
 
     private void HandleCameraPanning(PanEvent evt)
