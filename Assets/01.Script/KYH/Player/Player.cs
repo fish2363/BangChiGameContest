@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : Entity
@@ -13,7 +14,8 @@ public class Player : Entity
     private StateListSO playerFSM;
     private EntityMover _mover;
 
-    public bool isBannedAttack { get; set; } = false;
+    [field:SerializeField]public bool isBannedAttack { get; set; } = false;
+    [field:SerializeField]public bool isLockedWindow { get; set; } = false;
 
     protected override void Awake()
     {

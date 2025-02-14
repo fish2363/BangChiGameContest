@@ -8,8 +8,10 @@ public class InputReader : ScriptableObject, PlayerInput.IPlayerActions
     public Vector2 InputDirection { get; private set; }
     public event Action OnJumpKeyPressed;
     public event Action OnDashKeyPressed;
+    public event Action OnErrorSkillKeyPressed;
     public event Action OnAttackKeyPressed;
     public event Action OnCounterKeyPressed;
+    public event Action OnEnterWindowKeyPressed;
     public event Action<bool> OnSkillKeyPressed;
 
     private PlayerInput _playerInput;
@@ -58,5 +60,17 @@ public class InputReader : ScriptableObject, PlayerInput.IPlayerActions
     {
         if (context.performed)
             OnCounterKeyPressed?.Invoke();
+    }
+
+    public void OnErrorWall(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OnErrorSkillKeyPressed?.Invoke();
+    }
+
+    public void OnWindow(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OnEnterWindowKeyPressed?.Invoke();
     }
 }

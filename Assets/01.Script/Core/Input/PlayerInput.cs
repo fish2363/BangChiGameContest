@@ -62,6 +62,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ErrorWall"",
+                    ""type"": ""Button"",
+                    ""id"": ""218adf5c-eaa7-46b5-acc1-bb45151bf1d4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Window"",
+                    ""type"": ""Button"",
+                    ""id"": ""0059fcab-9377-46da-bf3c-a737e57f3e50"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -145,11 +163,33 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7ffc28ef-4749-4323-8923-9975efb6b94a"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Counter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a639eca4-1369-4e53-84a7-1c79fe74e825"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ErrorWall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1ff7ede-280b-4535-a2b6-8d8bfb0f65c6"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Window"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -164,6 +204,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Counter = m_Player.FindAction("Counter", throwIfNotFound: true);
+        m_Player_ErrorWall = m_Player.FindAction("ErrorWall", throwIfNotFound: true);
+        m_Player_Window = m_Player.FindAction("Window", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -234,6 +276,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Counter;
+    private readonly InputAction m_Player_ErrorWall;
+    private readonly InputAction m_Player_Window;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -242,6 +286,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Counter => m_Wrapper.m_Player_Counter;
+        public InputAction @ErrorWall => m_Wrapper.m_Player_ErrorWall;
+        public InputAction @Window => m_Wrapper.m_Player_Window;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -263,6 +309,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Counter.started += instance.OnCounter;
             @Counter.performed += instance.OnCounter;
             @Counter.canceled += instance.OnCounter;
+            @ErrorWall.started += instance.OnErrorWall;
+            @ErrorWall.performed += instance.OnErrorWall;
+            @ErrorWall.canceled += instance.OnErrorWall;
+            @Window.started += instance.OnWindow;
+            @Window.performed += instance.OnWindow;
+            @Window.canceled += instance.OnWindow;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -279,6 +331,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Counter.started -= instance.OnCounter;
             @Counter.performed -= instance.OnCounter;
             @Counter.canceled -= instance.OnCounter;
+            @ErrorWall.started -= instance.OnErrorWall;
+            @ErrorWall.performed -= instance.OnErrorWall;
+            @ErrorWall.canceled -= instance.OnErrorWall;
+            @Window.started -= instance.OnWindow;
+            @Window.performed -= instance.OnWindow;
+            @Window.canceled -= instance.OnWindow;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -302,5 +360,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnCounter(InputAction.CallbackContext context);
+        void OnErrorWall(InputAction.CallbackContext context);
+        void OnWindow(InputAction.CallbackContext context);
     }
 }
