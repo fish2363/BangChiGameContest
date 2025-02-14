@@ -114,7 +114,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         ShowChatBox();
         chatText.text = null;
 
-        if (talk.Contains("  ")) talk.Replace("  ", "\n");
+        if (talk.Contains("  ")) talk = talk.Replace("  ", "\n");
 
         for(int i =0; i<talk.Length; i++)
         {

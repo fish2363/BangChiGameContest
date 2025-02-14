@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 
@@ -30,7 +31,7 @@ public class TestBoxEnemy : Entity
     private void KnockBack(Vector2 knockBackForce, float knockBackTime)
     {
         StopImmediately(true);
-        AddForceToEntity(knockBackForce);
+        AddForceToEntity(new Vector2(0,knockBackForce.y));
     }
 
     protected override void HandleDead()
@@ -38,7 +39,7 @@ public class TestBoxEnemy : Entity
         if (IsDead) return;
         gameObject.layer = DeadBodyLayer;
         IsDead = true;
-        print("데스스테이트");
+        GetComponent<SpriteRenderer>().DOFade(0,0.2f);
     }
 
     protected override void HandleHit()

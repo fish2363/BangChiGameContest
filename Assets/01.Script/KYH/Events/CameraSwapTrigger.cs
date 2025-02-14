@@ -5,6 +5,7 @@ public class CameraSwapTrigger : MonoBehaviour
 {
     public CinemachineCamera leftCamera;
     public CinemachineCamera rightCamera;
+    public bool isCameraFollowPlayer;
 
     [SerializeField] private GameEventChannelSO cameraChannel;
 
@@ -20,6 +21,7 @@ public class CameraSwapTrigger : MonoBehaviour
             swapEvt.leftCamera = leftCamera;
             swapEvt.rightCamera = rightCamera;
             swapEvt.moveDirection = exitDirection;
+            swapEvt.isBattonFollow = isCameraFollowPlayer;
 
             cameraChannel.RaiseEvent(swapEvt);
         }

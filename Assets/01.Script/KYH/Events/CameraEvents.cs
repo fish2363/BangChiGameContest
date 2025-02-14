@@ -23,6 +23,7 @@ public class SwapCameraEvent : GameEvent
 {
     public CinemachineCamera leftCamera;
     public CinemachineCamera rightCamera;
+    public bool isBattonFollow;
     public Vector2 moveDirection;
 }
 
