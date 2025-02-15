@@ -15,13 +15,14 @@ public class Knight_MoveState : EnemyState
 
         if (_enemy.CanAttackPlayer())
         {
-            _enemy.TransitionState(EnemyStateType.Attack5);
+            _enemy.RandomAttack();
         }
+        
         _enemy.IsCanShield();
         
         _enemy.TargetingPlayer();
 
-        if (Vector2.Distance(_enemy.TargetTrm.position, _enemy.transform.position) > _runDistance)
+        if (Vector2.Distance(_enemy.TargetTrm.position, _enemy.transform.position) > _runDistance && !_enemy.isShield)
         {
             _enemy.TransitionState(EnemyStateType.Run);
         }

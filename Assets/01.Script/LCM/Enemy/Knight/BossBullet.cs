@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -24,12 +23,15 @@ public class BossBullet : Entity, IPoolable
     private Vector2 _moveDir;
 
     public UnityEvent OnDeadEvent;
+    
+    private Knight _boss;
 
 
     protected override void Awake()
     {
         base.Awake();
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _boss = FindAnyObjectByType<Knight>();
     }
 
     protected override void HandleHit()
@@ -43,10 +45,12 @@ public class BossBullet : Entity, IPoolable
 
     private void OnEnable()
     {
+        transform.position = _boss.transform.position;
         if (Physics2D.OverlapCircle(transform.position, _radius, _whatIsPlayer))
         {
             var player = Physics2D.OverlapCircle(transform.position, _radius, _whatIsPlayer);
             _moveDir = new Vector2(player.transform.position.x - transform.position.x, 0).normalized;
+            Debug.Log(transform.position);
         }
     }
 
@@ -61,8 +65,8 @@ public class BossBullet : Entity, IPoolable
         _curTime += Time.deltaTime;
         if (_curTime >= _bulletLifeTime)
         {
-            PoolManager.Instance.Push(this);
             OnDeadEvent?.Invoke();
+            PoolManager.Instance.Push(this);
         }
     }
 
@@ -72,16 +76,14 @@ public class BossBullet : Entity, IPoolable
         {
             other.gameObject.GetComponentInChildren<EntityHealth>()
                 .ApplyDamage(_damage, transform.position, _knockbackForce, false, this);
-            PoolManager.Instance.Push(this);
             OnDeadEvent?.Invoke();
+            PoolManager.Instance.Push(this);
         }
     }
 
     public void ResetItem()
     {
-        _rigidbody2D.linearVelocity = Vector2.zero;
         _curTime = 0;
-        _moveDir = Vector2.zero;
     }
 
 #if UNITY_EDITOR

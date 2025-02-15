@@ -10,6 +10,7 @@ public class Knight_ShieldState : EnemyState
     protected override void EnterState()
     {
         base.EnterState();
+        _enemy.isShield = true;
         _enemy.RbCompo.linearVelocity = Vector2.zero;
         _enemy.EntityHealth.IsInvincibility = true;
         mass = _enemy.RbCompo.mass;
@@ -30,5 +31,6 @@ public class Knight_ShieldState : EnemyState
         _enemy.isAttackAnimationEnd = false;
         _enemy.EntityHealth.IsInvincibility = false;
         _enemy.RbCompo.mass = mass;
+        _enemy.isShield = false;
     }
 }

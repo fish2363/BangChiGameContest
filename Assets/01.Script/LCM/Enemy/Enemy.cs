@@ -8,8 +8,8 @@ public abstract class Enemy : Entity
 {
     [field: SerializeField] public EnemyDataSO EnemyData;
 
-    public EntityHealth EntityHealth {get; private set;}
-    
+    public EntityHealth EntityHealth { get; private set; }
+
     public Rigidbody2D RbCompo { get; private set; }
     public Animator AnimatorCompo { get; private set; }
     protected Dictionary<EnemyStateType, EnemyState> StateEnum = new Dictionary<EnemyStateType, EnemyState>();
@@ -18,15 +18,17 @@ public abstract class Enemy : Entity
     private float _currentScaleX;
 
     public bool isAttackAnimationEnd { get; set; } = false;
-    
-    protected EntityAnimationTrigger AnimTriggerCompo  { get; private set; }
-    
+
+    protected EntityAnimationTrigger AnimTriggerCompo { get; private set; }
+
     public Transform TargetTrm { get; private set; }
-    
+
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Transform _groundChecker;
 
     public bool CanMove { get; set; } = true; //넉백당하거나 기절시 이동불가
+
+    public bool isShield { get; set; } = false;
 
     protected override void Awake()
     {
@@ -91,7 +93,8 @@ public abstract class Enemy : Entity
 
     public bool CanAttackPlayer()
     {
-        bool isPlayerInRange = Physics2D.OverlapCircle(transform.position, EnemyData.attackRange, EnemyData.whatIsPlayer);
+        bool isPlayerInRange =
+            Physics2D.OverlapCircle(transform.position, EnemyData.attackRange, EnemyData.whatIsPlayer);
 
         bool isCooldownOver = Time.time >= lastAttackTime + EnemyData.attackCoolTime;
 
@@ -100,7 +103,7 @@ public abstract class Enemy : Entity
             lastAttackTime = Time.time;
             return true;
         }
-    
+
         return false; // 공격 불가능
     }
 
@@ -123,7 +126,6 @@ public abstract class Enemy : Entity
 
     public virtual void RandomAttack()
     {
-        
     }
 
     public abstract void Attack();
@@ -131,25 +133,23 @@ public abstract class Enemy : Entity
 
     public virtual void Attakc2()
     {
-        
     }
-    
+
     public virtual void Attakc3()
     {
-        
     }
-    
+
     public virtual void Attakc4()
     {
-        
     }
+
     public virtual void Attakc5()
     {
-        
     }
 
     public void AddForceToEntity(Vector2 force)
-            => RbCompo.AddForce(force, ForceMode2D.Impulse);
+        => RbCompo.AddForce(force, ForceMode2D.Impulse);
+
     public void StopImmediately(bool isYAxisToo)
     {
         if (isYAxisToo)
@@ -168,12 +168,10 @@ public abstract class Enemy : Entity
 
     public virtual void IsCanShield()
     {
-        
     }
 
     public virtual void CreateShield()
     {
-        
     }
 
 #if UNITY_EDITOR

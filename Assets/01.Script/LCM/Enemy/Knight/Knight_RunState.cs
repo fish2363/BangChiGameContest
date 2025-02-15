@@ -22,7 +22,7 @@ public class Knight_RunState : EnemyState
 
         _enemy.TargetingPlayer();
         
-        if (Vector2.Distance(_enemy.TargetTrm.position, _enemy.transform.position) < _moveDistance)
+        if (Vector2.Distance(_enemy.TargetTrm.position, _enemy.transform.position) < _moveDistance  && !_enemy.isShield)
         {
             _enemy.TransitionState(EnemyStateType.Move);
         }
