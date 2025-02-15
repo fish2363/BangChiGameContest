@@ -73,4 +73,6 @@ public class InputReader : ScriptableObject, PlayerInput.IPlayerActions
         if (context.performed)
             OnEnterWindowKeyPressed?.Invoke();
     }
+
+    
 }

@@ -90,7 +90,14 @@ public class CameraManager : MonoBehaviour
             endPosition, evt.panTime);
 
     }
+    public static  Vector3 GetMousePointerPosition()
+    {
+        float screenWidth = Screen.width;
+        float screenHeight = Screen.height;
 
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(new Vector2(Mathf.Clamp(Input.mousePosition.x, 0, screenWidth), Mathf.Clamp(Input.mousePosition.y, 0, screenHeight)));
+        return mousePosition;
+    }
     private void KillTweenIfActive()
     {
         if (_panningTween != null && _panningTween.IsActive())

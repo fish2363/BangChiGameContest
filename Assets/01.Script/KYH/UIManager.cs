@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour,IEntityComponent
 
     private Player _player;
     private bool isHelpText;
+    private KeyCode skipKey;
 
     public void Initialize(Entity entity)
     {
@@ -25,7 +26,7 @@ public class UIManager : MonoBehaviour,IEntityComponent
     
     private void Update()
     {
-        if(isHelpText && Input.GetKeyDown(KeyCode.Space))
+        if(isHelpText && Input.GetKeyDown(skipKey))
         {
             isHelpText =false;
             StartCoroutine(FadeOutTextRoutine(helpTextUI));
@@ -48,6 +49,7 @@ public class UIManager : MonoBehaviour,IEntityComponent
         }
         else if (obj.textType == TextType.Help)
         {
+            skipKey = obj.TextSkipKey;
             helpTextUI.text = obj.Text;
             helpTextUI.DOFade(1, 1f);
             isHelpText = true;

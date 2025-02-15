@@ -31,7 +31,7 @@ public class MoveState : PlayerGroundState
     protected override void HandleAttackKeyPress()
     {
         float overDashTime = 0.3f;
-        if (_stateTimer + overDashTime < Time.time && !_player.isBannedAttack)
+        if (_stateTimer + overDashTime < Time.time && !_player.isBannedAttack && !_player.isDialogue)
         {
             _player.ChangeState("DASH_ATTACK");
         }

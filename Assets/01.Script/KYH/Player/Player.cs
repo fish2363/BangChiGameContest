@@ -14,8 +14,11 @@ public class Player : Entity
     private StateListSO playerFSM;
     private EntityMover _mover;
 
+    public GameObject attackLockIcon;
+
     [field:SerializeField]public bool isBannedAttack { get; set; } = false;
     [field:SerializeField]public bool isLockedWindow { get; set; } = false;
+    [field:SerializeField]public bool isDialogue { get; set; } = false;
 
     protected override void Awake()
     {
@@ -25,6 +28,11 @@ public class Player : Entity
     private void Start()
     {
         _stateMachine.ChangeState("IDLE");
+    }
+
+    public void BannedAttack(bool isValue)
+    {
+        isBannedAttack = isValue;
     }
 
     private void Update()
@@ -37,7 +45,7 @@ public class Player : Entity
     }
     public void ChangeState(string newState) => _stateMachine.ChangeState(newState);
 
-
+    public bool MoveStopOrGo(bool isMove) => _mover.CanManualMove = isMove;
     private void OnDestroy()
     {
         GetCompo<EntityAnimationTrigger>().OnAnimationEnd -= HandleAnimationEnd;
