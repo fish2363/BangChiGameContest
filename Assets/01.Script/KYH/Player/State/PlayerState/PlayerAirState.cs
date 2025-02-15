@@ -40,7 +40,7 @@ public class PlayerAirState : EntityState
     }
     private void HandleAirAttack()
     {
-        if(!_player.isBannedAttack)
+        if(!_player.isBannedAttack && !_player.isDialogue)
         _player.ChangeState("JUMP_ATTACK");
     }
 }

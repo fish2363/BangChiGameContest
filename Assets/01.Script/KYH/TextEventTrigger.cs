@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class TextEventTrigger : MonoBehaviour
 {
-    [SerializeField] private GameEventChannelSO errorChannel;
+    [SerializeField] private GameEventChannelSO textChannel;
 
     public string errorText;
     public TextType textType;
+    public KeyCode keySkipType;
     public bool isDefunct;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,8 +17,9 @@ public class TextEventTrigger : MonoBehaviour
             events.Text = errorText;
             events.textType = textType;
             events.isDefunct = isDefunct;
+            events.TextSkipKey = keySkipType;
 
-            errorChannel.RaiseEvent(events);
+            textChannel.RaiseEvent(events);
             gameObject.SetActive(false);
         }
     }

@@ -16,4 +16,5 @@ public class TextEvent  : GameEvent
     public string Text;
     public bool isDefunct;
     public TextType textType;
+    public KeyCode TextSkipKey;
 }

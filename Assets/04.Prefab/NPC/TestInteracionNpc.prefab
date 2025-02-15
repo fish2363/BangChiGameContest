@@ -123,6 +123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d81aef2893a28140b64184c3816b3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDead:
+    m_PersistentCalls:
+      m_Calls: []
   _chatRadius: 2
   _whatIsPlayer:
     serializedVersion: 2
@@ -133,6 +139,7 @@ MonoBehaviour:
   - "\uC218\uC19F\uC720\uD29C\uBE0C\uC774\uB2E4 \uD558\uD558\uD558"
   _waitTime: 2
   _interactionKey: {fileID: 9007516478582113865}
+  RbCompo: {fileID: 6233210390312488513}
 --- !u!1 &1669937213092288424
 GameObject:
   m_ObjectHideFlags: 0

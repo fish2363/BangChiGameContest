@@ -18,6 +18,13 @@ public class DialogueTrigger : MonoBehaviour
             events.isStop = isSpeakToStop;
 
             dialogueChannel.RaiseEvent(events);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
             gameObject.SetActive(false);
         }
     }

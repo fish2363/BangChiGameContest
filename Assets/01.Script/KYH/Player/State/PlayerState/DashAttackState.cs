@@ -41,6 +41,7 @@ public class DashAttackState : EntityState
 
     public override void Exit()
     {
+        if(!_player.isDialogue)
         _mover.CanManualMove = true;
         base.Exit();
     }

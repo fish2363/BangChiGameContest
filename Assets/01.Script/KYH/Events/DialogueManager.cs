@@ -21,6 +21,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
     private Image textBoxImage;
 
     bool isSkip;
+    bool isPrevAttackBoolValue = false;
     int talkNum;
     float typingSpeed = 0.05f;
 
@@ -81,7 +82,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
     private void EndTalk()
     {
         _mover.CanManualMove = true;
-        _player.isBannedAttack = false;
+        _player.isDialogue = false;
         talkNum = 0;
         HideChatBox();
     }
@@ -103,7 +104,8 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
             _renderer.SeeRightDirection();
         }
 
-        _player.isBannedAttack = true;
+        _player.isDialogue = true;
+        
         currentDialogue = events.dialogue;
         StartCoroutine(TypingRoutine(currentDialogue[talkNum]));
     }
