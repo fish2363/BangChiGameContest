@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Knight : Enemy
 {
@@ -52,6 +53,8 @@ public class Knight : Enemy
     [SerializeField] private PoolItemSO _bossBullet;
 
     [SerializeField] private float _dashPower;
+    
+    [SerializeField] private Slider _shieldSlider; 
     protected override void Awake()
     {
         base.Awake();
@@ -342,6 +345,7 @@ public class Knight : Enemy
         _isTakeShield = true;
         _isAlreadyExplosion = false;
         EntityHealth.IsShield = true;
+        _shieldSlider.value = 1f;
     }
 
     private void ShieldCooldown()
@@ -354,6 +358,18 @@ public class Knight : Enemy
             _isAlreadyExplosion = true;
             _hitCount = 0;
             EntityHealth.IsShield = false;
+            _shieldSlider.value = 0f;
+        }
+    }
+
+    private void ShieldSliderValueChange()
+    {
+        if (_isTakeShield)
+        {
+            float elapsedTime = Time.time - _nowTime;
+            float remainingTime = _ShieldCoolTime - elapsedTime;
+
+            _shieldSlider.value = Mathf.Clamp01(remainingTime / _ShieldCoolTime); 
         }
     }
 
@@ -366,5 +382,7 @@ public class Knight : Enemy
         
         if(Time.time >= _curTime + _spinSwordSpawnTime)
             SpawnSpinSword();
+        
+        ShieldSliderValueChange();
     }
 }
