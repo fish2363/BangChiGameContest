@@ -18,7 +18,6 @@ public class Knight_MoveState : EnemyState
             _enemy.RandomAttack();
         }
         
-        _enemy.IsCanShield();
         
         _enemy.TargetingPlayer();
 
@@ -33,5 +32,7 @@ public class Knight_MoveState : EnemyState
 
         _enemy.EnemyRotation();
         _enemy.RbCompo.linearVelocityX = moveDir.x * _enemy.EnemyData.movementSpeed;
+        
+        _enemy.IsCanShield();
     }
 }

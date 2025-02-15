@@ -146,6 +146,10 @@ public abstract class Enemy : Entity
     public virtual void Attakc5()
     {
     }
+    
+    public virtual void Attakc6()
+    {
+    }
 
     public void AddForceToEntity(Vector2 force)
         => RbCompo.AddForce(force, ForceMode2D.Impulse);
@@ -197,6 +201,7 @@ public enum EnemyStateType
     Attack3,
     Attack4,
     Attack5,
+    Attack6,
     Defend,
     Shield,
     Run,

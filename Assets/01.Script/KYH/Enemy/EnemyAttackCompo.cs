@@ -39,7 +39,6 @@ public class EnemyAttackCompo : MonoBehaviour,IEntityComponent,IAfterInit
     private void HandleAttackTrigger()
     {
         bool success = damageCaster.CastDamage(damage, knockBackForce, false);
-        Debug.Log(success);
         if (success)
         {
             Debug.Log($"<color=red>Damaged! - {damage}</color>");

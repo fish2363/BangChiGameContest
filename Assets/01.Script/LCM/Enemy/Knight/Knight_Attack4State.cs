@@ -12,7 +12,6 @@ public class Knight_Attack4State : EnemyState
         base.EnterState();
         _enemy.RbCompo.linearVelocity = Vector2.zero;
         _enemy.Attakc4();
-        _enemy.EntityHealth.IsInvincibility = true;
         mass = _enemy.RbCompo.mass;
         _enemy.RbCompo.mass = 100;
     }
@@ -28,7 +27,6 @@ public class Knight_Attack4State : EnemyState
     {
         base.ExtiState();
         _enemy.isAttackAnimationEnd = false;
-        _enemy.EntityHealth.IsInvincibility = false;
         _enemy.RbCompo.mass = mass;
     }
 }

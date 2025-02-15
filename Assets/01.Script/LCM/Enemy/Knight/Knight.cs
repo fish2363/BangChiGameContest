@@ -6,8 +6,6 @@ using UnityEngine.Events;
 
 public class Knight : Enemy
 {
-    private Stack<int> _attackPattern = new Stack<int>();
-    
     [SerializeField] private float _jumpPower;
     
     private bool _isPageTwo;
@@ -25,6 +23,8 @@ public class Knight : Enemy
     [SerializeField] private ParticleSystem _attack4EnergyParticle;
     [SerializeField] private ParticleSystem _attack4Particle;
     [SerializeField] private ParticleSystem _attack5Particle;
+    [SerializeField] private ParticleSystem _attack6Particle;
+    [SerializeField] private ParticleSystem _attack6TrailParticle;
     
     
     [SerializeField] private ParticleSystem _pageTwoParticle;
@@ -50,6 +50,8 @@ public class Knight : Enemy
     
     
     [SerializeField] private PoolItemSO _bossBullet;
+
+    [SerializeField] private float _dashPower;
     protected override void Awake()
     {
         base.Awake();
@@ -73,7 +75,6 @@ public class Knight : Enemy
         EntityHealth.hp.OnValueChanged += HandleHpDown;
         TransitionState(EnemyStateType.Idle);
         
-        _attackPattern.Push(1);
     }
     
 
@@ -103,6 +104,9 @@ public class Knight : Enemy
         _auraParticle.Stop();
         _attack4Particle.Stop();
         _attack4EnergyParticle.Stop();
+        _attack5Particle.Stop();
+        _attack6Particle.Stop();
+        _attack6TrailParticle.Stop();
     }
 
     private IEnumerator PageTwoCoroutine()
@@ -184,6 +188,13 @@ public class Knight : Enemy
         StartCoroutine(Attack5Coroutine());
     }
 
+    public override void Attakc6()
+    {
+        _attackIndex = 5;
+        _enemyAttackCompo.AttackSetting(_knightAttacks[_attackIndex].damage, _knightAttacks[_attackIndex].force,
+            _knightAttacks[_attackIndex].attackBoxSize, _knightAttacks[_attackIndex].attackRadius, _knightAttacks[_attackIndex].castType);
+        StartCoroutine(Attack6Coroutine());
+    }
 
 
     private IEnumerator Attack2Coroutine()
@@ -216,18 +227,24 @@ public class Knight : Enemy
         var bullet2 = PoolManager.Instance.Pop(_bossBullet.poolName) as MonoBehaviour;
         bullet2.transform.position = transform.position;
     }
+    private IEnumerator Attack6Coroutine()
+    {
+        Vector2 _moveDir = GetMovementDirection();
+        _attack6Particle.Play();
+        _attack6TrailParticle.Play();
+        yield return new WaitForSeconds(1.5f);
+        AddForceToEntity(new Vector2(_moveDir.x,0).normalized * _dashPower);
+        yield return new WaitForSeconds(0.8f);
+        _attack6TrailParticle.Stop();
+    }
 
     public override void RandomAttack()
     {
         int rand = 0;
         if (!_isPageTwo)
         {
-            while (_attackPattern.Peek() == rand)
-            {
-                rand = UnityEngine.Random.Range(0, 3);
-            }
+            rand = GetRandomValue(0, 3);
             
-            _attackPattern.Push(rand);
             
             if(rand == 0)
                 TransitionState(EnemyStateType.Attack);
@@ -238,12 +255,8 @@ public class Knight : Enemy
         }
         else
         {
-            while (_attackPattern.Peek() == rand)
-            {
-                rand = UnityEngine.Random.Range(0, 5);
-            }
-            
-            _attackPattern.Push(rand);
+
+            rand = GetRandomValue(0, 6);
             if(rand == 0)
                 TransitionState(EnemyStateType.Attack);
             else if(rand == 1)
@@ -252,9 +265,40 @@ public class Knight : Enemy
                 TransitionState(EnemyStateType.Attack3);
             else if (rand == 3)
                 TransitionState(EnemyStateType.Attack4);
+            else if(rand == 4)
+                TransitionState(EnemyStateType.Attack5);
             else
-                TransitionState(EnemyStateType.Attack5);                
+                TransitionState(EnemyStateType.Attack6);      
         }
+    }
+    
+    private List<int> lastTwoValues = new List<int>();
+    private int GetRandomValue(int minValue, int maxValue)
+    {
+        int newValue;
+
+        // 가능한 값 리스트 생성
+        List<int> possibleValues = new List<int>();
+        for (int i = minValue; i < maxValue; i++)
+        {
+            // 최근 두 값에 포함되지 않는 값만 추가
+            if (!lastTwoValues.Contains(i))
+            {
+                possibleValues.Add(i);
+            }
+        }
+
+        // 가능한 값 중에서 랜덤 선택
+        newValue = possibleValues[UnityEngine.Random.Range(0, possibleValues.Count)];
+
+        // 최근 두 값 업데이트
+        if (lastTwoValues.Count >= 2)
+        {
+            lastTwoValues.RemoveAt(0); // 가장 오래된 값 제거
+        }
+        lastTwoValues.Add(newValue); // 새로운 값 추가
+
+        return newValue;
     }
 
     private void SpawnSpinSword()

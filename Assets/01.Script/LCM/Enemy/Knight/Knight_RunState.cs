@@ -18,7 +18,6 @@ public class Knight_RunState : EnemyState
         {
             _enemy.TransitionState(EnemyStateType.Idle);
         }
-        _enemy.IsCanShield();
 
         _enemy.TargetingPlayer();
         
@@ -33,5 +32,7 @@ public class Knight_RunState : EnemyState
 
         _enemy.EnemyRotation();
         _enemy.RbCompo.linearVelocityX = moveDir.x * (_enemy.EnemyData.movementSpeed + _runSpeed);
+        
+        _enemy.IsCanShield();
     }
 }
