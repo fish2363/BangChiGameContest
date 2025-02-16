@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Npc : MonoBehaviour
+public abstract class Npc : Entity
 {
     
     [SerializeField] protected float _chatRadius;
@@ -24,8 +24,9 @@ public abstract class Npc : MonoBehaviour
     
     [SerializeField] protected float _waitTime = 2f;
     
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _textBox = transform.Find("TextBox").gameObject;
         _textBoxText = transform.Find("Text").GetComponent<TextMeshPro>();
     }
