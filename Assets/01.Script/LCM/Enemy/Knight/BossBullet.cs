@@ -45,12 +45,13 @@ public class BossBullet : Entity, IPoolable
 
     private void OnEnable()
     {
-        transform.position = _boss.transform.position;
+        if(_boss != null)
+            transform.position = _boss.transform.position;
         if (Physics2D.OverlapCircle(transform.position, _radius, _whatIsPlayer))
         {
             var player = Physics2D.OverlapCircle(transform.position, _radius, _whatIsPlayer);
-            _moveDir = new Vector2(player.transform.position.x - transform.position.x, 0).normalized;
-            Debug.Log(transform.position);
+            if(player != null)
+                _moveDir = new Vector2(player.transform.position.x - transform.position.x, 0).normalized;
         }
     }
 

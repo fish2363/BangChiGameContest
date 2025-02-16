@@ -28,6 +28,8 @@ public class GameIcon : MonoBehaviour, ITakeable
 
     public UnityEvent OnCameraShakeing;
 
+    [SerializeField] private ParticleSystem _explosionParticle;
+
     private void Start()
     {
         _firstItemYPosition = transform.position.y;
@@ -49,10 +51,13 @@ public class GameIcon : MonoBehaviour, ITakeable
     private IEnumerator ItemEffect()
     {
         OnCameraShakeing?.Invoke();
+        _explosionParticle.Play();
         yield return new WaitForSeconds(1.5f);
+        _explosionParticle.Play();
         OnCameraShakeing?.Invoke();
         yield return new WaitForSeconds(1.5f);
-
+        
+        
         yield return new WaitForSeconds(0.5f);
         
         SceneManager.LoadScene(_sceneName);
