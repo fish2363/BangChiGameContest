@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Playables;
 
 public static class DialogueEvents
 {
@@ -17,4 +18,9 @@ public class StartATalkEachOther : GameEvent
     public string[] dialogue;
     public NpcDialogueComponent talker;
     public bool startTalkerIsPlayer;
+    public PlayableDirector[] director;
+
+    public float npcDistance;
+    public float panTime;
+    public PanDirection npcDirection;
 }

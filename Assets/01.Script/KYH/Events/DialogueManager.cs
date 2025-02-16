@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class DialogueManager : MonoBehaviour, IEntityComponent
 {
@@ -30,6 +31,27 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
     bool turnPlayer;
 
     private NpcDialogueComponent talker;
+
+
+    [SerializeField] private GameEventChannelSO cameraChannel;
+    private PanDirection panDirection;
+    private float panDistance = 3f;
+    private float panTime = 0.35f;
+
+    int cutSceneNum;
+    private PlayableDirector[] director;
+
+    private void SendPanEvent(bool isRewind)
+    {
+        PanEvent evt = CameraEvents.PanEvent;
+        evt.panTime = panTime;
+        evt.distance = panDistance;
+        evt.direction = panDirection;
+        evt.isRewindToStart = isRewind;
+
+        cameraChannel.RaiseEvent(evt);
+    }
+
 
     public void Initialize(Entity entity)
     {
@@ -79,7 +101,6 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
             EndTalk();
             return;
         }
-
         StartCoroutine(TypingRoutine(currentDialogue[talkNum]));
     }
 
@@ -98,6 +119,20 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
             return;
         }
 
+        if (currentDialogue[talkNum].Contains("Event"))
+        {
+            director[cutSceneNum].Play();
+            talkNum++;
+            cutSceneNum++;
+            HideChatBox(textBoxCanvas);
+            HideChatBox(talker.textBoxCanvas);
+        }
+        else
+            StartCoroutine(EachOhterTypingRoutine(currentDialogue[talkNum]));
+    }
+
+    public void CutSceneEnd()
+    {
         StartCoroutine(EachOhterTypingRoutine(currentDialogue[talkNum]));
     }
 
@@ -115,8 +150,9 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         _mover.CanManualMove = true;
         _player.isDialogue = false;
         talkNum = 0;
-        HideChatBox(talker.textBoxCanvas);
         HideChatBox(textBoxCanvas);
+        if(talker != null)
+        HideChatBox(talker.textBoxCanvas);
         talker = null;
     }
     public void ShowChatBox(CanvasGroup canvasGroup)
@@ -154,6 +190,16 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         talker = obj.talker;
         turnPlayer = obj.startTalkerIsPlayer;
         npcChatText = talker.npcChatText;
+
+        panDistance = obj.npcDistance;
+        panDirection = obj.npcDirection;
+        panTime = obj.panTime;
+
+        director = obj.director;
+
+        if(!turnPlayer)
+            SendPanEvent(false);
+
         StartCoroutine(EachOhterTypingRoutine(currentDialogue[talkNum]));
     }
     private void ChangeTalker()
@@ -179,6 +225,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         {
             talk = talk.Replace("Next", "");
             ChangeTalker();
+            SendPanEvent(false);
         }
 
 
@@ -187,6 +234,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         {
             ShowChatBox(textBoxCanvas);
             playerChatText.text = null;
+            SendPanEvent(true);
         }
         else
         {
