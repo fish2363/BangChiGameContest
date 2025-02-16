@@ -50,7 +50,7 @@ public class Player : Entity
     public void ChangeState(string newState) => _stateMachine.ChangeState(newState);
 
     public bool MoveStopOrGo(bool isMove) => _mover.CanManualMove = isMove;
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         GetCompo<EntityAnimationTrigger>().OnAnimationEnd -= HandleAnimationEnd;
         GetCompo<EntityHealth>().OnKnockback -= HandleKnockBack;

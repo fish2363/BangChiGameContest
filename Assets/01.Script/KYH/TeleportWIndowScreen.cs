@@ -1,8 +1,11 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Linq;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
 {
@@ -25,16 +28,33 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
 
     private bool isEnterWindow;
 
+    [Header("Video")]
+    private VideoPlayer videoPlayer;
+    [SerializeField] private RawImage videoImage;
+
     public void Initialize(Entity entity)
     {
         _player = entity as Player;
         _mover = entity.GetCompo<EntityMover>();
+        videoPlayer = videoImage.GetComponent<VideoPlayer>();
     }
 
     public void AfterInitialize()
     {
         _player.PlayerInput.OnEnterWindowKeyPressed += HandleEnterWindowScreen;
     }
+
+    public void VideoEvent()
+    {
+        videoPlayer.Play();
+        videoImage.DOFade(1, 1);
+    }
+
+    public void VideoEnd()
+    {
+        videoImage.DOFade(0, 1);
+    }
+
 
     private IEnumerator WindowEffect()
     {
@@ -44,7 +64,7 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
         yield return new WaitForSeconds(2f);
         _mover.EffectorPlayer.PlayEffect("EnterWindow", true);
         yield return new WaitForSeconds(0.25f);
-
+        VideoEnd();
         _mover.EffectorPlayer.StopEffect("ReadyEnterWindow");
         _player.transform.position = windowScreenTrans.position;
         _mover.KnockBack(enterKnockbackForce, 0.5f);
@@ -70,7 +90,7 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
         _player.PlayerInput.OnEnterWindowKeyPressed -= HandleEnterWindowScreen;
     }
 
-    private void HandleEnterWindowScreen()
+    public void HandleEnterWindowScreen()
     {
         if (_player.isLockedWindow|| isEnterWindow) return;
         isEnterWindow = true;
