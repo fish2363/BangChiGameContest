@@ -9,6 +9,7 @@ public class JumpState : PlayerAirState
     public override void Enter()
     {
         base.Enter();
+        _player.DecreaseJumpCount();
         _mover.StopImmediately(true);
         _mover.Jump();
         _mover.EffectorPlayer.PlayEffect("JumpEffect",false);

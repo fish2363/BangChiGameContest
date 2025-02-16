@@ -3,6 +3,8 @@ using System;
 using TMPro;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Video;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour,IEntityComponent
 {
@@ -13,6 +15,8 @@ public class UIManager : MonoBehaviour,IEntityComponent
     [Header("Help")]
     [SerializeField] private TextMeshProUGUI helpTextUI;
 
+   
+
     private Player _player;
     private bool isHelpText;
     private KeyCode skipKey;
@@ -21,8 +25,8 @@ public class UIManager : MonoBehaviour,IEntityComponent
     {
         UIChannel.AddListener<TextEvent>(HandleTextEvent);
         _player = entity as Player;
-    }
 
+    }
     
     private void Update()
     {
@@ -32,7 +36,6 @@ public class UIManager : MonoBehaviour,IEntityComponent
             StartCoroutine(FadeOutTextRoutine(helpTextUI));
         }
     }
-
 
     private void HandleTextEvent(TextEvent obj)
     {

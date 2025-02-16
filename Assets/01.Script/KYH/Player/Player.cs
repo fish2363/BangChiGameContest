@@ -20,6 +20,10 @@ public class Player : Entity
     [field:SerializeField]public bool isLockedWindow { get; set; } = false;
     [field:SerializeField]public bool isDialogue { get; set; } = false;
 
+    [field : SerializeField]public int MaxJumpCount { get; set; }
+    private int _currentJumpCount;
+    public bool CanJump => _currentJumpCount > 0;
+
     protected override void Awake()
     {
         base.Awake();
@@ -46,12 +50,15 @@ public class Player : Entity
     public void ChangeState(string newState) => _stateMachine.ChangeState(newState);
 
     public bool MoveStopOrGo(bool isMove) => _mover.CanManualMove = isMove;
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         GetCompo<EntityAnimationTrigger>().OnAnimationEnd -= HandleAnimationEnd;
         GetCompo<EntityHealth>().OnKnockback -= HandleKnockBack;
         PlayerInput.ClearSubscription();
     }
+
+    public void DecreaseJumpCount() => _currentJumpCount--;
+    public void ResetJumpCount() => _currentJumpCount = MaxJumpCount;
 
     protected override void AfterInitialize()
     {
@@ -59,6 +66,7 @@ public class Player : Entity
         _mover = GetCompo<EntityMover>();
         GetCompo<EntityHealth>().OnKnockback += HandleKnockBack;
         GetCompo<EntityAnimationTrigger>().OnAnimationEnd += HandleAnimationEnd;
+        _currentJumpCount = MaxJumpCount;
     }
 
     protected override void HandleHit()

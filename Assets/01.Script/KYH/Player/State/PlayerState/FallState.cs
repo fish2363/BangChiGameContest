@@ -10,6 +10,7 @@ public class FallState : PlayerAirState
         base.Update();
         if (_mover.IsGroundDetected())
         {
+            _player.ResetJumpCount();
             _player.ChangeState("IDLE");
             Debug.Log("∂•ø° ¥Í¿Ω");
         }
