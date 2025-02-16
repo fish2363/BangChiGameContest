@@ -18,5 +18,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   targetingRange: 25
-  attackRange: 1.02
-  attackCoolTime: 2
+  attackRange: 1.17
+  attackCoolTime: 3

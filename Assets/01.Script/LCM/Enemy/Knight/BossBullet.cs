@@ -79,6 +79,12 @@ public class BossBullet : Entity, IPoolable
             OnDeadEvent?.Invoke();
             PoolManager.Instance.Push(this);
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            OnDeadEvent?.Invoke();
+            PoolManager.Instance.Push(this);
+        }
     }
 
     public void ResetItem()
