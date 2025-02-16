@@ -15,7 +15,7 @@ public class WindowSceneLogic : MonoBehaviour
     private bool isfirewall = true;
 
     private bool isExecute = true;
-    private bool isMoveTime = true;
+    private bool isMoveTime;
 
     private string serchFile;
 
@@ -38,15 +38,15 @@ public class WindowSceneLogic : MonoBehaviour
     public bool DuplicateCheck()
     {
         if (isExecute) return false;
-        isExecute = true;
         return isExecute;
     }
 
     public void GGMSite(string appName,string appDescript)
     {
-        if (Answer(appDescript, appName) == 1 && DuplicateCheck())
+        if (Answer(appDescript, appName) == 1)
         {
             Process.Start("https://ggm-h.goeay.kr/ggm-h/main.do");
+            isExecute = false;
         }
         else
             return;
@@ -54,7 +54,7 @@ public class WindowSceneLogic : MonoBehaviour
 
     public void FishProfile(string appName, string appDescript)
     {
-        if (Answer(appDescript, appName) == 1 && DuplicateCheck())
+        if (Answer(appDescript, appName) == 1)
         {
             Process.Start("https://ggm.gondr.net/user/profile/352");
         }
@@ -64,7 +64,7 @@ public class WindowSceneLogic : MonoBehaviour
 
     public void LCMProfile(string appName, string appDescript)
     {
-        if (Answer(appDescript, appName) == 1 && DuplicateCheck())
+        if (Answer(appDescript, appName) == 1)
         {
             Process.Start("https://ggm.gondr.net/user/profile/327");
         }
@@ -92,7 +92,11 @@ public class WindowSceneLogic : MonoBehaviour
     }
     private void Start()
     {
-        SerchFile("d","d");
+        FileInfo file = new FileInfo(@"C:\Users\김연호\Documents\마왕의 위치정보\item.txt");
+        if (file.Exists)
+        {
+            File.Delete(@"C:\Users\김연호\Documents\마왕의 위치정보\item.txt");
+        }
     }
 
     private void Update()
@@ -103,6 +107,7 @@ public class WindowSceneLogic : MonoBehaviour
             if (file.Exists)  //해당 파일이 없으면 생성하고 파일 닫기
             {
                 UnityEngine.Debug.Log("성공");
+                isMoveTime = false;
             }
         }
     }

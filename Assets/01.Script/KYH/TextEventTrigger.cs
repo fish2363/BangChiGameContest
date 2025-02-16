@@ -23,4 +23,14 @@ public class TextEventTrigger : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    public void MawangImageError()
+    {
+        TextEvent events = UIEvent.ErrorTextEvect;
+        events.Text = "마왕의 위치정보 폴더의 'item.txt'를 찾을 수 없습니다.";
+        events.textType = TextType.Error;
+        events.isDefunct = false;
+
+        textChannel.RaiseEvent(events);
+    }
 }
