@@ -19,7 +19,10 @@ public class InteractableObject : Entity, ITakeable
     [Header("¾Û ¼³Á¤°ª")]
     public string appName;
     public string appDescript;
-    public UnityEvent<string,string> OnInteractable;
+    public UnityEvent<string,string> OnMessageInteractable;
+    public UnityEvent OnDontMessageInteractable;
+
+    public bool isDontKnockBack;
 
     protected override void Awake()
     {
@@ -30,7 +33,15 @@ public class InteractableObject : Entity, ITakeable
     protected override void AfterInitialize()
     {
         base.AfterInitialize();
+        if(!isDontKnockBack)
         GetCompo<EntityHealth>().OnKnockback += HandleKnockBack;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        if (!isDontKnockBack)
+            GetCompo<EntityHealth>().OnKnockback -= HandleKnockBack;
     }
 
     private void HandleKnockBack(Vector2 knockBackForce)
@@ -51,7 +62,8 @@ public class InteractableObject : Entity, ITakeable
     public void TakeItem()
     {
         _interactionKey.SetActive(false);
-        OnInteractable?.Invoke(appName,appDescript);
+        OnMessageInteractable?.Invoke(appName,appDescript);
+        OnDontMessageInteractable?.Invoke();
     }
 
     public void ShowInteraction()

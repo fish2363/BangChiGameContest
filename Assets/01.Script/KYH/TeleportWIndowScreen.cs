@@ -12,7 +12,7 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
 
 
     private Player _player;
-    private Transform prevTrans;
+    private Vector3 prevTrans;
     private EntityMover _mover;
 
     private CinemachineCamera prevCamera;
@@ -39,19 +39,19 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
     private IEnumerator WindowEffect()
     {
         _mover.CanManualMove = false;
+        prevTrans = _player.transform.position;
         _mover.EffectorPlayer.PlayEffect("ReadyEnterWindow",false);
         yield return new WaitForSeconds(2f);
         _mover.EffectorPlayer.PlayEffect("EnterWindow", true);
         yield return new WaitForSeconds(0.25f);
 
         _mover.EffectorPlayer.StopEffect("ReadyEnterWindow");
-        isEnterWindow = true;
-        prevTrans = _player.transform;
         _player.transform.position = windowScreenTrans.position;
         _mover.KnockBack(enterKnockbackForce, 0.5f);
 
         Vector2 exitDirection = Vector2.right;
-
+        _player.MaxJumpCount = 8;
+        _player.ResetJumpCount();
         prevCamera = FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None)
                         .FirstOrDefault(cam => cam.Priority == activeCameraPriority);
 
@@ -73,12 +73,20 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
     private void HandleEnterWindowScreen()
     {
         if (_player.isLockedWindow|| isEnterWindow) return;
-
+        isEnterWindow = true;
         StartCoroutine(WindowEffect());
     }
 
     public void ComebackPrevTrans()
     {
+        isEnterWindow = false;
+        _player.transform.position = prevTrans;
+        _mover.KnockBack(enterKnockbackForce, 0.5f);
+        prevTrans = Vector3.zero;
+
+        _player.MaxJumpCount = 1;
+        _player.ResetJumpCount();
+
         Vector2 exitDirection = Vector2.right;
 
         SwapCameraEvent swapEvt = CameraEvents.SwapCameraEvent;

@@ -20,6 +20,10 @@ public class Player : Entity
     [field:SerializeField]public bool isLockedWindow { get; set; } = false;
     [field:SerializeField]public bool isDialogue { get; set; } = false;
 
+    [field : SerializeField]public int MaxJumpCount { get; set; }
+    private int _currentJumpCount;
+    public bool CanJump => _currentJumpCount > 0;
+
     protected override void Awake()
     {
         base.Awake();
@@ -53,12 +57,16 @@ public class Player : Entity
         PlayerInput.ClearSubscription();
     }
 
+    public void DecreaseJumpCount() => _currentJumpCount--;
+    public void ResetJumpCount() => _currentJumpCount = MaxJumpCount;
+
     protected override void AfterInitialize()
     {
         base.AfterInitialize();
         _mover = GetCompo<EntityMover>();
         GetCompo<EntityHealth>().OnKnockback += HandleKnockBack;
         GetCompo<EntityAnimationTrigger>().OnAnimationEnd += HandleAnimationEnd;
+        _currentJumpCount = MaxJumpCount;
     }
 
     protected override void HandleHit()

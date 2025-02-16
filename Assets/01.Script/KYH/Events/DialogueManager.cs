@@ -16,7 +16,9 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
 
     public string[] currentDialogue { get; private set; }
 
-    private TextMeshProUGUI chatText;
+    private TextMeshProUGUI playerChatText;
+    public TextMeshProUGUI npcChatText;
+
     private CanvasGroup textBoxCanvas;
     private Image textBoxImage;
 
@@ -24,6 +26,10 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
     bool isPrevAttackBoolValue = false;
     int talkNum;
     float typingSpeed = 0.05f;
+
+    bool turnPlayer;
+
+    private NpcDialogueComponent talker;
 
     public void Initialize(Entity entity)
     {
@@ -35,30 +41,37 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         _renderer.OnFlip += Flip;
         _player.PlayerInput.OnAttackKeyPressed += HandleClick;
         dialogueChannel.AddListener<StartAConversation>(HandleSpeak);
+        dialogueChannel.AddListener<StartATalkEachOther>(HandleEachOtherSpeak);
 
         textBoxCanvas = GetComponentInChildren<CanvasGroup>();
         textBoxImage = textBoxCanvas.GetComponentInChildren<Image>();
-        chatText = GetComponentInChildren<TextMeshProUGUI>();
+        playerChatText = GetComponentInChildren<TextMeshProUGUI>();
     }
+
+    
 
     private void OnDestroy()
     {
         _renderer.OnFlip -= Flip;
         _player.PlayerInput.OnAttackKeyPressed -= HandleClick;
         dialogueChannel.RemoveListener<StartAConversation>(HandleSpeak);
+        dialogueChannel.RemoveListener<StartATalkEachOther>(HandleEachOtherSpeak);
     }
 
     private void HandleClick()
     {
         if (!isSkip) return;
-
         isSkip = false;
-        NextChat();
+
+        if (talker == null)
+            NextChat();
+        else
+            NextChatEachOther(turnPlayer);
     }
 
     private void NextChat()
     {
-        chatText.text = null;
+        playerChatText.text = null;
         talkNum++;
 
         if (talkNum == currentDialogue.Length)
@@ -68,6 +81,24 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         }
 
         StartCoroutine(TypingRoutine(currentDialogue[talkNum]));
+    }
+
+    private void NextChatEachOther(bool isPlayerTurn)
+    {
+        if (isPlayerTurn)
+            playerChatText.text = null;
+        else
+            npcChatText.text = null;
+
+        talkNum++;
+
+        if (talkNum == currentDialogue.Length)
+        {
+            EndTalk();
+            return;
+        }
+
+        StartCoroutine(EachOhterTypingRoutine(currentDialogue[talkNum]));
     }
 
     private void Flip(bool LeftOrRight)
@@ -84,15 +115,17 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         _mover.CanManualMove = true;
         _player.isDialogue = false;
         talkNum = 0;
-        HideChatBox();
+        HideChatBox(talker.textBoxCanvas);
+        HideChatBox(textBoxCanvas);
+        talker = null;
     }
-    public void ShowChatBox()
+    public void ShowChatBox(CanvasGroup canvasGroup)
     {
-        DOTween.To(() => textBoxCanvas.alpha, x => textBoxCanvas.alpha = x, 1, 0.2f);
+        DOTween.To(() => canvasGroup.alpha, x => canvasGroup.alpha = x, 1, 0.2f);
     }
-    private void HideChatBox()
+    private void HideChatBox(CanvasGroup canvasGroup)
     {
-        DOTween.To(()=> textBoxCanvas.alpha,x => textBoxCanvas.alpha = x,0,0.2f);
+        DOTween.To(()=> canvasGroup.alpha,x => canvasGroup.alpha = x,0,0.2f);
     }
 
     private void HandleSpeak(StartAConversation events)
@@ -110,17 +143,88 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         StartCoroutine(TypingRoutine(currentDialogue[talkNum]));
     }
 
+    private void HandleEachOtherSpeak(StartATalkEachOther obj)
+    {
+        _mover.CanManualMove = false;
+        _mover.StopImmediately(true);
+        _renderer.SeeRightDirection();
+
+        _player.isDialogue = true;
+        currentDialogue = obj.dialogue;
+        talker = obj.talker;
+        turnPlayer = obj.startTalkerIsPlayer;
+        npcChatText = talker.npcChatText;
+        StartCoroutine(EachOhterTypingRoutine(currentDialogue[talkNum]));
+    }
+    private void ChangeTalker()
+    {
+        if (turnPlayer)
+        {
+            HideChatBox(textBoxCanvas);
+            playerChatText.text = null;
+        }
+        else
+        {
+            HideChatBox(talker.textBoxCanvas);
+            npcChatText.text = null;
+        }
+
+        turnPlayer = !turnPlayer;
+
+    }
+
+    private IEnumerator EachOhterTypingRoutine(string talk)
+    {
+        if (talk.Contains("Next"))
+        {
+            talk = talk.Replace("Next", "");
+            ChangeTalker();
+        }
+
+
+
+        if (turnPlayer)
+        {
+            ShowChatBox(textBoxCanvas);
+            playerChatText.text = null;
+        }
+        else
+        {
+            print("¿Ã∞≈ Ω««‡µ ");
+            ShowChatBox(talker.textBoxCanvas);
+            npcChatText.text = null;
+        }
+
+
+        if (talk.Contains("  ")) talk = talk.Replace("  ", "\n");
+
+        for (int i = 0; i < talk.Length; i++)
+        {
+            if(turnPlayer)
+            {
+                playerChatText.text += talk[i];
+                yield return new WaitForSeconds(typingSpeed);
+            }
+            else
+            {
+                npcChatText.text += talk[i];
+                yield return new WaitForSeconds(talker.typingSpeed);
+            }
+        }
+        isSkip = true;
+    }
+
     private IEnumerator TypingRoutine(string talk)
     {
 
-        ShowChatBox();
-        chatText.text = null;
+        ShowChatBox(textBoxCanvas);
+        playerChatText.text = null;
 
         if (talk.Contains("  ")) talk = talk.Replace("  ", "\n");
 
         for(int i =0; i<talk.Length; i++)
         {
-            chatText.text += talk[i];
+            playerChatText.text += talk[i];
             yield return new WaitForSeconds(typingSpeed);
         }
         isSkip = true;

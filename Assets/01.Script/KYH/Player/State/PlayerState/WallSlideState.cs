@@ -37,6 +37,7 @@ public class WallSlideState : EntityState
         if (_mover.IsGroundDetected() || _mover.IsWallDetected(_renderer.FacingDirection) == false)
         {
             _player.ChangeState("IDLE");
+            _player.ResetJumpCount();
         }
     }
 
