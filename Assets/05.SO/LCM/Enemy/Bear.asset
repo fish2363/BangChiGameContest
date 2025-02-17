@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709ed970b5516e348b9b939074c54966, type: 3}
   m_Name: Bear
   m_EditorClassIdentifier: 
-  movementSpeed: 6
+  movementSpeed: 4
   groundCheckerBoxSize: {x: 2, y: 0.3}
   whatIsPlayer:
     serializedVersion: 2
