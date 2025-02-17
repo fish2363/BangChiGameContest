@@ -5,6 +5,7 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.Playables;
+using Unity.Cinemachine;
 
 public class DialogueManager : MonoBehaviour, IEntityComponent
 {
@@ -40,6 +41,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
 
     int cutSceneNum;
     private PlayableDirector[] director;
+
 
     private void SendPanEvent(bool isRewind)
     {
@@ -174,7 +176,6 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         }
 
         _player.isDialogue = true;
-        
         currentDialogue = events.dialogue;
         StartCoroutine(TypingRoutine(currentDialogue[talkNum]));
     }
@@ -270,7 +271,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
 
         if (talk.Contains("  ")) talk = talk.Replace("  ", "\n");
 
-        for(int i =0; i<talk.Length; i++)
+        for (int i =0; i<talk.Length; i++)
         {
             playerChatText.text += talk[i];
             yield return new WaitForSeconds(typingSpeed);
