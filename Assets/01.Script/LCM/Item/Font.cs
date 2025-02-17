@@ -24,6 +24,11 @@ public class Font : MonoBehaviour, ITakeable
     private bool _isAlreadyTake = false;
 
     [SerializeField] private GameObject _wall;
+    
+    
+    [SerializeField] private GameObject _dialogue;
+
+    public UnityEvent OnInteraction;
 
     
     private void Start()
@@ -41,7 +46,9 @@ public class Font : MonoBehaviour, ITakeable
         _isAlreadyTake = true;
         _interactionKey.SetActive(false);
         _tweener.Kill();
+        OnInteraction?.Invoke();
         _wall.SetActive(false);
+        _dialogue.SetActive(true);
         gameObject.SetActive(false);
     }
 

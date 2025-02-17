@@ -323,6 +323,11 @@ public class Knight : Enemy
         AllEffectEnd();
     }
 
+    private void OnEnable()
+    {
+        _lastAbilityTime = Time.time;
+    }
+
     public override void IsCanShield()
     {
         if (Time.time >= _lastAbilityTime + _takeShieldCoolTime)
