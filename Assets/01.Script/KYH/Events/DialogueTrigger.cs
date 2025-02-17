@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
@@ -18,6 +19,7 @@ public class DialogueTrigger : MonoBehaviour
             events.isStop = isSpeakToStop;
 
             dialogueChannel.RaiseEvent(events);
+
         }
     }
 

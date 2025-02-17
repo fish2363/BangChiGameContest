@@ -8,6 +8,7 @@ public class CameraSwapTrigger : MonoBehaviour
     public bool isCameraFollowPlayer;
 
     [SerializeField] private GameEventChannelSO cameraChannel;
+    [SerializeField]private bool isOneTime;
 
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -24,6 +25,9 @@ public class CameraSwapTrigger : MonoBehaviour
             swapEvt.isBattonFollow = isCameraFollowPlayer;
 
             cameraChannel.RaiseEvent(swapEvt);
+
+            if (isOneTime)
+                gameObject.SetActive(false);
         }
     }
 }
