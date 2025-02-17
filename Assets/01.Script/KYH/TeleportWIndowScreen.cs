@@ -20,6 +20,8 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
 
     private CinemachineCamera prevCamera;
     public CinemachineCamera windowScreenCamera;
+    public CinemachineCamera firstWindowScreenCamera;
+    private bool isFirst;
 
     [SerializeField] private int activeCameraPriority = 15;
     [SerializeField] private int disableCameraPriority = 10;
@@ -77,10 +79,14 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
 
         SwapCameraEvent swapEvt = CameraEvents.SwapCameraEvent;
         swapEvt.leftCamera = prevCamera;
-        swapEvt.rightCamera = windowScreenCamera;
+        if(isFirst)
+            swapEvt.rightCamera = firstWindowScreenCamera;
+        else
+            swapEvt.rightCamera = windowScreenCamera;
         swapEvt.moveDirection = exitDirection;
         swapEvt.isBattonFollow = false;
         _mover.CanManualMove = true;
+        isFirst = false;
 
         cameraChannel.RaiseEvent(swapEvt);
     }
@@ -94,6 +100,14 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
     {
         if (_player.isLockedWindow|| isEnterWindow) return;
         isEnterWindow = true;
+        StartCoroutine(WindowEffect());
+    }
+
+    public void FirstInToWindow()
+    {
+        isEnterWindow = true;
+        _player.isLockedWindow = false;
+        isFirst = true;
         StartCoroutine(WindowEffect());
     }
 
