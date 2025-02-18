@@ -233,12 +233,12 @@ TextureImporter:
       name: MiniBear_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 0
         y: 224
-        width: 24
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -255,12 +255,12 @@ TextureImporter:
       name: MiniBear_1
       rect:
         serializedVersion: 2
-        x: 36
+        x: 32
         y: 224
-        width: 24
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -277,12 +277,12 @@ TextureImporter:
       name: MiniBear_2
       rect:
         serializedVersion: 2
-        x: 68
+        x: 64
         y: 224
-        width: 24
-        height: 12
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -299,12 +299,12 @@ TextureImporter:
       name: MiniBear_3
       rect:
         serializedVersion: 2
-        x: 100
+        x: 96
         y: 224
-        width: 24
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -321,12 +321,12 @@ TextureImporter:
       name: MiniBear_4
       rect:
         serializedVersion: 2
-        x: 4
+        x: 0
         y: 192
-        width: 24
-        height: 15
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -343,12 +343,12 @@ TextureImporter:
       name: MiniBear_5
       rect:
         serializedVersion: 2
-        x: 33
+        x: 32
         y: 192
-        width: 27
-        height: 14
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -366,11 +366,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 194
-        width: 30
-        height: 12
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -387,12 +387,12 @@ TextureImporter:
       name: MiniBear_7
       rect:
         serializedVersion: 2
-        x: 98
+        x: 96
         y: 192
-        width: 26
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -409,12 +409,12 @@ TextureImporter:
       name: MiniBear_8
       rect:
         serializedVersion: 2
-        x: 132
+        x: 128
         y: 192
-        width: 24
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -431,12 +431,12 @@ TextureImporter:
       name: MiniBear_9
       rect:
         serializedVersion: 2
-        x: 164
+        x: 160
         y: 192
-        width: 24
-        height: 15
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -453,12 +453,12 @@ TextureImporter:
       name: MiniBear_10
       rect:
         serializedVersion: 2
-        x: 4
+        x: 0
         y: 160
-        width: 24
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -475,12 +475,12 @@ TextureImporter:
       name: MiniBear_11
       rect:
         serializedVersion: 2
-        x: 34
+        x: 32
         y: 160
-        width: 26
-        height: 15
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -497,12 +497,12 @@ TextureImporter:
       name: MiniBear_12
       rect:
         serializedVersion: 2
-        x: 68
+        x: 64
         y: 160
-        width: 24
-        height: 12
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -519,12 +519,12 @@ TextureImporter:
       name: MiniBear_13
       rect:
         serializedVersion: 2
-        x: 4
+        x: 0
         y: 128
-        width: 20
-        height: 14
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -541,12 +541,12 @@ TextureImporter:
       name: MiniBear_14
       rect:
         serializedVersion: 2
-        x: 36
+        x: 32
         y: 128
-        width: 20
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -563,12 +563,12 @@ TextureImporter:
       name: MiniBear_15
       rect:
         serializedVersion: 2
-        x: 69
+        x: 64
         y: 128
-        width: 24
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -585,12 +585,12 @@ TextureImporter:
       name: MiniBear_16
       rect:
         serializedVersion: 2
-        x: 101
+        x: 96
         y: 128
-        width: 25
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -607,12 +607,12 @@ TextureImporter:
       name: MiniBear_17
       rect:
         serializedVersion: 2
-        x: 133
+        x: 128
         y: 128
-        width: 22
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -629,12 +629,12 @@ TextureImporter:
       name: MiniBear_18
       rect:
         serializedVersion: 2
-        x: 164
+        x: 160
         y: 128
-        width: 24
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -651,12 +651,12 @@ TextureImporter:
       name: MiniBear_19
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 96
-        width: 23
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -673,12 +673,12 @@ TextureImporter:
       name: MiniBear_20
       rect:
         serializedVersion: 2
-        x: 37
+        x: 32
         y: 96
-        width: 24
-        height: 14
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -695,12 +695,12 @@ TextureImporter:
       name: MiniBear_21
       rect:
         serializedVersion: 2
-        x: 69
+        x: 64
         y: 96
-        width: 27
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -717,12 +717,12 @@ TextureImporter:
       name: MiniBear_22
       rect:
         serializedVersion: 2
-        x: 101
+        x: 96
         y: 96
-        width: 28
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -739,12 +739,12 @@ TextureImporter:
       name: MiniBear_23
       rect:
         serializedVersion: 2
-        x: 133
+        x: 128
         y: 96
-        width: 24
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -761,12 +761,12 @@ TextureImporter:
       name: MiniBear_24
       rect:
         serializedVersion: 2
-        x: 4
+        x: 0
         y: 64
-        width: 24
-        height: 12
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -783,12 +783,12 @@ TextureImporter:
       name: MiniBear_25
       rect:
         serializedVersion: 2
-        x: 36
+        x: 32
         y: 64
-        width: 23
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -805,12 +805,12 @@ TextureImporter:
       name: MiniBear_26
       rect:
         serializedVersion: 2
-        x: 68
+        x: 64
         y: 64
-        width: 17
-        height: 21
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -827,12 +827,12 @@ TextureImporter:
       name: MiniBear_27
       rect:
         serializedVersion: 2
-        x: 99
+        x: 96
         y: 64
-        width: 16
-        height: 22
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -849,12 +849,12 @@ TextureImporter:
       name: MiniBear_28
       rect:
         serializedVersion: 2
-        x: 131
+        x: 128
         y: 64
-        width: 16
-        height: 22
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -871,12 +871,12 @@ TextureImporter:
       name: MiniBear_29
       rect:
         serializedVersion: 2
-        x: 163
+        x: 160
         y: 64
-        width: 16
-        height: 22
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -893,12 +893,12 @@ TextureImporter:
       name: MiniBear_30
       rect:
         serializedVersion: 2
-        x: 195
+        x: 192
         y: 64
-        width: 16
-        height: 22
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -915,12 +915,12 @@ TextureImporter:
       name: MiniBear_31
       rect:
         serializedVersion: 2
-        x: 227
+        x: 224
         y: 64
-        width: 16
-        height: 22
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -937,12 +937,12 @@ TextureImporter:
       name: MiniBear_32
       rect:
         serializedVersion: 2
-        x: 260
+        x: 256
         y: 64
-        width: 23
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -959,12 +959,12 @@ TextureImporter:
       name: MiniBear_33
       rect:
         serializedVersion: 2
-        x: 292
+        x: 288
         y: 64
-        width: 24
-        height: 12
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -981,12 +981,12 @@ TextureImporter:
       name: MiniBear_34
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 32
-        width: 23
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1003,12 +1003,12 @@ TextureImporter:
       name: MiniBear_35
       rect:
         serializedVersion: 2
-        x: 35
+        x: 32
         y: 32
-        width: 24
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1025,12 +1025,12 @@ TextureImporter:
       name: MiniBear_36
       rect:
         serializedVersion: 2
-        x: 5
-        y: 1
-        width: 24
-        height: 12
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1047,12 +1047,12 @@ TextureImporter:
       name: MiniBear_37
       rect:
         serializedVersion: 2
-        x: 38
-        y: 1
-        width: 25
-        height: 11
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6247935}
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1069,12 +1069,12 @@ TextureImporter:
       name: MiniBear_38
       rect:
         serializedVersion: 2
-        x: 68
-        y: 1
-        width: 29
-        height: 7
-      alignment: 9
-      pivot: {x: 0.50243694, y: 0.7597893}
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1091,12 +1091,12 @@ TextureImporter:
       name: MiniBear_39
       rect:
         serializedVersion: 2
-        x: 101
-        y: 1
-        width: 27
-        height: 8
-      alignment: 9
-      pivot: {x: 0.5037251, y: 0.70556176}
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1158,7 +1158,6 @@ TextureImporter:
       MiniBear_38: 7734943224149244285
       MiniBear_39: 5625749463966857656
       MiniBear_4: -2525822303413609604
-      MiniBear_40: -1217275443
       MiniBear_5: 5172519014536631715
       MiniBear_6: -9207360035905002825
       MiniBear_7: -2379428253008048106
