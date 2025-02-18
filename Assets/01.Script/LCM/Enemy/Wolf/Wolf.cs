@@ -4,6 +4,8 @@ using UnityEngine;
 public class Wolf : Enemy, ICounterable
 {
     private EntityAnimationTrigger _animationTrigger;
+    [SerializeField] private float _dashPower;
+
     protected override void Awake()
     {
         base.Awake();
@@ -57,7 +59,8 @@ public class Wolf : Enemy, ICounterable
 
     public override void Attakc2()
     {
-        
+        RbCompo.AddForce(Vector2.up * 2f, ForceMode2D.Impulse);
+        RbCompo.AddForce(GetMovementDirection() * _dashPower, ForceMode2D.Impulse);
     }
     public override void Dead()
     {

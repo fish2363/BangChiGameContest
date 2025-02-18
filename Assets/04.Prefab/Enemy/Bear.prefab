@@ -173,7 +173,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3423337800582916058
 Transform:
   m_ObjectHideFlags: 0
@@ -231,7 +231,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2eecba849b81358489a201f87496d7ed, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -307,11 +307,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5867607123015477477, guid: 675c114a1682b1f4ea78ccd44bc0f20c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5867607123015477477, guid: 675c114a1682b1f4ea78ccd44bc0f20c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7278186773972002374, guid: 675c114a1682b1f4ea78ccd44bc0f20c, type: 3}
       propertyPath: m_Pivot.x
