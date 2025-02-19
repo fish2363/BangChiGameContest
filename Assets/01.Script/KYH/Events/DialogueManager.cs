@@ -42,6 +42,9 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
     int cutSceneNum;
     private PlayableDirector[] director;
 
+    private CinemachineCamera leftCamera;
+    private CinemachineCamera rightCamera;
+
 
     private void SendPanEvent(bool isRewind)
     {
@@ -198,6 +201,11 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
 
         director = obj.director;
 
+        leftCamera = obj.leftCamera;
+        rightCamera = obj.rightCamera;
+
+        print(leftCamera);
+
         if(!turnPlayer)
             SendPanEvent(false);
 
@@ -227,6 +235,12 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
             talk = talk.Replace("Next", "");
             ChangeTalker();
             SendPanEvent(false);
+        }
+
+        if (talk.Contains("CameraChange"))
+        {
+            talk = talk.Replace("CameraChange", "");
+            CameraSwap();
         }
 
 
@@ -261,6 +275,16 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
             }
         }
         isSkip = true;
+    }
+
+    private void CameraSwap()
+    {
+        SwapCameraEvent swapEvt = CameraEvents.SwapCameraEvent;
+        swapEvt.leftCamera = leftCamera;
+        swapEvt.rightCamera = rightCamera;
+        swapEvt.moveDirection = Vector2.right;
+
+        cameraChannel.RaiseEvent(swapEvt);
     }
 
     private IEnumerator TypingRoutine(string talk)
