@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using DG.Tweening;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -30,6 +32,17 @@ public class GameIcon : MonoBehaviour, ITakeable
 
     [SerializeField] private ParticleSystem _explosionParticle;
 
+    [SerializeField] private CinemachineCamera _camera;
+
+    [SerializeField] private GameObject _blackBoard;
+    
+    private SpriteRenderer _boardRenderer;
+
+    private void Awake()
+    {
+        _boardRenderer = _blackBoard.GetComponent<SpriteRenderer>();
+    }
+
     private void Start()
     {
         _firstItemYPosition = transform.position.y;
@@ -55,11 +68,17 @@ public class GameIcon : MonoBehaviour, ITakeable
         yield return new WaitForSeconds(1.5f);
         _explosionParticle.Play();
         OnCameraShakeing?.Invoke();
-        yield return new WaitForSeconds(1.5f);
-        
-        
         yield return new WaitForSeconds(0.5f);
-        
+        _camera.Priority = 20;
+        _boardRenderer.DOFade(1f, 4f);
+        for (int i = 0; i < 70; i++)
+        {
+            _camera.Lens.OrthographicSize -= 0.1f;
+            _camera.Lens.Dutch += 5f;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(_sceneName);
     }
 
@@ -90,6 +109,7 @@ public class GameIcon : MonoBehaviour, ITakeable
                 TakeItem();
         }
         ShowInteraction();
+
     }
 
 #if UNITY_EDITOR
