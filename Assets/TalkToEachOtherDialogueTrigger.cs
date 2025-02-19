@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -15,6 +16,9 @@ public class TalkToEachOtherDialogueTrigger : MonoBehaviour
 
     [SerializeField] private PlayableDirector[] director;
 
+    public CinemachineCamera leftCamera;
+    public CinemachineCamera rightCamera;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (dialogue.Length < 1) return;
@@ -29,6 +33,8 @@ public class TalkToEachOtherDialogueTrigger : MonoBehaviour
             events.npcDistance = distance;
             events.npcDirection = direction;
             events.director = director;
+            events.leftCamera = leftCamera;
+            events.rightCamera = rightCamera;
 
             dialogueChannel.RaiseEvent(events);
         }
