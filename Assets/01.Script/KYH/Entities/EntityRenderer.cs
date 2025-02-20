@@ -10,6 +10,7 @@ public class EntityRenderer : MonoBehaviour, IEntityComponent
 
     private Entity _entity;
     private Animator _animator;
+    public bool isForceSwap { get; set; }
 
     public void Initialize(Entity entity)
     {
@@ -36,6 +37,7 @@ public class EntityRenderer : MonoBehaviour, IEntityComponent
     public void SeeRightDirection()
     {
         FacingDirection = 1f;
+        isForceSwap = true;
     }
 
     private void Flip()
