@@ -6,6 +6,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.Playables;
 using Unity.Cinemachine;
+using UnityEngine.Events;
 
 public class DialogueManager : MonoBehaviour, IEntityComponent
 {
@@ -45,6 +46,11 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
     private CinemachineCamera leftCamera;
     private CinemachineCamera rightCamera;
 
+    #region 하드코딩입니다 시간이 없어요
+    public UnityEvent firstEvent;
+    public UnityEvent secondEvent;
+    public UnityEvent thirdEvent;
+    #endregion
 
     private void SendPanEvent(bool isRewind)
     {
@@ -175,7 +181,6 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         {
             _mover.CanManualMove = false;
             _mover.StopImmediately(true);
-            _renderer.SeeRightDirection();
         }
 
         _player.isDialogue = true;
@@ -294,6 +299,21 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         playerChatText.text = null;
 
         if (talk.Contains("  ")) talk = talk.Replace("  ", "\n");
+        if (talk.Contains("Act1"))
+        {
+            talk = talk.Replace("Act1", "");
+            firstEvent?.Invoke();
+        }
+        if (talk.Contains("Act2"))
+        {
+            talk = talk.Replace("Act2", "");
+            secondEvent?.Invoke();
+        }
+        if (talk.Contains("Act3"))
+        {
+            talk = talk.Replace("Act3", "");
+            thirdEvent?.Invoke();
+        }
 
         for (int i =0; i<talk.Length; i++)
         {

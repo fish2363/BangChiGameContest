@@ -60,6 +60,13 @@ public class UIManager : MonoBehaviour,IEntityComponent
         
     }
 
+    public void ErrorTextClear()
+    {
+        errorTextUI.color = Color.green;
+        errorTextUI.text = "해결되었습니다";
+        StartCoroutine(FadeOutTextRoutine(errorTextUI));
+    }
+
     private IEnumerator FadeOutTextRoutine(TextMeshProUGUI text)
     {
         yield return new WaitForSeconds(3f);

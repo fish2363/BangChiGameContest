@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WindowSceneLogic : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class WindowSceneLogic : MonoBehaviour
     private bool isMoveTime;
 
     private string serchFile;
+
+    public UnityEvent OnTextEvent;
 
     public static IntPtr GetWindowHandle()
     {
@@ -106,6 +109,7 @@ public class WindowSceneLogic : MonoBehaviour
             FileInfo file = new FileInfo(serchFile);
             if (file.Exists)  //해당 파일이 없으면 생성하고 파일 닫기
             {
+                OnTextEvent?.Invoke();
                 UnityEngine.Debug.Log("성공");
                 isMoveTime = false;
             }

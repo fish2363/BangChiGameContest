@@ -36,6 +36,7 @@ public class Player : Entity
 
     public void BannedAttack(bool isValue)
     {
+        print("½ºÀ¾");
         isBannedAttack = isValue;
     }
 
