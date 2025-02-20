@@ -19,7 +19,7 @@ public class MoveState : PlayerGroundState
 
         float xInput = _player.PlayerInput.InputDirection.x;
 
-        if(_mover.CanManualMove)
+        if(_mover.CanManualMove && !_player.isDialogue)
             _mover.SetMovementX(xInput);
 
         if (Mathf.Approximately(xInput, 0) || _mover.IsWallDetected(_renderer.FacingDirection) || !_mover.CanManualMove)
