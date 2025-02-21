@@ -100,12 +100,21 @@ public abstract class Enemy : Entity
 
     public bool CanAttackCoolTime()
     {
-        if (Time.time >= lastAttackTime + EnemyData.attackCoolTime)
+        if (CanAttackRangePlayer())
+        {
+            if (Time.time >= lastAttackTime + EnemyData.attackCoolTime)
+            {
+                lastAttackTime = Time.time;
+                return true;
+            }
+
+            return false;
+        }
+        else
         {
             lastAttackTime = Time.time;
-            return true;
+            return false;
         }
-        return false;
     }
 
     public void EnemyRotation()

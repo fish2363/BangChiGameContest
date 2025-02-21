@@ -32,7 +32,7 @@ public class EnemyHpSlider : MonoBehaviour,IEntityComponent,IAfterInit
 
     public void ChangeHp(float prev,float next)
     {
-        if (_entityHealth._currentHealth <= 1) DOTween.To(() => canvasGroup.alpha, x => canvasGroup.alpha = x, 0, 0.2f);
+        if (_entityHealth.hp.Value <= 0f) DOTween.To(() => canvasGroup.alpha, x => canvasGroup.alpha = x, 0, 0.2f);
 
         print($"{prev}=>{next}");
         _hpSlider.value = _entityHealth._currentHealth;

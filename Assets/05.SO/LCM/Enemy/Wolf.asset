@@ -19,4 +19,4 @@ MonoBehaviour:
     m_Bits: 128
   targetingRange: 5
   attackRange: 1
-  attackCoolTime: 3
+  attackCoolTime: 2

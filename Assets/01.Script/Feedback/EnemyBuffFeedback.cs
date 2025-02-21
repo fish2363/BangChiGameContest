@@ -17,9 +17,12 @@ public class EnemyBuffFeedback : Feedback
 
     public override void PlayFeedback()
     {
-        _enemy.EntityHealth.IsShield = true;
-        _buffParticle.Play();
-        _isTakeBuff = true;
+        if (_enemy.gameObject.layer != LayerMask.NameToLayer("DeadBody"))
+        {
+            _enemy.EntityHealth.IsShield = true;
+            _buffParticle.Play();
+            _isTakeBuff = true;
+        }
     }
 
     private void Update()

@@ -12,12 +12,12 @@ public class KingSlime_MoveState : EnemyState
 
         if (!_enemy.CanMove) return;
 
-        if (_enemy.CanAttackRangePlayer())
+        if (_enemy.CanAttackRangePlayer() && _enemy.CanAttackCoolTime())
         {
             _enemy.RandomAttack();
         }
 
-        if (_enemy.CanTargetingPlayer() == false)
+        if (_enemy.CanTargetingPlayer() == false || (_enemy.CanAttackRangePlayer() && !_enemy.CanAttackCoolTime()))
         {
             _enemy.TransitionState(EnemyStateType.Idle);
         }
