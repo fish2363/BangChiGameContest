@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Wolf_Attack2State : EnemyState
+public class LargeSlime_Attack2State : EnemyState
 {
-    public Wolf_Attack2State(Enemy enemy) : base(enemy, EnemyStateType.Attack2.ToString())
+    public LargeSlime_Attack2State(Enemy enemy) : base(enemy, EnemyStateType.Attack2.ToString())
     {
     }
     
@@ -16,7 +16,7 @@ public class Wolf_Attack2State : EnemyState
     public override void UpdateState()
     {
         base.UpdateState();
-        if(_enemy.isAttackAnimationEnd && _enemy.GroundCheck())
+        if(_enemy.isAttackAnimationEnd)
             _enemy.TransitionState(EnemyStateType.Move);
     }
 

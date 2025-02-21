@@ -1,22 +1,22 @@
 using UnityEngine;
 
-public class Wolf_Attack2State : EnemyState
+public class LargeSlime_AttackState : EnemyState
 {
-    public Wolf_Attack2State(Enemy enemy) : base(enemy, EnemyStateType.Attack2.ToString())
+    public LargeSlime_AttackState(Enemy enemy) : base(enemy, EnemyStateType.Attack.ToString())
     {
     }
-    
+
     protected override void EnterState()
     {
         base.EnterState();
         _enemy.RbCompo.linearVelocity = Vector2.zero;
-        _enemy.Attakc2();
+        _enemy.Attack();
     }
     
     public override void UpdateState()
     {
         base.UpdateState();
-        if(_enemy.isAttackAnimationEnd && _enemy.GroundCheck())
+        if(_enemy.isAttackAnimationEnd)
             _enemy.TransitionState(EnemyStateType.Move);
     }
 

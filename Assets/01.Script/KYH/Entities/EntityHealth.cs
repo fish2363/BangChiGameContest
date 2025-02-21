@@ -68,6 +68,5 @@ public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInit
     {
         _currentHealth = Mathf.Clamp(_currentHealth + heal, 0, maxHealth);
         hp.Value = _currentHealth;
-        Debug.Log("힐 됨");
     }
 }
