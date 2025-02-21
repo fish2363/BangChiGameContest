@@ -54,7 +54,6 @@ public class CameraManager : MonoBehaviour
 
     public void ChangeCamera(CinemachineCamera newCamera,bool isBatton)
     {
-        print(newCamera.name);
         currentCamera.Priority = disableCameraPriority; //현재 카메라 꺼주고
         Transform followTarget = currentCamera.Follow;
         if (followTarget is null)
@@ -72,8 +71,6 @@ public class CameraManager : MonoBehaviour
 
     private void HandleSwapCamera(SwapCameraEvent swapEvt)
     {
-        print(currentCamera);
-        print(swapEvt.leftCamera);
         if (currentCamera == swapEvt.leftCamera && swapEvt.moveDirection.x > 0)
             ChangeCamera(swapEvt.rightCamera,swapEvt.isBattonFollow);
         else if (currentCamera == swapEvt.rightCamera && swapEvt.moveDirection.x < 0)

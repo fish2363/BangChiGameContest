@@ -80,7 +80,6 @@ public class PlayerAttackCompo : MonoBehaviour, IEntityComponent, IAfterInit
     {
         float damage = 5f; //나중에 스탯기반으로 고침. 
         Vector2 knockBackForce = _currentAttackData.knockBackForce;
-        Debug.Log($"{damageCaster},{_currentAttackData}");
         bool success = damageCaster.CastDamage(damage, knockBackForce, _currentAttackData.isPowerAttack);
 
         if (success)
