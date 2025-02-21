@@ -12,7 +12,7 @@ public class Skeleton_MoveState : EnemyState
 
         if (!_enemy.CanMove) return;
 
-        if (_enemy.CanAttackPlayer())
+        if (_enemy.CanAttackRangePlayer())
         {
             _enemy.RandomAttack();
         }

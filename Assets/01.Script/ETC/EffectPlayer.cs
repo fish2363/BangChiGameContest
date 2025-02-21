@@ -18,7 +18,8 @@ public class EffectPlayer : MonoBehaviour, IPoolable
     private void Awake()
     {
         _particle = GetComponent<ParticleSystem>();
-        _duration = _particle.main.duration; // ÆÄÆ¼Å¬ ½Ã½ºÅÛÀÇ ¸ÞÀÎ ¸ðµâ¿¡¼­ ±â°£À» °¡Á®¿È
+        _duration = _particle.main.duration;
+        _duration += _particle.main.startLifetime.constant;
         _particleDuration = new WaitForSeconds(_duration);
     }
 
@@ -38,6 +39,6 @@ public class EffectPlayer : MonoBehaviour, IPoolable
     public void ResetItem()
     {
         _particle.Stop();
-        _particle.Simulate(0); // ÆÄÆ¼Å¬ÀÇ Àç»ýÀ§Ä¡¸¦ Ã³À½À¸·Î µÇµ¹¸²
+        _particle.Simulate(0); // ï¿½ï¿½Æ¼Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Çµï¿½ï¿½ï¿½
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class QueenSlime_AttackState : EnemyState
 {
+    private float mass;
     public QueenSlime_AttackState(Enemy enemy) : base(enemy, EnemyStateType.Attack.ToString())
     {
     }
@@ -9,8 +10,11 @@ public class QueenSlime_AttackState : EnemyState
     protected override void EnterState()
     {
         base.EnterState();
+        mass = _enemy.RbCompo.mass;
+        _enemy.RbCompo.mass = 100;
+        _enemy.RandomAttack();
+        _enemy.EntityHealth.IsInvincibility = true;
         _enemy.RbCompo.linearVelocity = Vector2.zero;
-        _enemy.Attack();
     }
     
     public override void UpdateState()
@@ -22,7 +26,10 @@ public class QueenSlime_AttackState : EnemyState
 
     protected override void ExtiState()
     {
-        base.ExtiState();
+        _enemy.Attack();
         _enemy.isAttackAnimationEnd = false;
+        _enemy.RbCompo.mass = mass;
+        _enemy.EntityHealth.IsInvincibility = false;
+        base.ExtiState();
     }
 }

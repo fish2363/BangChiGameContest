@@ -1,14 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BossBullet : Entity, IPoolable
+public class BossBullet : MonoBehaviour, IPoolable
 {
     [SerializeField] private string _poolName;
     public string PoolName => _poolName;
     public GameObject ObjectPrefab => gameObject;
 
-    [SerializeField] private LayerMask _whatIsPlayer;
-    [SerializeField] private float _radius;
 
     private Rigidbody2D _rigidbody2D;
     [SerializeField] private float _speed;
@@ -24,42 +22,22 @@ public class BossBullet : Entity, IPoolable
 
     public UnityEvent OnDeadEvent;
     
-    private Knight _boss;
 
-
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _boss = FindAnyObjectByType<Knight>();
     }
-
-    protected override void HandleHit()
+    
+    public void Initialize(Vector2 moveDir)
     {
+        _moveDir = moveDir;
     }
-
-    protected override void HandleDead()
-    {
-    }
-
-
-    private void OnEnable()
-    {
-        if(_boss != null)
-            transform.position = _boss.transform.position;
-        if (Physics2D.OverlapCircle(transform.position, _radius, _whatIsPlayer))
-        {
-            var player = Physics2D.OverlapCircle(transform.position, _radius, _whatIsPlayer);
-            if(player != null)
-                _moveDir = new Vector2(player.transform.position.x - transform.position.x, 0).normalized;
-        }
-    }
-
 
     private void FixedUpdate()
     {
         _rigidbody2D.linearVelocity = _moveDir * _speed;
     }
+
 
     private void Update()
     {
@@ -76,7 +54,7 @@ public class BossBullet : Entity, IPoolable
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             other.gameObject.GetComponentInChildren<EntityHealth>()
-                .ApplyDamage(_damage, transform.position, _knockbackForce, false, this);
+                .ApplyDamage(_damage, transform.position, _knockbackForce, false, null);
             OnDeadEvent?.Invoke();
             PoolManager.Instance.Push(this);
         }
@@ -92,13 +70,4 @@ public class BossBullet : Entity, IPoolable
     {
         _curTime = 0;
     }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _radius);
-        Gizmos.color = Color.white;
-    }
-#endif
 }

@@ -12,7 +12,10 @@ public enum QueenSlimeBuffType
 public class QueenSlime : Enemy
 {
     public UnityEvent<QueenSlimeBuffType> OnBuff;
+    public UnityEvent OnDefendBuff;
     private int _rand;
+
+    [SerializeField] private PoolItemSO _healSmoke;
     protected override void Awake()
     {
         base.Awake();
@@ -71,7 +74,18 @@ public class QueenSlime : Enemy
 
     public override void Attack()
     {
-        
+        if (_rand == 0)
+            Debug.Log("적 소환");
+        else if (_rand == 1)
+        {
+            Debug.Log("방어 버프");
+            OnDefendBuff?.Invoke();
+        }
+        else
+        {
+            EffectPlayer smoke = PoolManager.Instance.Pop(_healSmoke.poolName) as EffectPlayer;
+            smoke.SetPositionAndPlay(transform.position);
+        }
     }
 
     public override void Dead()

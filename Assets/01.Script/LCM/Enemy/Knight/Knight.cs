@@ -224,10 +224,12 @@ public class Knight : Enemy
     {
         _attack5Particle.Play();
         yield return new WaitForSeconds(0.6f);
-        var bullet1 = PoolManager.Instance.Pop(_bossBullet.poolName) as MonoBehaviour;
+        var bullet1 = PoolManager.Instance.Pop(_bossBullet.poolName) as BossBullet;
+        bullet1.Initialize(transform.localScale.x >= 0f ? Vector2.right : Vector2.left);
         bullet1.transform.position = transform.position;
         yield return new WaitForSeconds(0.4f);
-        var bullet2 = PoolManager.Instance.Pop(_bossBullet.poolName) as MonoBehaviour;
+        var bullet2 = PoolManager.Instance.Pop(_bossBullet.poolName) as BossBullet;
+        bullet2.Initialize(transform.localScale.x >= 0f ? Vector2.right : Vector2.left);
         bullet2.transform.position = transform.position;
     }
     private IEnumerator Attack6Coroutine()

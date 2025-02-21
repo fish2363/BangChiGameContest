@@ -15,9 +15,20 @@ public class QueenSlime_IdleState : EnemyState
     public override void UpdateState()
     {
         base.UpdateState();
-        if (_enemy.CanTargetingPlayer())
+        if (_enemy.CanTargetingPlayer() && !_enemy.CanAttackRangePlayer())
         {
             _enemy.TransitionState(EnemyStateType.Move);
+        }
+
+        if (_enemy.CanAttackCoolTime() && _enemy.CanAttackRangePlayer())
+        {
+            _enemy.TransitionState(EnemyStateType.Attack);
+        }
+        
+        _enemy.TargetingPlayer();
+        if (_enemy.TargetTrm != null)
+        {
+            _enemy.EnemyRotation();
         }
     }
 }

@@ -43,6 +43,10 @@ public class EnemyHpSlider : MonoBehaviour,IEntityComponent,IAfterInit
                 .AppendInterval(1f)
                 .Append(_backSlider.DOValue(_entityHealth._currentHealth, 0.5f).SetEase(Ease.OutCubic));
         }
+        else if (_backSlider != null && _backSlider.value < _hpSlider.value)
+        {
+            _backSlider.value = _entityHealth._currentHealth;
+        }
     }
 
 }

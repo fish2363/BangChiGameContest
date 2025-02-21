@@ -42,6 +42,7 @@ public class BuffIcon : Enemy
 
     public void BuffIconChange(QueenSlimeBuffType buffType)
     {
+        transform.position = new Vector3(_queen.transform.position.x, transform.position.y);
         if (buffType == QueenSlimeBuffType.Attack)
         {
             TransitionState(EnemyStateType.Attack);
@@ -54,11 +55,5 @@ public class BuffIcon : Enemy
         {
             TransitionState(EnemyStateType.Attack3);
         }
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-        transform.position = new Vector3(_queen.transform.position.x, transform.position.y);
     }
 }

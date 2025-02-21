@@ -91,20 +91,21 @@ public abstract class Enemy : Entity
 
     private float lastAttackTime = -Mathf.Infinity;
 
-    public bool CanAttackPlayer()
+    public bool CanAttackRangePlayer()
     {
         bool isPlayerInRange =
             Physics2D.OverlapCircle(transform.position, EnemyData.attackRange, EnemyData.whatIsPlayer);
+        return isPlayerInRange;
+    }
 
-        bool isCooldownOver = Time.time >= lastAttackTime + EnemyData.attackCoolTime;
-
-        if (isPlayerInRange && isCooldownOver)
+    public bool CanAttackCoolTime()
+    {
+        if (Time.time >= lastAttackTime + EnemyData.attackCoolTime)
         {
             lastAttackTime = Time.time;
             return true;
         }
-
-        return false; // 공격 불가능
+        return false;
     }
 
     public void EnemyRotation()

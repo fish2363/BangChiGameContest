@@ -19,7 +19,7 @@ public class Sprout_MoveState : EnemyState
         _enemy.RbCompo.linearVelocityX = moveDir.x * _enemy.EnemyData.movementSpeed;
         
         
-        if (_enemy.CanAttackPlayer())
+        if (_enemy.CanAttackRangePlayer())
         {
             _enemy.TransitionState(EnemyStateType.Attack);
         }
