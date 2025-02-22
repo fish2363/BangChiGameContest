@@ -46,6 +46,8 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
     private CinemachineCamera leftCamera;
     private CinemachineCamera rightCamera;
 
+    private bool isSwap;
+
     #region 하드코딩입니다 시간이 없어요
     public UnityEvent firstEvent;
     public UnityEvent secondEvent;
@@ -144,6 +146,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
 
     public void CutSceneEnd()
     {
+        print("dddd");
         StartCoroutine(EachOhterTypingRoutine(currentDialogue[talkNum]));
     }
 
@@ -158,9 +161,11 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
 
     private void EndTalk()
     {
+        isSwap = false;
         _mover.CanManualMove = true;
         _player.isDialogue = false;
         talkNum = 0;
+        cutSceneNum = 0;
         HideChatBox(textBoxCanvas);
         if(talker != null)
         HideChatBox(talker.textBoxCanvas);
@@ -287,8 +292,12 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         SwapCameraEvent swapEvt = CameraEvents.SwapCameraEvent;
         swapEvt.leftCamera = leftCamera;
         swapEvt.rightCamera = rightCamera;
-        swapEvt.moveDirection = Vector2.right;
+        if(isSwap)
+            swapEvt.moveDirection = Vector2.left;
+        else
+            swapEvt.moveDirection = Vector2.right;
 
+        isSwap = !isSwap;
         cameraChannel.RaiseEvent(swapEvt);
     }
 

@@ -39,6 +39,21 @@ public class TalkToEachOtherDialogueTrigger : MonoBehaviour
             dialogueChannel.RaiseEvent(events);
         }
     }
+    public void OnTalkEachOther()
+    {
+        StartATalkEachOther events = DialogueEvents.StartATalkEachOther;
+        events.talker = talker;
+        events.dialogue = dialogue;
+        events.startTalkerIsPlayer = IsStartTalkerPlayer;
+        events.panTime = panTime;
+        events.npcDistance = distance;
+        events.npcDirection = direction;
+        events.director = director;
+        events.leftCamera = leftCamera;
+        events.rightCamera = rightCamera;
+
+        dialogueChannel.RaiseEvent(events);
+    }
 
     private void OnTriggerExit2D(Collider2D collision)
     {

@@ -106,7 +106,6 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
     public void FirstInToWindow()
     {
         isEnterWindow = true;
-        _player.isLockedWindow = false;
         isFirst = true;
         StartCoroutine(WindowEffect());
     }

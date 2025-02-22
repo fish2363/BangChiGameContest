@@ -2,8 +2,10 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class WindowSceneLogic : MonoBehaviour
 {
@@ -19,9 +21,17 @@ public class WindowSceneLogic : MonoBehaviour
     private bool isMoveTime;
 
     private string serchFile;
+    public GameObject windowFinder;
 
     public UnityEvent OnTextEvent;
 
+    [SerializeField]
+    private TMP_InputField inputField;
+    public string fileName;
+
+    string desktop_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+   
     public static IntPtr GetWindowHandle()
     {
         if (windowHandle == null)
@@ -95,10 +105,10 @@ public class WindowSceneLogic : MonoBehaviour
     }
     private void Start()
     {
-        FileInfo file = new FileInfo(@"C:\Users\김연호\Documents\마왕의 위치정보\item.txt");
+        FileInfo file = new FileInfo(desktop_path + @"\" + @"마왕의 위치정보\item.txt");
         if (file.Exists)
         {
-            File.Delete(@"C:\Users\김연호\Documents\마왕의 위치정보\item.txt");
+            File.Delete(desktop_path + @"\" + @"마왕의 위치정보\item.txt");
         }
     }
 
@@ -112,13 +122,46 @@ public class WindowSceneLogic : MonoBehaviour
                 OnTextEvent?.Invoke();
                 UnityEngine.Debug.Log("성공");
                 isMoveTime = false;
+                FindAnyObjectByType<Player>().isDialogue =false;
             }
         }
+        if (fileName.Length > 0 && Input.GetKeyDown(KeyCode.Return))
+        {
+            switch (fileName)
+            {
+                case "마왕의 위치정보":
+                    MakeDirectory();
+                    WindowBoxSetFalse();
+                    break;
+                case "마왕의 위치정":
+                    MakeDirectory();
+                    WindowBoxSetFalse();
+                    break;
+                default:
+                    inputField.placeholder.GetComponent<TextMeshProUGUI>().text = "오류난 폴더를 입력하세요";
+                    break;
+            };
+        }
+    }
+
+    public void InputFile()
+    {
+        fileName = inputField.text;
+    }
+
+    public void WindowBoxSetFalse()
+    {
+        windowFinder.SetActive(false);
     }
 
     public void SerchFile(string appName, string appDescript)
     {
+        windowFinder.SetActive(true);
+        FindAnyObjectByType<Player>().isDialogue = true;
+    }
 
+    private void MakeDirectory()
+    {
         string npcFolder_path = CreateDirectory("마왕의 위치정보");
         string itemFolder_path = CreateDirectory("버려진 폴더");
 
@@ -169,8 +212,6 @@ public class WindowSceneLogic : MonoBehaviour
 
     private string CreateDirectory(string directoryName)
     {
-        string desktop_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
         string folder_path = desktop_path + @"\"+directoryName;
         DirectoryInfo npcDirectoryInfo = new DirectoryInfo(folder_path);
         if (npcDirectoryInfo.Exists != true)
