@@ -98,8 +98,9 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
 
     public void HandleEnterWindowScreen()
     {
-        if (_player.isLockedWindow|| isEnterWindow) return;
+        if (_player.isLockedWindow|| isEnterWindow || !_mover.CanManualMove) return;
         isEnterWindow = true;
+        _mover.CanManualMove = false;
         StartCoroutine(WindowEffect());
     }
 

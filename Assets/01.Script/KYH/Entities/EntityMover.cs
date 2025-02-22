@@ -108,8 +108,11 @@ public class EntityMover : MonoBehaviour, IEntityComponent
 
     public bool IsGroundDetected()
     {
+        
         float boxHeight = 0.05f;
         Vector2 boxSize = new Vector2(groundBoxWidth, boxHeight);
+        if (Physics2D.BoxCast(groundCheckTrm.position, boxSize, 0, Vector2.down, groundCheckDistance, whatIsGround))
+            print("∂•ø° ¥Í¿Ω");
         return Physics2D.BoxCast(groundCheckTrm.position, boxSize, 0, Vector2.down, groundCheckDistance, whatIsGround);
     }
 

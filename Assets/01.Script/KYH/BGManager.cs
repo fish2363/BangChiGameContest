@@ -93,7 +93,6 @@ public class BGManager : MonoSingleton<BGManager>
             // webp 확장자를 읽을 수 있게 해주는 기능
         }
         Debug.Log("Texture Loaded");
-        Debug.Log(texture.name);
         return texture;
     }
 
