@@ -96,8 +96,6 @@ public class PlayerAttackCompo : MonoBehaviour, IEntityComponent, IAfterInit
         //Collider2D collider = Physics2D.OverlapCircle(center, damageCaster.GetSize(), whatIsCounterable);
         if (collider != null)
             return collider.GetComponent<ICounterable>();
-        else
-            Debug.Log("½ÇÆÐ");
         return default;
     }
 

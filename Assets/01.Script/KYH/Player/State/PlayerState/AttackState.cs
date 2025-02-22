@@ -11,6 +11,8 @@ public class AttackState : EntityState
     private readonly float _comboWindow = 0.8f; //콤보가 이어지도록 하는 시간제한
     private const int MAX_COMBO_COUNT = 2;
 
+    private bool isAlreadyAttackLock;
+
     public AttackState(Entity entity, AnimParamSO animParam) : base(entity, animParam)
     {
         _player = entity as Player;
@@ -26,7 +28,11 @@ public class AttackState : EntityState
             _comboCounter = 0;
 
         _renderer.SetParam(_player.ComboCounterParam, _comboCounter);
-        _mover.CanManualMove = false; //움직이지 못하게
+
+        if (!_mover.CanManualMove)
+            isAlreadyAttackLock = true;
+        else
+            _mover.CanManualMove = false; //움직이지 못하게
         _mover.StopImmediately(true);
 
         SetAttackData();
@@ -60,7 +66,9 @@ public class AttackState : EntityState
     {
         ++_comboCounter;
         _lastAttackTime = Time.time;
+        if(!_player.isDialogue && !isAlreadyAttackLock)
         _mover.CanManualMove = true; //이거 잊지마
+        isAlreadyAttackLock = false;
         base.Exit();
     }
 }

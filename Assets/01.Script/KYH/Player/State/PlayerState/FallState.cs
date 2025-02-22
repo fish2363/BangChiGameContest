@@ -12,7 +12,6 @@ public class FallState : PlayerAirState
         {
             _player.ResetJumpCount();
             _player.ChangeState("IDLE");
-            Debug.Log("∂•ø° ¥Í¿Ω");
         }
     }
 }

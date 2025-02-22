@@ -29,6 +29,7 @@ public class WallSlideState : EntityState
         float xInput = _player.PlayerInput.InputDirection.x;
         if (Mathf.Abs(xInput + _renderer.FacingDirection) < 0.5f)
         {
+            Debug.Log("갯발");
             _player.ChangeState("FALL");
             return;
         }
@@ -36,8 +37,8 @@ public class WallSlideState : EntityState
         //쭉 내려가다가 땅에 닿았다면 IDLE로 변경해야 한다.
         if (_mover.IsGroundDetected() || _mover.IsWallDetected(_renderer.FacingDirection) == false)
         {
+            Debug.Log("zzzzzzzzzzzz발");
             _player.ChangeState("IDLE");
-            _player.ResetJumpCount();
         }
     }
 
