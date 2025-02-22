@@ -197,7 +197,6 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
     {
         _mover.CanManualMove = false;
         _mover.StopImmediately(true);
-        _renderer.SeeRightDirection();
 
         _player.isDialogue = true;
         currentDialogue = obj.dialogue;
