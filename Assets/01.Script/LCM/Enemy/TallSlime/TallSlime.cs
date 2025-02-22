@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
-public class LargeSlime : Enemy
+public class TallSlime : Enemy, ICounterable
 {
-    [SerializeField] private PoolItemSO _verticalBullet;
-    [SerializeField] private PoolItemSO _horizontalBullet;
-    [SerializeField] private Transform _firePos;
+    private EntityAnimationTrigger _animationTrigger;
     protected override void Awake()
     {
         base.Awake();
@@ -15,7 +12,7 @@ public class LargeSlime : Enemy
             try
             {
                 string enumName = stateType.ToString();
-                Type t = Type.GetType($"LargeSlime_{enumName}State");
+                Type t = Type.GetType($"TallSlime_{enumName}State");
                 EnemyState state = Activator.CreateInstance(t, new object[] { this }) as EnemyState;
                 StateEnum.Add(stateType, state);
             }
@@ -25,14 +22,14 @@ public class LargeSlime : Enemy
             }
         }
         TransitionState(EnemyStateType.Idle);
-        AnimTriggerCompo.OnAttackTrigger += VerticalBulletFire;
     }
-
-
+    
     protected override void AfterInitialize()
     {
         base.AfterInitialize();
         GetCompo<EntityHealth>().OnKnockback += HandleKnockBack;
+        _animationTrigger = GetCompo<EntityAnimationTrigger>();
+        _animationTrigger.OnCounterStatusChange += SetCounterStatus;
     }
 
     protected override void OnDestroy()
@@ -43,6 +40,7 @@ public class LargeSlime : Enemy
     
     private void HandleKnockBack(Vector2 knockBackForce)
     {
+        print("넉백");
         float knockBackTime = 0.5f;
         KnockBack(knockBackForce, knockBackTime);
     }
@@ -57,27 +55,10 @@ public class LargeSlime : Enemy
     {
         
     }
-    private void VerticalBulletFire()
-    {
-        var bullet = PoolManager.Instance.Pop(_verticalBullet.poolName) as VerticalBullet;
-        bullet.transform.position = transform.position;
-        bullet.ThrowObject(TargetTrm.position);
-    }
 
     public override void Attakc2()
     {
-        StartCoroutine(Attack2Coroutine());
-    }
-
-    private IEnumerator Attack2Coroutine()
-    {
-        for (int i = 0; i < 2; i++)
-        {
-            yield return new WaitForSeconds(0.5f);
-            var bullet = PoolManager.Instance.Pop(_horizontalBullet.poolName) as BossBullet;
-            bullet.transform.position = _firePos.position;
-            bullet.Initialize(transform.localScale.x >= 0f ? Vector2.right : Vector2.left);
-        }
+        
     }
 
     public override void RandomAttack()
@@ -96,4 +77,21 @@ public class LargeSlime : Enemy
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
     }
+    #region Counter section
+    public bool CanCounter { get; private set; }
+    public void ApplyCounter(float damage, Vector2 direction, Vector2 knockBackForce, bool isPowerAttack, Entity dealer)
+    {
+        //damage에 스턴시간, 크리티컬 등등의 정보객체 넘어와야 하는데 지금은 damage만 주니까 하드코딩
+        float stunTime = 2f;
+
+        CanCounter = false;
+
+        GetCompo<EntityHealth>().ApplyDamage(damage, direction, knockBackForce, isPowerAttack, dealer);
+        Debug.Log("<color=green>Counter success</color>");
+    }
+
+    private void SetCounterStatus(bool canCounter)
+        => CanCounter = canCounter;
+
+    #endregion
 }
