@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour,IEntityComponent
         if(obj.textType == TextType.Error)
         {
             errorTextUI.color = Color.red;
-            errorTextUI.text = $"¿À·ù : {obj.Text}";
+            errorTextUI.text = $"Error : {obj.Text}";
             errorTextUI.DOFade(1, 1f);
 
             if (obj.isDefunct)

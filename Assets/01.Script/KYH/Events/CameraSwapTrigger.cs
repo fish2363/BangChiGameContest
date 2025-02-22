@@ -17,7 +17,6 @@ public class CameraSwapTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Vector2 exitDirection = (other.transform.position - transform.position).normalized;
-            print(exitDirection);
             SwapCameraEvent swapEvt = CameraEvents.SwapCameraEvent;
             swapEvt.leftCamera = leftCamera;
             swapEvt.rightCamera = rightCamera;
