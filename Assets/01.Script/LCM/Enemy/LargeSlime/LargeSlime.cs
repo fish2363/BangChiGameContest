@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class LargeSlime : Enemy
 {
+    [SerializeField] private PoolItemSO _verticalBullet;
     protected override void Awake()
     {
         base.Awake();
@@ -21,8 +23,10 @@ public class LargeSlime : Enemy
             }
         }
         TransitionState(EnemyStateType.Idle);
+        AnimTriggerCompo.OnAttackTrigger += VerticalBulletFire;
     }
-    
+
+
     protected override void AfterInitialize()
     {
         base.AfterInitialize();
@@ -51,6 +55,12 @@ public class LargeSlime : Enemy
     {
         
     }
+    private void VerticalBulletFire()
+    {
+        var bullet = PoolManager.Instance.Pop(_verticalBullet.poolName) as VerticalBullet;
+        bullet.transform.position = transform.position;
+        bullet.ThrowObject(TargetTrm.position);
+    }
 
     public override void Attakc2()
     {
@@ -60,6 +70,7 @@ public class LargeSlime : Enemy
     public override void RandomAttack()
     {
         int rand = UnityEngine.Random.Range(0, 2);
+        rand = 0;
         if(rand == 0)
             TransitionState(EnemyStateType.Attack);
         else

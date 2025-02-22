@@ -13,11 +13,6 @@ public class Knight_MoveState : EnemyState
 
         if (!_enemy.CanMove) return;
 
-        if (_enemy.CanAttackRangePlayer() && _enemy.CanAttackCoolTime())
-        {
-            _enemy.RandomAttack();
-        }
-
         if (_enemy.CanAttackRangePlayer() && !_enemy.CanAttackCoolTime())
         {
             _enemy.TransitionState(EnemyStateType.Idle);

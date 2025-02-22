@@ -11,11 +11,7 @@ public class Skeleton_MoveState : EnemyState
         base.UpdateState();
 
         if (!_enemy.CanMove) return;
-
-        if (_enemy.CanAttackRangePlayer() && _enemy.CanAttackCoolTime())
-        {
-            _enemy.TransitionState(EnemyStateType.Attack);
-        }
+        
 
         if (_enemy.CanTargetingPlayer() == false || (_enemy.CanAttackRangePlayer() && !_enemy.CanAttackCoolTime()))
         {
