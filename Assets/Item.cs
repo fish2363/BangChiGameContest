@@ -48,7 +48,7 @@ public class Item : MonoBehaviour, ITakeable
 
     public void StartCutScene()
     {
-
+        OnInvoke?.Invoke();
     }
 
     public void ShowInteraction()

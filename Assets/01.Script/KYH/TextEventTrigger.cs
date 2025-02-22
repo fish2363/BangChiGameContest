@@ -33,4 +33,14 @@ public class TextEventTrigger : MonoBehaviour
 
         textChannel.RaiseEvent(events);
     }
+
+    public void CutSceneError()
+    {
+        TextEvent events = UIEvent.ErrorTextEvect;
+        events.Text = "'공성로봇 필살기'를 찾을 수 없습니다.";
+        events.textType = TextType.Error;
+        events.isDefunct = true;
+
+        textChannel.RaiseEvent(events);
+    }
 }
