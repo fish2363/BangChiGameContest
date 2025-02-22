@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -17,7 +18,7 @@ public class WindowSceneLogic : MonoBehaviour
     private static IntPtr windowHandle;
     private bool isfirewall = true;
 
-    private bool isExecute = true;
+    public bool isExecute;
     private bool isMoveTime;
 
     private string serchFile;
@@ -29,9 +30,25 @@ public class WindowSceneLogic : MonoBehaviour
     private TMP_InputField inputField;
     public string fileName;
 
+
+    public string[] tip;
+
+    [field: SerializeField]
+    private GameObject[] app;
+    private List<Vector3> appPos = new();
+
+    [SerializeField] private GameEventChannelSO textChannel;
+
     string desktop_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-   
+    private void Awake()
+    {
+        foreach (GameObject pos in app)
+        {
+            appPos.Add(pos.transform.position);
+        }
+    }
+
     public static IntPtr GetWindowHandle()
     {
         if (windowHandle == null)
@@ -51,11 +68,14 @@ public class WindowSceneLogic : MonoBehaviour
     public bool DuplicateCheck()
     {
         if (isExecute) return false;
+        isExecute = true;
         return isExecute;
     }
 
     public void GGMSite(string appName,string appDescript)
     {
+        if (DuplicateCheck() == false) return;
+
         if (Answer(appDescript, appName) == 1)
         {
             Process.Start("https://ggm-h.goeay.kr/ggm-h/main.do");
@@ -67,9 +87,12 @@ public class WindowSceneLogic : MonoBehaviour
 
     public void FishProfile(string appName, string appDescript)
     {
+        if (DuplicateCheck() == false) return;
+
         if (Answer(appDescript, appName) == 1)
         {
             Process.Start("https://ggm.gondr.net/user/profile/352");
+            isExecute = false;
         }
         else
             return;
@@ -77,31 +100,56 @@ public class WindowSceneLogic : MonoBehaviour
 
     public void LCMProfile(string appName, string appDescript)
     {
+        if (DuplicateCheck() == false) return;
+
         if (Answer(appDescript, appName) == 1)
         {
             Process.Start("https://ggm.gondr.net/user/profile/327");
+            isExecute = false;
         }
         else
             return;
     }
     public void Tip(string appName, string appDescript)
     {
-        
+        if (DuplicateCheck() == false) return;
+        TextEvent events = UIEvent.ErrorTextEvect;
+        events.Text = tip[FindAnyObjectByType<Player>().TipCount];
+        events.textType = TextType.Help;
+        events.isDefunct = true;
+        events.TextSkipKey = KeyCode.Mouse0;
+
+        textChannel.RaiseEvent(events);
     }
 
     public void Rewind(string appName, string appDescript)
     {
-
+        if (DuplicateCheck() == false) return;
+        for(int i =0; i<app.Length; i++)
+        {
+            app[i].transform.position = appPos[i];
+            app[i].GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+            isExecute = false;
+        }
     }
 
     public void Setting(string appName, string appDescript)
     {
+        if (DuplicateCheck() == false) return;
 
     }
 
     public void Mandle(string appName, string appDescript)
     {
+        if (DuplicateCheck() == false) return;
 
+        if (Answer(appDescript, appName) == 1)
+        {
+            Process.Start("https://ggm.gondr.net/user/profile/327");
+            isExecute = false;
+        }
+        else
+            return;
     }
     private void Start()
     {
@@ -156,8 +204,10 @@ public class WindowSceneLogic : MonoBehaviour
 
     public void SerchFile(string appName, string appDescript)
     {
+        if (DuplicateCheck() == false) return;
         windowFinder.SetActive(true);
         FindAnyObjectByType<Player>().isDialogue = true;
+        isExecute = false;
     }
 
     private void MakeDirectory()
@@ -222,15 +272,19 @@ public class WindowSceneLogic : MonoBehaviour
 
     public void Password(string appName, string appDescript)
     {
-        if(isfirewall)
+        if (DuplicateCheck() == false) return;
+
+        if (isfirewall)
         {
             MessageBox(GetWindowHandle(), appName, appDescript, (uint)(0x00000000L | 0x00000030L));
+            isExecute = false;
             return;
         }
     }
 
     public void Photo(string appName, string appDescript)
     {
+        if (DuplicateCheck() == false) return;
         if (Answer(appDescript, appName) == 1)
         {
             string filePath = Application.dataPath + @"\ScreenShot.png";
@@ -243,6 +297,7 @@ public class WindowSceneLogic : MonoBehaviour
             string strPath = Application.dataPath + @"\ScreenShot.png";
 
             print(strPath);
+            isExecute = false;
 
             //Process.Start($"ms-photos:viewer?fileName={strPath}");
         }

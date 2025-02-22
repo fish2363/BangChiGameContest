@@ -24,6 +24,8 @@ public class Player : Entity
     private int _currentJumpCount;
     public bool CanJump => _currentJumpCount > 0;
 
+    public int TipCount { get; set; }
+
     protected override void Awake()
     {
         base.Awake();

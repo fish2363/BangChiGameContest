@@ -43,7 +43,6 @@ public override void Update()
     private void CheckCounter()
     {
         ICounterable countable = _attackCompo.GetCounterableTargetInRadius();
-        Debug.Log(countable is { CanCounter: true });
 
         if (countable is { CanCounter: true })
         {
