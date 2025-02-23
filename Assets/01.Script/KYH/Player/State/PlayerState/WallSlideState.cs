@@ -5,7 +5,7 @@ public class WallSlideState : EntityState
     private Player _player;
     private EntityMover _mover;
 
-    private const float WALL_SLIDE_GRAVITY_SCALE = 0.1f;
+    private const float WALL_SLIDE_GRAVITY_SCALE = 0.6f;
     private const float WALL_SLIDE_LIMIT_SPEED = 5f;
     private const float NORMAL_LIMIT_SPEED = 40f;
 
