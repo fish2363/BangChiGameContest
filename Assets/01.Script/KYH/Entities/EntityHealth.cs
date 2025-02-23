@@ -38,8 +38,7 @@ public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInit
 
     public void ApplyDamage(float damage, Vector2 direction, Vector2 knockBackPower, bool isPowerAttack, Entity dealer)
     {
-        print("���Ƥ�������������������������������������������������");
-        if (_entity.IsDead || IsInvincibility) return; //�̹� ���� �༮�Դϴ�.
+        if (_entity.IsDead || IsInvincibility) return;
 
         if(!IsShield)
             _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, maxHealth);
