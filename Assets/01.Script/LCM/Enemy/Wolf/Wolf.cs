@@ -38,6 +38,7 @@ public class Wolf : Enemy, ICounterable
     {
         base.OnDestroy();
         GetCompo<EntityHealth>().OnKnockback -= HandleKnockBack;
+        _animationTrigger.OnCounterStatusChange -= SetCounterStatus;
     }
     
     private void HandleKnockBack(Vector2 knockBackForce)

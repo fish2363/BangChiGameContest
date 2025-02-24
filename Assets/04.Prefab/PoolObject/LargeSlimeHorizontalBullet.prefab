@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 2120842131010046894}
   - component: {fileID: 3465641254262866762}
   - component: {fileID: 1095582807362217137}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: LargeSlimeHorizontalBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

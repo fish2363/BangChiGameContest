@@ -59,7 +59,7 @@ public class LargeSlime : Enemy
     }
     private void VerticalBulletFire()
     {
-        var bullet = PoolManager.Instance.Pop(_verticalBullet.poolName) as VerticalBullet;
+        var bullet = PoolManager.Instance.Pop(_verticalBullet.poolName) as LargeSlimeBullet;
         bullet.transform.position = transform.position;
         bullet.ThrowObject(TargetTrm.position);
     }

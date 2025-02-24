@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe82681a2667f9418712808cbdc1fad, type: 3}
   m_Name: LargeSlimeVerticalBullet
   m_EditorClassIdentifier: 
-  poolName: VerticalBullet
+  poolName: LargeSlimeVerticalBullet
   prefab: {fileID: 3327320197628109127, guid: d34220bbeee66a34291c70f0b117a01d, type: 3}
-  count: 4
+  count: 6
