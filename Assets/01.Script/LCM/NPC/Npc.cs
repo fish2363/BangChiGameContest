@@ -27,7 +27,7 @@ public abstract class Npc : Entity
     protected override void Awake()
     {
         base.Awake();
-        _textBox = transform.Find("TextBox").gameObject;
+        _textBox = GetComponentInChildren<Image>().gameObject;
         _textBoxText = transform.Find("Text").GetComponent<TextMeshPro>();
     }
     
