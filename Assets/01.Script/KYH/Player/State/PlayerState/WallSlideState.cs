@@ -37,7 +37,6 @@ public class WallSlideState : EntityState
         //쭉 내려가다가 땅에 닿았다면 IDLE로 변경해야 한다.
         if (_mover.IsGroundDetected() || _mover.IsWallDetected(_renderer.FacingDirection) == false)
         {
-            Debug.Log("zzzzzzzzzzzz발");
             _player.ChangeState("IDLE");
         }
     }

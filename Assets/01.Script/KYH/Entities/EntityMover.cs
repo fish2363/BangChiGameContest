@@ -13,7 +13,6 @@ public class EntityMover : MonoBehaviour, IEntityComponent
     [SerializeField] private float groundCheckDistance, groundBoxWidth, wallCheckDistance;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private LayerMask whatIsWallSlide;
-    [SerializeField] private LayerMask whatIsErrorWall;
 
     #region Member field
 
@@ -115,9 +114,6 @@ public class EntityMover : MonoBehaviour, IEntityComponent
             print("¶¥¿¡ ´êÀ½");
         return Physics2D.BoxCast(groundCheckTrm.position, boxSize, 0, Vector2.down, groundCheckDistance, whatIsGround);
     }
-
-    public bool IsErrorWallDetected(float facingDirection)
-        => Physics2D.Raycast(wallCheckTrm.position, Vector2.right * facingDirection, wallCheckDistance, whatIsErrorWall);
 
     public bool IsWallDetected(float facingDirection)
         => Physics2D.Raycast(wallCheckTrm.position, Vector2.right * facingDirection, wallCheckDistance, whatIsWallSlide);

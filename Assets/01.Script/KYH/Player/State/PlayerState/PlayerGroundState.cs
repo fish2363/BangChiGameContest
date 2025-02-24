@@ -22,7 +22,7 @@ public class PlayerGroundState : EntityState
     public override void Update()
     {
         base.Update();
-        if (_mover.IsGroundDetected() == false && _mover.CanManualMove)
+        if (_mover.IsGroundDetected() == false && _mover.CanManualMove && !_mover.IsWallDetected(_renderer.FacingDirection))
         {
             _player.ChangeState("FALL");
         }
@@ -35,6 +35,8 @@ public class PlayerGroundState : EntityState
         _player.PlayerInput.OnSkillKeyPressed -= HandleSkillKeyPress;
         base.Exit();
     }
+    
+
     private void HandleSkillKeyPress(bool isPressed)
     {
         //Skill activeSkill = _player.GetCompo<SkillCompo>().activeSkill;
@@ -64,7 +66,7 @@ public class PlayerGroundState : EntityState
 
     private void HandleJumpKeyPress()
     {
-        if (_mover.IsGroundDetected() && !_player.isDialogue && _mover.CanManualMove)
+        if (_mover.IsGroundDetected() && !_player.isDialogue && _mover.CanManualMove&& !_mover.IsWallDetected(_renderer.FacingDirection))
             _player.ChangeState("JUMP");
     }
 }

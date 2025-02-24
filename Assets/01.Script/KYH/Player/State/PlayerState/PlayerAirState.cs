@@ -22,15 +22,26 @@ public class PlayerAirState : EntityState
     public override void Update()
     {
         base.Update();
+        Debug.Log("因掻");
         float xInput = _player.PlayerInput.InputDirection.x;
         if (Mathf.Abs(xInput) > 0)
             _mover.SetMovementX(xInput);
 
         bool isFrontMove = Mathf.Abs(xInput + _renderer.FacingDirection) > 1;
-        if (isFrontMove && _mover.IsWallDetected(_renderer.FacingDirection))
+
+        if(_mover.IsWallDetected(_renderer.FacingDirection))
         {
-            _player.ChangeState("WALL_SLIDE");
+            Debug.Log("ししししししししししししししししししししししししししししししししししししし");
+            if (isFrontMove)
+            {
+                _player.ChangeState("WALL_SLIDE");
+            }
+            else
+            {
+                _player.ChangeState("IDLE");
+            }
         }
+        
     }
 
     public override void Exit()
