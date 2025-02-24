@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
-public class Vampire : Enemy, ICounterable
+public class Vampire : Enemy
 {
-    private EntityAnimationTrigger _animationTrigger;
+    [SerializeField] private Transform _firePos;
+    [SerializeField] private PoolItemSO _bullet1;
     protected override void Awake()
     {
         base.Awake();
@@ -28,8 +30,6 @@ public class Vampire : Enemy, ICounterable
     {
         base.AfterInitialize();
         GetCompo<EntityHealth>().OnKnockback += HandleKnockBack;
-        _animationTrigger = GetCompo<EntityAnimationTrigger>();
-        _animationTrigger.OnCounterStatusChange += SetCounterStatus;
     }
 
     protected override void OnDestroy()
@@ -53,7 +53,15 @@ public class Vampire : Enemy, ICounterable
 
     public override void Attack()
     {
-        
+        StartCoroutine(AttackCoroutine());
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        var bullet = PoolManager.Instance.Pop(_bullet1.poolName) as BossBullet;
+        bullet.transform.position = _firePos.position;
+        bullet.Initialize(transform.localScale.x >= 0f ? Vector2.right : Vector2.left);
     }
 
     public override void Attakc2()
@@ -77,20 +85,4 @@ public class Vampire : Enemy, ICounterable
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
     }
-    #region Counter section
-    public bool CanCounter { get; private set; }
-    public void ApplyCounter(float damage, Vector2 direction, Vector2 knockBackForce, bool isPowerAttack, Entity dealer)
-    {
-        float stunTime = 2f;
-
-        CanCounter = false;
-
-        GetCompo<EntityHealth>().ApplyDamage(damage, direction, knockBackForce, isPowerAttack, dealer);
-        Debug.Log("<color=green>Counter success</color>");
-    }
-
-    private void SetCounterStatus(bool canCounter)
-        => CanCounter = canCounter;
-
-    #endregion
 }

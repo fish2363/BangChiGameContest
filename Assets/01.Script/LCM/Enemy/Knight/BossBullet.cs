@@ -59,7 +59,7 @@ public class BossBullet : MonoBehaviour, IPoolable
             PoolManager.Instance.Push(this);
         }
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
             OnDeadEvent?.Invoke();
             PoolManager.Instance.Push(this);

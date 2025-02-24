@@ -12,6 +12,7 @@ public enum QueenSlimeBuffType
 public class QueenSlime : Enemy
 {
     public UnityEvent<QueenSlimeBuffType> OnBuff;
+    public UnityEvent OnAttack;
     public UnityEvent OnDefendBuff;
     private int _rand;
 
@@ -75,10 +76,11 @@ public class QueenSlime : Enemy
     public override void Attack()
     {
         if (_rand == 0)
-            Debug.Log("적 소환");
+        {
+            OnAttack?.Invoke();
+        }
         else if (_rand == 1)
         {
-            Debug.Log("방어 버프");
             OnDefendBuff?.Invoke();
         }
         else

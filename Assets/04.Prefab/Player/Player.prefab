@@ -10543,10 +10543,11 @@ MonoBehaviour:
   <ComboCounterParam>k__BackingField: {fileID: 11400000, guid: 957ad57126cf8ea48b4a36fbdce99a1a, type: 2}
   playerFSM: {fileID: 11400000, guid: 7bd9d4f0a5115834e825bdfb15ffdfbd, type: 2}
   attackLockIcon: {fileID: 1159133147360323708}
-  <isBannedAttack>k__BackingField: 1
+  <isBannedAttack>k__BackingField: 0
   <isLockedWindow>k__BackingField: 1
   <isDialogue>k__BackingField: 0
   <MaxJumpCount>k__BackingField: 1
+  <MaxDashCoolTime>k__BackingField: 0
 --- !u!70 &5754755740210259300
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -38616,7 +38617,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 183892, guid: 77aff4f1c9d07704bafd856e02a46ac9, type: 3}
       propertyPath: m_Name
-      value: CounterSuccessEffect
+      value: CounterEffect
       objectReference: {fileID: 0}
     - target: {fileID: 197306, guid: 77aff4f1c9d07704bafd856e02a46ac9, type: 3}
       propertyPath: m_Name
@@ -40218,9 +40219,6 @@ MonoBehaviour:
   whatIsWallSlide:
     serializedVersion: 2
     m_Bits: 64
-  whatIsErrorWall:
-    serializedVersion: 2
-    m_Bits: 0
   <_moveSpeed>k__BackingField: 6
   <_jumpPower>k__BackingField: 7
   <EffectorPlayer>k__BackingField: {fileID: 1867563480142839539}
