@@ -14809,6 +14809,7 @@ Transform:
   - {fileID: 7574345199688366027}
   - {fileID: 7758841034092132842}
   - {fileID: 7128451537430609798}
+  - {fileID: 5610664214408021954}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8052791892882184874
@@ -14929,10 +14930,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnDefendBuff:
+  OnAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6105902249079000123}
+      - m_Target: {fileID: 7252331318296441237}
         m_TargetAssemblyTypeName: PlayerFeedback, Assembly-CSharp
         m_MethodName: PlayFeedbacks
         m_Mode: 1
@@ -14944,7 +14945,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+  OnDefendBuff:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6105902249079000123}
         m_TargetAssemblyTypeName: PlayerFeedback, Assembly-CSharp
         m_MethodName: PlayFeedbacks
         m_Mode: 1
@@ -15377,6 +15381,80 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1566680350249764679}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7906805810686243594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5610664214408021954}
+  - component: {fileID: 7252331318296441237}
+  - component: {fileID: 8155043039456016095}
+  - component: {fileID: 2990703352366080806}
+  m_Layer: 8
+  m_Name: AttackFeedback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5610664214408021954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7906805810686243594}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1566680350249764679}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7252331318296441237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7906805810686243594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60f7350d44b81c5428f9647cb18de33a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8155043039456016095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7906805810686243594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24fca04e23422024eb9ec22b6929f15e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemys:
+  - {fileID: 3427530695294990306, guid: 0d0dab96acf1f5e45af06235fbf55a0d, type: 3}
+  - {fileID: 1542560120903303046, guid: 184c866375e0a944e82e6590c920f987, type: 3}
+--- !u!114 &2990703352366080806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7906805810686243594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e26391f47923f4483ad6090d4f6224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectName: QueenSlimeAttakEffect
 --- !u!1 &8525224955761866452
 GameObject:
   m_ObjectHideFlags: 0
