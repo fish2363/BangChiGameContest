@@ -26,6 +26,8 @@ public class Player : Entity
 
     public int TipCount { get; set; }
 
+    [field : SerializeField] public float MaxDashCoolTime { get; set; }
+
     protected override void Awake()
     {
         base.Awake();
@@ -33,6 +35,7 @@ public class Player : Entity
     }
     private void Start()
     {
+        TurnOnTimer();
         _stateMachine.ChangeState("IDLE");
     }
 
@@ -83,6 +86,7 @@ public class Player : Entity
         _mover.KnockBack(knockBackForce, knockBackTime);
     }
 
+    
     protected override void HandleDead()
     {
         if (IsDead) return;
@@ -91,4 +95,50 @@ public class Player : Entity
         print("²Ð µðÁü");
         _stateMachine.ChangeState("DEAD");
     }
+
+    #region ´ë½¬ÄðÅ¸ÀÓ
+    private bool isCounting;
+    private int timeLeft;
+    private DateTime targetTime;
+
+    public void SetCountTime(int time)
+    {
+        MaxDashCoolTime = time;
+    }
+    
+    public void TurnOnTimer()
+    {
+        targetTime = DateTime.Now.AddSeconds(MaxDashCoolTime);
+        isCounting = true;
+    }
+
+    private void FixedUpdate()
+    {
+        if(isCounting)
+        {
+            TimeSpan timeDiff = targetTime - DateTime.Now;
+            int diffSec = timeDiff.Seconds;
+            print(diffSec);
+            if(diffSec > 0)
+            {
+                timeLeft = diffSec;
+            }
+            else
+            {
+                timeLeft = 0;
+                isCounting = false;
+            }
+        }
+    }
+
+    public bool IsCount()
+    {
+        return isCounting;
+    }
+
+    public int GetCoolTimeSecond()
+    {
+        return timeLeft;
+    }
+    #endregion
 }

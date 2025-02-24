@@ -18,6 +18,7 @@ public class DashAttackState : EntityState
     {
         base.Enter();
         _mover.CanManualMove = false;
+        _player.TurnOnTimer();
 
         SetAttackData();
     }
