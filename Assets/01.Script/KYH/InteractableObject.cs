@@ -1,9 +1,6 @@
-using System.Collections;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class InteractableObject : Entity, ITakeable
 {
@@ -92,6 +89,15 @@ public class InteractableObject : Entity, ITakeable
         ShowInteraction();
     }
 
+    protected override void HandleHit()
+    {
+    }
+
+    protected override void HandleDead()
+    {
+        print("");
+    }
+
 #if UNITY_EDITOR
 
     private void OnDrawGizmos()
@@ -99,14 +105,5 @@ public class InteractableObject : Entity, ITakeable
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _playerCheckRadius);
     }
-
-    protected override void HandleHit()
-    {
-    }
-
-    protected override void HandleDead()
-    {
-    }
-
 #endif
 }
