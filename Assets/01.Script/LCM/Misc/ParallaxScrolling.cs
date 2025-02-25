@@ -4,7 +4,7 @@ public class ParallaxScrolling : MonoBehaviour
 {
     private Vector3 _startPos;
     private Camera _cam;
-    public float parallaxFactor;
+    [SerializeField] private float parallaxFactor;
 
     void Start()
     {
@@ -12,7 +12,7 @@ public class ParallaxScrolling : MonoBehaviour
         _startPos = transform.position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         float distX = _cam.transform.position.x * parallaxFactor;
         float distY = _cam.transform.position.y * parallaxFactor;
