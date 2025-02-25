@@ -5,15 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/00.Scenes/Stage/StartMenu.unity
     guid: 2959c228fd3691d4a9370cd70d01ecbd
-  - enabled: 1
+  - enabled: 0
     path: Assets/00.Scenes/LCM/LCM.unity
     guid: a08e270ae04bedc46ad542778dbe306c
-  - enabled: 1
+  - enabled: 0
     path: Assets/00.Scenes/Stage/Stage1.unity
     guid: b6f5db4966bf56a4d83c0dd8a88ae7c4
+  - enabled: 1
+    path: Assets/00.Scenes/Stage/Stage1 Renual.unity
+    guid: f20a36a91badc1741b6c3e5d822e96f7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
