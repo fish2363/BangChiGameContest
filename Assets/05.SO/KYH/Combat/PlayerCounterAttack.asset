@@ -16,7 +16,7 @@ MonoBehaviour:
   movement: {x: 0, y: 0}
   knockBackForce: {x: 2, y: 5}
   damageMultiplier: 2
-  damageIncrease: 0
+  attackDamage: 15
   isPowerAttack: 0
   cameraShakePower: 0.7
   cameraShakeDuration: 0.15

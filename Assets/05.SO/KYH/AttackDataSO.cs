@@ -9,7 +9,7 @@ public class AttackDataSO : ScriptableObject
     public Vector2 movement;
     public Vector2 knockBackForce;
     public float damageMultiplier = 1f;
-    public float damageIncrease = 0;
+    public float attackDamage = 0;
     public bool isPowerAttack;
 
     public float cameraShakePower;

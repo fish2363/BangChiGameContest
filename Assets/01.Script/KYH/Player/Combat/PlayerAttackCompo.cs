@@ -78,7 +78,7 @@ public class PlayerAttackCompo : MonoBehaviour, IEntityComponent, IAfterInit
 
     private void HandleAttackTrigger()
     {
-        float damage = 5f; //나중에 스탯기반으로 고침. 
+        float damage = _currentAttackData.attackDamage; //나중에 스탯기반으로 고침. 
         Vector2 knockBackForce = _currentAttackData.knockBackForce;
         bool success = damageCaster.CastDamage(damage, knockBackForce, _currentAttackData.isPowerAttack);
 

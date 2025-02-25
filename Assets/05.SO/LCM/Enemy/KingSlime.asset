@@ -17,6 +17,6 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
-  targetingRange: 7.62
+  targetingRange: 30
   attackRange: 1.56
   attackCoolTime: 3
