@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class KingSlime_AttackState : EnemyState
 {
+    private float mass;
     public KingSlime_AttackState(Enemy enemy) : base(enemy, EnemyStateType.Attack.ToString())
     {
     }
@@ -10,6 +11,8 @@ public class KingSlime_AttackState : EnemyState
     {
         base.EnterState();
         _enemy.RbCompo.linearVelocity = Vector2.zero;
+        mass = _enemy.RbCompo.mass;
+        _enemy.RbCompo.mass = 100;
         _enemy.Attack();
     }
     
@@ -24,5 +27,6 @@ public class KingSlime_AttackState : EnemyState
     {
         base.ExtiState();
         _enemy.isAttackAnimationEnd = false;
+        _enemy.RbCompo.mass = mass;
     }
 }

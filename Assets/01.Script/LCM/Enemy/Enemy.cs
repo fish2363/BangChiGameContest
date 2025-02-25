@@ -13,7 +13,7 @@ public abstract class Enemy : Entity
     public Rigidbody2D RbCompo { get; private set; }
     public Animator AnimatorCompo { get; private set; }
     protected Dictionary<EnemyStateType, EnemyState> StateEnum = new Dictionary<EnemyStateType, EnemyState>();
-    private EnemyStateType currentState;
+    protected EnemyStateType _currentState;
 
     private float _currentScaleX;
 
@@ -54,9 +54,9 @@ public abstract class Enemy : Entity
 
     public void TransitionState(EnemyStateType newState)
     {
-        StateEnum[currentState].Exit();
-        currentState = newState;
-        StateEnum[currentState].Enter();
+        StateEnum[_currentState].Exit();
+        _currentState = newState;
+        StateEnum[_currentState].Enter();
     }
 
     public bool GroundCheck()
@@ -65,9 +65,9 @@ public abstract class Enemy : Entity
     }
 
 
-    protected virtual void Update() => StateEnum[currentState].UpdateState();
+    protected virtual void Update() => StateEnum[_currentState].UpdateState();
 
-    private void FixedUpdate() => StateEnum[currentState].FixedUpdateState();
+    private void FixedUpdate() => StateEnum[_currentState].FixedUpdateState();
 
     public Vector2 GetMovementDirection()
     {
@@ -212,11 +212,11 @@ public enum EnemyStateType
     Attack4,
     Attack5,
     Attack6,
-    Defend,
     Shield,
     Run,
     Dead,
     PageTwo,
+    Spawn
 }
 
 [Serializable]
