@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
@@ -13,8 +14,17 @@ public class EscFunction : MonoBehaviour
     
     [SerializeField] private Image _redPanel;
     [SerializeField] private TextMeshProUGUI _countDownText;
-
+    
+    private CanvasGroup _canvasGroup;
+    
     private bool _isEnd = true;
+
+    private void Awake()
+    {
+        _canvasGroup = GetComponent<CanvasGroup>();
+        _canvasGroup.interactable = false;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -35,6 +45,7 @@ public class EscFunction : MonoBehaviour
         {
             _isEnd = true;
         };
+        _canvasGroup.interactable = true;
     }
 
     public void CloseEscPanel()
@@ -49,6 +60,7 @@ public class EscFunction : MonoBehaviour
             _isEnd = true;
         };
         Time.timeScale = 1f;
+        _canvasGroup.interactable = false;
     }
 
     public void CheckExitGamePanel()
