@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class Player : Entity
 {
@@ -29,7 +30,10 @@ public class Player : Entity
 
     [field : SerializeField] public float MaxDashCoolTime { get; set; }
 
-    [SerializeField] private CanvasGroup hpSlider;
+    [SerializeField] private CanvasGroup dashCanvasGroup;
+    [SerializeField] private CanvasGroup hpBarCanvasGroup;
+
+
 
     protected override void Awake()
     {
@@ -63,6 +67,7 @@ public class Player : Entity
         GetCompo<EntityAnimationTrigger>().OnAnimationEnd -= HandleAnimationEnd;
         GetCompo<EntityHealth>().OnKnockback -= HandleKnockBack;
         PlayerInput.ClearSubscription();
+        GetCompo<EntityRenderer>().OnFlip -= Flip;
     }
 
     public void DecreaseJumpCount() => _currentJumpCount--;
@@ -74,9 +79,20 @@ public class Player : Entity
         _mover = GetCompo<EntityMover>();
         GetCompo<EntityHealth>().OnKnockback += HandleKnockBack;
         GetCompo<EntityAnimationTrigger>().OnAnimationEnd += HandleAnimationEnd;
+        GetCompo<EntityRenderer>().OnFlip += Flip;
         _currentJumpCount = MaxJumpCount;
     }
-
+    private void Flip(bool LeftOrRight)
+    {
+        if (LeftOrRight)
+        {
+            hpBarCanvasGroup.transform.Rotate(0, 180f, 0);
+        }
+        else
+        {
+            hpBarCanvasGroup.transform.Rotate(0, 0, 0);
+        }
+    }
     protected override void HandleHit()
     {
 
@@ -100,8 +116,11 @@ public class Player : Entity
 
     #region ´ë½¬ÄðÅ¸ÀÓ
     private bool isCounting;
-    private int timeLeft;
-    private DateTime targetTime;
+
+    private float targetTime;
+
+    [SerializeField] private Slider _dashSlider;
+    [SerializeField] private Slider _backSlider;
 
     public void SetCountTime(int time)
     {
@@ -110,8 +129,7 @@ public class Player : Entity
     
     public void TurnOnTimer()
     {
-        hpSlider.DOFade(1,0.5f);
-        targetTime = DateTime.Now.AddSeconds(MaxDashCoolTime);
+        dashCanvasGroup.DOFade(1,0.5f);
         isCounting = true;
     }
 
@@ -119,18 +137,17 @@ public class Player : Entity
     {
         if(isCounting)
         {
-            TimeSpan timeDiff = targetTime - DateTime.Now;
-            int diffSec = timeDiff.Seconds;
+            float diffSec = targetTime += Time.deltaTime;
             print(diffSec);
-            if(diffSec > 0)
+            if (diffSec < MaxDashCoolTime)
             {
-                timeLeft = diffSec;
+                CoolTimeSecondValueChangeSlider(diffSec);
             }
             else
             {
-                timeLeft = 0;
+                targetTime = 0f;
                 isCounting = false;
-                hpSlider.DOFade(0, 0.5f);
+                dashCanvasGroup.DOFade(0, 0.5f);
             }
         }
     }
@@ -140,9 +157,22 @@ public class Player : Entity
         return isCounting;
     }
 
-    public int GetCoolTimeSecond()
+    public void CoolTimeSecondValueChangeSlider(float second)
     {
-        return timeLeft;
+        if (second <= 0f) return;
+
+        _dashSlider.value = second;
+
+        if (_backSlider != null && _backSlider.value > _dashSlider.value)
+        {
+            DOTween.Sequence()
+                .AppendInterval(1f)
+                .Append(_backSlider.DOValue(second, 0.5f).SetEase(Ease.OutCubic));
+        }
+        else if (_backSlider != null && _backSlider.value < _dashSlider.value)
+        {
+            _backSlider.value = second;
+        }
     }
     #endregion
 }

@@ -10,9 +10,6 @@ public class EnemyHpSlider : MonoBehaviour,IEntityComponent,IAfterInit
     [SerializeField] private Slider _hpSlider;
     [SerializeField] private Slider _backSlider;
     private CanvasGroup canvasGroup;
-    private EntityRenderer _renderer;
-
-    [SerializeField] private RectTransform hpSlider;
 
     public void Initialize(Entity entity)
     {
@@ -21,25 +18,7 @@ public class EnemyHpSlider : MonoBehaviour,IEntityComponent,IAfterInit
         canvasGroup = GetComponentInChildren<CanvasGroup>();
         if(_hpSlider == null)
             _hpSlider = GetComponentInChildren<Slider>();
-        _renderer = entity.GetCompo<EntityRenderer>();
-        _renderer.OnFlip += Flip;
     }
-    private void OnDestroy()
-    {
-        _renderer.OnFlip -= Flip;
-    }
-    private void Flip(bool LeftOrRight)
-    {
-        if (LeftOrRight)
-        {
-            hpSlider.transform.Rotate(0, 180f, 0);
-        }
-        else
-        {
-            hpSlider.transform.Rotate(0, 0, 0);
-        }
-    }
-
     public void AfterInitialize()
     {
         _maxHp = _entityHealth.maxHealth;

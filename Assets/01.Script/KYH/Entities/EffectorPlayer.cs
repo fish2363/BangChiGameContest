@@ -6,6 +6,7 @@ using System.Collections;
 public class EffectorPlayer : MonoBehaviour,IEntityComponent
 {
     private Dictionary<string, ParticleSystem> _effectDictionary;
+    private Animator _animationEffect;
     private Player _player;
     private ParticleSystem _currentAttackEffect;
 
@@ -20,6 +21,7 @@ public class EffectorPlayer : MonoBehaviour,IEntityComponent
         _player = entity as Player;
         _effectDictionary = new Dictionary<string, ParticleSystem>();
         GetComponentsInChildren<ParticleSystem>(true).ToList().ForEach(effect => _effectDictionary.Add(effect.name,effect));
+        _animationEffect = GetComponentInChildren<Animator>(true);
     }
 
     public void PlayEffect(string effectName,bool ChildInPlayer = true)
@@ -37,6 +39,11 @@ public class EffectorPlayer : MonoBehaviour,IEntityComponent
         }
         else
             effect.Play();
+    }
+
+    public void PlayAnimationEffect(string effectName)
+    {
+        _animationEffect.Play(effectName);
     }
 
     public void StopEffect(string effectName)
