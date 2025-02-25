@@ -274,7 +274,7 @@ MonoBehaviour:
   _interactionKey: {fileID: 2002482524}
   _offsetItemYPosition: 1
   _moveTime: 2
-  _sceneName: adfsadf
+  _sceneName: Stage2
   OnCameraShakeing:
     m_PersistentCalls:
       m_Calls:
@@ -2669,7 +2669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca9f7b286c83cf740a216291446191f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panDirection: 3
+  panDirection: 2
   panDistance: 8
   panTime: 0.35
   time: 2
@@ -2750,7 +2750,7 @@ Transform:
   m_GameObject: {fileID: 1850149484}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.37, y: -2.77, z: 0.6297478}
+  m_LocalPosition: {x: -12.56, y: -2.77, z: 0.6297478}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -4131,6 +4131,7 @@ GameObject:
   - component: {fileID: 4118882340396813763}
   - component: {fileID: 6608081651171966434}
   - component: {fileID: 6383106115745907381}
+  - component: {fileID: 2046159344707731026}
   m_Layer: 5
   m_Name: EscCanvas
   m_TagString: Untagged
@@ -4244,3 +4245,15 @@ MonoBehaviour:
   _whitePanel: {fileID: 3445101507408955826}
   _redPanel: {fileID: 1709523226606744644}
   _countDownText: {fileID: 7151388516671453662}
+--- !u!225 &2046159344707731026
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9217209905144629323}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
