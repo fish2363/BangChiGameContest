@@ -51,6 +51,7 @@ public class AutoNpc : Npc
 
     protected override void HandleHit()
     {
+        if (_animator != null)
         _animator.Play(animationName);
     }
 
