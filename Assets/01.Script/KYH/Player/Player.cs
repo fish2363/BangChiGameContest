@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using DG.Tweening;
 
 public class Player : Entity
 {
@@ -28,6 +29,8 @@ public class Player : Entity
 
     [field : SerializeField] public float MaxDashCoolTime { get; set; }
 
+    [SerializeField] private CanvasGroup hpSlider;
+
     protected override void Awake()
     {
         base.Awake();
@@ -35,7 +38,6 @@ public class Player : Entity
     }
     private void Start()
     {
-        TurnOnTimer();
         _stateMachine.ChangeState("IDLE");
     }
 
@@ -108,6 +110,7 @@ public class Player : Entity
     
     public void TurnOnTimer()
     {
+        hpSlider.DOFade(1,0.5f);
         targetTime = DateTime.Now.AddSeconds(MaxDashCoolTime);
         isCounting = true;
     }
@@ -127,6 +130,7 @@ public class Player : Entity
             {
                 timeLeft = 0;
                 isCounting = false;
+                hpSlider.DOFade(0, 0.5f);
             }
         }
     }

@@ -18,6 +18,7 @@ public class DashAttackState : EntityState
     {
         base.Enter();
         _mover.CanManualMove = false;
+
         _player.TurnOnTimer();
 
         SetAttackData();
@@ -44,6 +45,7 @@ public class DashAttackState : EntityState
     {
         if(!_player.isDialogue)
         _mover.CanManualMove = true;
+
         base.Exit();
     }
 }
