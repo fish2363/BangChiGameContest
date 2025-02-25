@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      windrise-bg-front_0: 5150752531012576004
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

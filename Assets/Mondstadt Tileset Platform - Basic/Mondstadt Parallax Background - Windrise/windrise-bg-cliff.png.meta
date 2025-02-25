@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      windrise-bg-cliff_0: -4130444224292747670
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

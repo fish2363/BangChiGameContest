@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      windrise-preview_0: -2141708551174278738
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
