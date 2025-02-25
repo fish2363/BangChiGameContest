@@ -66,4 +66,9 @@ public class Marksman : Enemy
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
     }
+
+    public void Spawn()
+    {
+        TransitionState(EnemyStateType.Spawn);
+    }
 }

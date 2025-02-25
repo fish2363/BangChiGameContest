@@ -66,6 +66,11 @@ public class Gladiator : Enemy, ICounterable
         TransitionState(EnemyStateType.Dead);
     }
 
+    public void Spawn()
+    {
+        TransitionState(EnemyStateType.Spawn);
+    }
+
     #region Counter section
     public bool CanCounter { get; private set; }
     public void ApplyCounter(float damage, Vector2 direction, Vector2 knockBackForce, bool isPowerAttack, Entity dealer)

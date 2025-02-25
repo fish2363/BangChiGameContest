@@ -29,7 +29,7 @@ public class EnemyAttackCompo : MonoBehaviour,IEntityComponent,IAfterInit
         _triggerCompo.OnAttackTrigger -= HandleAttackTrigger;
     }
 
-    public void AttackSetting(int atkDamage, Vector2 force, Vector2 boxSize, float radius, OverlapDamageCaster.OverlapCastType type)
+    public void AttackSetting(float atkDamage, Vector2 force, Vector2 boxSize, float radius, OverlapDamageCaster.OverlapCastType type)
     {
         damage = atkDamage;
         knockBackForce = force;
