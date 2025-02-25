@@ -9,6 +9,7 @@ public enum TextType
 public static class UIEvent
 {
     public static TextEvent ErrorTextEvect = new();
+    public static ParallaxMoveEvent ParallaxMoveEvent = new();
 }
 
 public class TextEvent  : GameEvent
@@ -18,3 +19,10 @@ public class TextEvent  : GameEvent
     public TextType textType;
     public KeyCode TextSkipKey;
 }
+
+public class ParallaxMoveEvent : GameEvent
+{
+    public bool isFadeIn;
+    public Vector2 moveDirection;
+}
+

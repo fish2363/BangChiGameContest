@@ -52,6 +52,8 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
     public UnityEvent firstEvent;
     public UnityEvent secondEvent;
     public UnityEvent thirdEvent;
+
+    public CanvasGroup hpBar;
     #endregion
 
     private void SendPanEvent(bool isRewind)
@@ -161,6 +163,8 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
 
     private void EndTalk()
     {
+        hpBar.DOFade(1, 0.2f);
+
         isSwap = false;
         _mover.CanManualMove = true;
         _player.isDialogue = false;
@@ -182,6 +186,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
 
     private void HandleSpeak(StartAConversation events)
     {
+        hpBar.DOFade(0,0.2f);
         if (events.isStop)
         {
             _mover.CanManualMove = false;
@@ -195,6 +200,8 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
 
     private void HandleEachOtherSpeak(StartATalkEachOther obj)
     {
+        hpBar.DOFade(0, 0.2f);
+
         _mover.CanManualMove = false;
         _mover.StopImmediately(true);
 

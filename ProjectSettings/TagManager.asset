@@ -66,5 +66,8 @@ TagManager:
   - name: UI
     uniqueID: 4030198773
     locked: 0
+  - name: Scrolling
+    uniqueID: 369023067
+    locked: 0
   m_RenderingLayers:
   - Default

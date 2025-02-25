@@ -15,7 +15,8 @@ public class UIManager : MonoBehaviour,IEntityComponent
     [Header("Help")]
     [SerializeField] private TextMeshProUGUI helpTextUI;
 
-   
+    [SerializeField]
+    private SpriteRenderer[] FadeParallax;
 
     private Player _player;
     private bool isHelpText;
@@ -24,10 +25,38 @@ public class UIManager : MonoBehaviour,IEntityComponent
     public void Initialize(Entity entity)
     {
         UIChannel.AddListener<TextEvent>(HandleTextEvent);
+        UIChannel.AddListener<ParallaxMoveEvent>(HandleParallaxMoveEvent);
         _player = entity as Player;
 
     }
-    
+
+    private void HandleParallaxMoveEvent(ParallaxMoveEvent obj)
+    {
+        print($"{obj.isFadeIn} / {obj.moveDirection.x}");
+        if ((obj.isFadeIn && obj.moveDirection.x > 0) || (!obj.isFadeIn && obj.moveDirection.x < 0))
+            Fade(true);
+        else if ((obj.isFadeIn && obj.moveDirection.x < 0) || (!obj.isFadeIn && obj.moveDirection.x > 0))
+            Fade(false);
+    }
+
+    private void Fade(bool isDirection)
+    {
+        if (isDirection)
+        {
+            for (int i = 0; i < FadeParallax.Length; i++)
+            {
+                FadeParallax[i].DOFade(1, 0.2f);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < FadeParallax.Length; i++)
+            {
+                FadeParallax[i].DOFade(0, 0.2f);
+            }
+        }
+    }
+
     private void Update()
     {
         if(isHelpText && Input.GetKeyDown(skipKey))
