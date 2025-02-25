@@ -122,8 +122,6 @@ public class KingSlime : Enemy, ICounterable
 
     public void ApplyCounter(float damage, Vector2 direction, Vector2 knockBackForce, bool isPowerAttack, Entity dealer)
     {
-        float stunTime = 2f;
-
         CanCounter = false;
 
         GetCompo<EntityHealth>().ApplyDamage(damage, direction, knockBackForce, isPowerAttack, dealer);

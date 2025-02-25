@@ -28,22 +28,22 @@ public class MainmenuLogic : MonoBehaviour
 
             if (point.x > 1100 && rectTransform.position.x > -1.34f)
             {
-                print("¿ì");
+                print("ï¿½ï¿½");
                 rectTransform.Translate(new Vector3(-0.01f, 0, 0) * speed * Time.deltaTime);
             }
             if (point.x < 1000 && rectTransform.position.x < 1.36f)
             {
-                print("¿Þ");
+                print("ï¿½ï¿½");
                 rectTransform.Translate(new Vector3(0.01f, 0, 0) * speed * Time.deltaTime);
             }
             if (point.y < 550 && rectTransform.position.y < 0.7f)
             {
-                print("¾Æ·¡");
+                print("ï¿½Æ·ï¿½");
                 rectTransform.Translate(new Vector3(0, 0.01f, 0) * speed * Time.deltaTime);
             }
             if (point.y > 450 && rectTransform.position.y > -0.77f)
             {
-                print("À§");
+                print("ï¿½ï¿½");
                 rectTransform.Translate(new Vector3(0, -0.01f, 0) * speed * Time.deltaTime);
             }
         }
@@ -58,7 +58,6 @@ public class MainmenuLogic : MonoBehaviour
     public IEnumerator GameStart()
     {
         isStart = true;
-        int a;
         for (int i = 0; i < 70; i++)
         {
             if(_camera.Lens.OrthographicSize > 0)

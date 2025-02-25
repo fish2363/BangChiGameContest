@@ -96,8 +96,9 @@ public class AutoNpc : Npc
         }
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         StopAllCoroutines();
     }
 
