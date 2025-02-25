@@ -83,8 +83,9 @@ public class InteractionNpc : Npc
         _isTalking = false;
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         StopAllCoroutines();
     }
 

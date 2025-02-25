@@ -11,17 +11,17 @@ public class NpcDialogueComponent : MonoBehaviour
 
     public float typingSpeed = 0.05f;
 
-    private SpriteRenderer renderer;
+    private SpriteRenderer _renderer;
 
     private void Awake()
     {
-        renderer = GetComponent<SpriteRenderer>();
+        _renderer = GetComponent<SpriteRenderer>();
     }
 
     public void ComeNear()
     {
-        renderer.sortingLayerName = "Enemy";
-        renderer.color = Color.white;
-        renderer.flipX = true;
+        _renderer.sortingLayerName = "Enemy";
+        _renderer.color = Color.white;
+        _renderer.flipX = true;
     }
 }
