@@ -12,7 +12,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private int disableCameraPriority = 10;
     [SerializeField] private GameEventChannelSO cameraChannel;
 
-    private Vector2 _originalTrackPosition; //ÀÌºÎºÐÀº Â÷ÈÄ °³¼±ÇÕ´Ï´Ù.
+    private Vector2 _originalTrackPosition; //ï¿½ÌºÎºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
     private CinemachinePositionComposer _positionComposer;
 
     private Dictionary<PanDirection, Vector2> _panDirections;
@@ -54,7 +54,7 @@ public class CameraManager : MonoBehaviour
 
     public void ChangeCamera(CinemachineCamera newCamera,bool isBatton)
     {
-        currentCamera.Priority = disableCameraPriority; //ÇöÀç Ä«¸Þ¶ó ²¨ÁÖ°í
+        currentCamera.Priority = disableCameraPriority; //ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½Ö°ï¿½
         Transform followTarget = currentCamera.Follow;
         if (followTarget is null)
             followTarget = FindAnyObjectByType<Player>().gameObject.transform;
@@ -66,7 +66,8 @@ public class CameraManager : MonoBehaviour
             currentCamera.Follow = followTarget;
 
         _positionComposer = currentCamera.GetComponent<CinemachinePositionComposer>();
-        _originalTrackPosition = _positionComposer.TargetOffset;
+        if (_positionComposer != null)
+            _originalTrackPosition = _positionComposer.TargetOffset;
     }
 
     private void HandleSwapCamera(SwapCameraEvent swapEvt)
@@ -83,7 +84,7 @@ public class CameraManager : MonoBehaviour
     {
         Vector3 endPosition = evt.isRewindToStart ?
             _originalTrackPosition : _panDirections[evt.direction] * evt.distance + _originalTrackPosition;
-        //¿øÀ§Ä¡·Î ¸®¿ÍÀÎµå ½ÃÄÑÁÖ´Â ÀÌº¥Æ®¸é ¿øÀ§Ä¡·Î µ¹¸®°í, ±×·¸Áö ¾Ê´Ù¸é ¹æÇâ´ë·Î ÀÌµ¿½ÃÄÑÁÖ°í
+        //ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½×·ï¿½ï¿½ï¿½ ï¿½Ê´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö°ï¿½
 
         KillTweenIfActive();
         _panningTween = DOTween.To(
