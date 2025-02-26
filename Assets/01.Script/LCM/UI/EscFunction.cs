@@ -22,7 +22,7 @@ public class EscFunction : MonoBehaviour
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
-        _canvasGroup.interactable = false;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
@@ -45,7 +45,7 @@ public class EscFunction : MonoBehaviour
         {
             _isEnd = true;
         };
-        _canvasGroup.interactable = true;
+        _canvasGroup.blocksRaycasts = true;
     }
 
     public void CloseEscPanel()
@@ -60,7 +60,7 @@ public class EscFunction : MonoBehaviour
             _isEnd = true;
         };
         Time.timeScale = 1f;
-        _canvasGroup.interactable = false;
+        _canvasGroup.blocksRaycasts = false;
     }
 
     public void CheckExitGamePanel()
