@@ -66,7 +66,7 @@ public class PlayerGroundState : EntityState
 
     private void HandleJumpKeyPress()
     {
-        if (_mover.IsGroundDetected() && !_player.isDialogue && _mover.CanManualMove&& !_mover.IsWallDetected(_renderer.FacingDirection))
+        if (_mover.IsGroundDetected() && !_player.isDialogue && _mover.CanManualMove)
             _player.ChangeState("JUMP");
     }
 }

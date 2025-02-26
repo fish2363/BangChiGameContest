@@ -71,7 +71,9 @@ public class CameraManager : MonoBehaviour
 
     private void HandleSwapCamera(SwapCameraEvent swapEvt)
     {
-        if (currentCamera == swapEvt.leftCamera && swapEvt.moveDirection.x > 0)
+        if(swapEvt.isForceSwap)
+            ChangeCamera(swapEvt.rightCamera, swapEvt.isBattonFollow);
+        else if (currentCamera == swapEvt.leftCamera && swapEvt.moveDirection.x > 0)
             ChangeCamera(swapEvt.rightCamera,swapEvt.isBattonFollow);
         else if (currentCamera == swapEvt.rightCamera && swapEvt.moveDirection.x < 0)
             ChangeCamera(swapEvt.leftCamera, swapEvt.isBattonFollow);

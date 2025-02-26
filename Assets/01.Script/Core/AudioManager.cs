@@ -83,19 +83,14 @@ public class AudioManager : MonoBehaviour
     /// 루프 사운드 중 리스트에 있는 오브젝트를 이름으로 찾아 제거한다.
     /// </summary>
     /// <param name="clipName"></param>
-    public void StopLoopSound(string clipName)
+    public void StopLoopSound()
     {
         foreach (TemporarySoundPlayer audioPlayer in mInstantiatedSounds)
         {
-            if (audioPlayer.ClipName == clipName)
-            {
                 mInstantiatedSounds.Remove(audioPlayer);
                 Destroy(audioPlayer.gameObject);
                 return;
-            }
         }
-
-        Debug.LogWarning(clipName + "을 찾을 수 없습니다.");
     }
 
     /// <summary>
