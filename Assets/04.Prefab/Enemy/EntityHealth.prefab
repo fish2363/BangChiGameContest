@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dbfd3ff2fe9fc64bb9a51cfb21a3fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 40
   hp:
     _value: 0
