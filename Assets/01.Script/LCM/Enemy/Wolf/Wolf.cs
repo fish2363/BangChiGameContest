@@ -55,11 +55,6 @@ public class Wolf : Enemy, ICounterable
 
     public override void Attack()
     {
-        
-    }
-
-    public override void Attakc2()
-    {
         RbCompo.AddForce(Vector2.up * 2f, ForceMode2D.Impulse);
         RbCompo.AddForce(GetMovementDirection() * _dashPower, ForceMode2D.Impulse);
     }
@@ -71,15 +66,6 @@ public class Wolf : Enemy, ICounterable
         TransitionState(EnemyStateType.Dead);
     }
     
-
-    public override void RandomAttack()
-    {
-        int rand = UnityEngine.Random.Range(0, 2);
-        if(rand == 0)
-            TransitionState(EnemyStateType.Attack);
-        else
-            TransitionState(EnemyStateType.Attack2);
-    }
     #region Counter section
     public bool CanCounter { get; private set; }
     public void ApplyCounter(float damage, Vector2 direction, Vector2 knockBackForce, bool isPowerAttack, Entity dealer)

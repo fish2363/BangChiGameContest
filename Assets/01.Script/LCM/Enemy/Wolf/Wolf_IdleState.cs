@@ -22,7 +22,7 @@ public class Wolf_IdleState : EnemyState
 
         if (_enemy.CanAttackCoolTime() && _enemy.CanAttackRangePlayer())
         {
-            _enemy.RandomAttack();
+            _enemy.TransitionState(EnemyStateType.Attack);
         }
         
         _enemy.TargetingPlayer();
