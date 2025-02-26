@@ -125,7 +125,7 @@ public class KingSkeleton : Enemy
     private IEnumerator BuffCoolTimeCoroutine()
     {
         _buffPart.Play();
-        _attackDamageMultiple = 3f;
+        _attackDamageMultiple = 2f;
         yield return new WaitForSeconds(_buffTime);
         _buffPart.Stop();
         _buffExplosionPart.Play();
