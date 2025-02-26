@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using DG.Tweening;
 using Unity.Cinemachine;
@@ -50,6 +49,8 @@ public class GameIcon : MonoBehaviour, ITakeable
         _tweener = transform.DOMoveY(_firstItemYPosition + _offsetItemYPosition, _moveTime)
             .SetLoops(-1, LoopType.Yoyo)
             .SetEase(Ease.InOutSine);
+
+        _boardRenderer.DOFade(0f, 2f);
     }
 
 
