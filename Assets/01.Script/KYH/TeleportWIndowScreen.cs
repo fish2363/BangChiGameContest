@@ -34,16 +34,35 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
     private VideoPlayer videoPlayer;
     [SerializeField] private RawImage videoImage;
 
+    private EntityHealth _health;
+
+    private Coroutine coroutine;
+
+    [SerializeField]
+    private GameObject pp;
+
+    private string prevSongName;
+
     public void Initialize(Entity entity)
     {
         _player = entity as Player;
         _mover = entity.GetCompo<EntityMover>();
         videoPlayer = videoImage.GetComponent<VideoPlayer>();
+        _health = entity.GetCompo<EntityHealth>();
     }
 
     public void AfterInitialize()
     {
+        _health.hp.OnValueChanged += CancelWindow;
         _player.PlayerInput.OnEnterWindowKeyPressed += HandleEnterWindowScreen;
+    }
+
+    public void CancelWindow(float prev, float next)
+    {
+        if(coroutine !=null)
+        StopCoroutine(coroutine);
+        isEnterWindow = false;
+        _mover.CanManualMove = true;
     }
 
     public void VideoEvent()
@@ -65,11 +84,14 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
         _mover.EffectorPlayer.PlayEffect("ReadyEnterWindow",false);
         yield return new WaitForSeconds(2f);
         _mover.EffectorPlayer.PlayEffect("EnterWindow", true);
+        AudioManager.Instance.PlaySound2D("WindowEnterSFX");
+        AudioManager.Instance.PlaySound2D("WindowSceneBGM",0,true,SoundType.BGM);
         yield return new WaitForSeconds(0.25f);
         VideoEnd();
         _mover.EffectorPlayer.StopEffect("ReadyEnterWindow");
         _player.transform.position = windowScreenTrans.position;
         _mover.KnockBack(enterKnockbackForce, 0.5f);
+        pp.SetActive(false);
 
         Vector2 exitDirection = Vector2.right;
         _player.MaxJumpCount = 8;
@@ -101,7 +123,9 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
         if (_player.isLockedWindow|| isEnterWindow || !_mover.CanManualMove) return;
         isEnterWindow = true;
         _mover.CanManualMove = false;
-        StartCoroutine(WindowEffect());
+        prevSongName = AudioManager.Instance.CurrentMainBGMName;
+        AudioManager.Instance.StopAllLoopSound();
+        coroutine = StartCoroutine(WindowEffect());
     }
 
     public void FirstInToWindow()
@@ -113,6 +137,12 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
 
     public void ComebackPrevTrans()
     {
+        AudioManager.Instance.StopLoopSound("WindowSceneBGM");
+        if(prevSongName.Length > 0)
+            AudioManager.Instance.PlaySound2D(prevSongName, 0, true, SoundType.BGM);
+        prevSongName = null;
+
+        pp.SetActive(true);
         isEnterWindow = false;
         _player.transform.position = prevTrans;
         _mover.KnockBack(enterKnockbackForce, 0.5f);

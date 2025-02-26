@@ -21,7 +21,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
 
     private TextMeshProUGUI playerChatText;
     public TextMeshProUGUI npcChatText;
-
+    private string songName;
     private CanvasGroup textBoxCanvas;
     private Image textBoxImage;
 
@@ -116,6 +116,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
             EndTalk();
             return;
         }
+        AudioManager.Instance.PlaySound2D("HumanSpeak", 0, true, SoundType.SfX);
         StartCoroutine(TypingRoutine(currentDialogue[talkNum]));
     }
 
@@ -143,12 +144,17 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
             HideChatBox(talker.textBoxCanvas);
         }
         else
+        {
+            AudioManager.Instance.PlaySound2D("HumanSpeak", 0, true, SoundType.SfX);
             StartCoroutine(EachOhterTypingRoutine(currentDialogue[talkNum]));
+        }
     }
 
     public void CutSceneEnd()
     {
         print("dddd");
+        if(turnPlayer)
+            AudioManager.Instance.PlaySound2D("HumanSpeak", 0, true, SoundType.SfX);
         StartCoroutine(EachOhterTypingRoutine(currentDialogue[talkNum]));
     }
 
@@ -195,6 +201,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
 
         _player.isDialogue = true;
         currentDialogue = events.dialogue;
+        AudioManager.Instance.PlaySound2D("HumanSpeak",0,true,SoundType.SfX);
         StartCoroutine(TypingRoutine(currentDialogue[talkNum]));
     }
 
@@ -211,6 +218,8 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         turnPlayer = obj.startTalkerIsPlayer;
         npcChatText = talker.npcChatText;
 
+        songName = obj.changeSongName;
+
         panDistance = obj.npcDistance;
         panDirection = obj.npcDirection;
         panTime = obj.panTime;
@@ -224,7 +233,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
 
         if(!turnPlayer)
             SendPanEvent(false);
-
+        AudioManager.Instance.PlaySound2D("HumanSpeak", 0, true, SoundType.SfX);
         StartCoroutine(EachOhterTypingRoutine(currentDialogue[talkNum]));
     }
     private void ChangeTalker()
@@ -251,6 +260,12 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
             talk = talk.Replace("Next", "");
             ChangeTalker();
             SendPanEvent(false);
+        }
+
+        if (talk.Contains("Song"))
+        {
+            talk = talk.Replace("Song", "");
+            AudioManager.Instance.PlaySound2D(songName,0,true,SoundType.BGM);
         }
 
         if (talk.Contains("CameraChange"))
@@ -290,6 +305,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
                 yield return new WaitForSeconds(talker.typingSpeed);
             }
         }
+        AudioManager.Instance.StopLoopSound("HumanSpeak");
         isSkip = true;
     }
 
@@ -335,6 +351,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
             playerChatText.text += talk[i];
             yield return new WaitForSeconds(typingSpeed);
         }
+        AudioManager.Instance.StopLoopSound("HumanSpeak");
         isSkip = true;
     }
 }
