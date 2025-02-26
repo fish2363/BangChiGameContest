@@ -57,8 +57,7 @@ public class KingSlime : Enemy, ICounterable
 
     private void HandleKnockBack(Vector2 knockBackForce)
     {
-        float knockBackTime = 0.5f;
-        KnockBack(knockBackForce, knockBackTime);
+        
     }
 
     protected override void HandleHit()

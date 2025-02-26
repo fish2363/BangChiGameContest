@@ -11,11 +11,6 @@ public class BossRoomDoor : MonoBehaviour
     [SerializeField] private float _atkRadius;
     [SerializeField] private LayerMask _whatIsEnemy;
 
-    private void Start()
-    {
-        StartCoroutine(OpenDoor());
-    }
-
     public void Open()
     {
         _needCount--;

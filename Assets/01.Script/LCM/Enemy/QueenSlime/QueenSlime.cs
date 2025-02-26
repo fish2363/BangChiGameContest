@@ -51,8 +51,7 @@ public class QueenSlime : Enemy
     
     private void HandleKnockBack(Vector2 knockBackForce)
     {
-        float knockBackTime = 0.5f;
-        KnockBack(knockBackForce, knockBackTime);
+        
     }
     protected override void HandleHit()
     {
