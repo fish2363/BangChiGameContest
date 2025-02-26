@@ -43,7 +43,7 @@ public class TallSlime : Enemy, ICounterable
     {
         print("넉백");
         float knockBackTime = 0.5f;
-        KnockBack(knockBackForce, knockBackTime);
+        KnockBack(knockBackForce / 2f, knockBackTime);
     }
     protected override void HandleHit()
     {
