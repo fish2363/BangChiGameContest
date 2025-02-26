@@ -19,7 +19,10 @@ public class MainmenuLogic : MonoBehaviour
         rectTransform = background.GetComponent<RectTransform>();
         _camera = FindAnyObjectByType<CinemachineCamera>();
     }
-
+    private void Start()
+    {
+        AudioManager.Instance.PlaySound2D("MainMenuBGM",0,true,SoundType.BGM);
+    }
     private void Update()
     {
         if(!isStart)
@@ -58,6 +61,7 @@ public class MainmenuLogic : MonoBehaviour
     public IEnumerator GameStart()
     {
         isStart = true;
+        AudioManager.Instance.StopLoopSound();
         for (int i = 0; i < 70; i++)
         {
             if(_camera.Lens.OrthographicSize > 0)

@@ -10,6 +10,7 @@ public class BossTrigger : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            if(director!=null)
             director.Play();
             collision.GetComponent<Player>().GetCompo<EntityMover>().CanManualMove = false;
         }

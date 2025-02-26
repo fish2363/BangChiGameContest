@@ -25,6 +25,7 @@ public class SwapCameraEvent : GameEvent
     public CinemachineCamera rightCamera;
     public bool isBattonFollow;
     public Vector2 moveDirection;
+    public bool isForceSwap;
 }
 
 public class PerlinShake : GameEvent
