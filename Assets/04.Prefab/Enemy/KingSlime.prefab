@@ -14844,7 +14844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buffParticle: {fileID: 1563338175816325856}
-  _buffDuration: 5
+  _buffDuration: 8
 --- !u!1 &4719440672575393838
 GameObject:
   m_ObjectHideFlags: 0
@@ -15759,7 +15759,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4359057743395126301, guid: c263cb3ea1a0f99498b5d4a4052603af, type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4615554437175967689, guid: c263cb3ea1a0f99498b5d4a4052603af, type: 3}
       propertyPath: m_Name

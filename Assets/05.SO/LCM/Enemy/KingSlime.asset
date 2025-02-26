@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709ed970b5516e348b9b939074c54966, type: 3}
   m_Name: KingSlime
   m_EditorClassIdentifier: 
-  movementSpeed: 4
+  movementSpeed: 5
   groundCheckerBoxSize: {x: 2.76, y: 0.31}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
   targetingRange: 30
-  attackRange: 1.56
-  attackCoolTime: 3
+  attackRange: 1.8
+  attackCoolTime: 1.5

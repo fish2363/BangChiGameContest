@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Scenes/Stage/Stage1 Renual.unity
     guid: f20a36a91badc1741b6c3e5d822e96f7
+  - enabled: 1
+    path: Assets/00.Scenes/Stage/UnityScene.unity
+    guid: 53f3163e7da8f794fbe4c95f93eed556
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
