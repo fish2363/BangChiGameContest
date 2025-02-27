@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class EscFunction : MonoBehaviour
@@ -14,6 +15,22 @@ public class EscFunction : MonoBehaviour
     
     [SerializeField] private Image _redPanel;
     [SerializeField] private TextMeshProUGUI _countDownText;
+    
+    [SerializeField] private AudioMixer _audioMixer;
+
+    [SerializeField] private Slider _bgmSlider;
+    [SerializeField] private Slider _sfxSlider;
+
+    // 볼륨 조절
+    public void SetBgmVolume()
+    {
+        _audioMixer.SetFloat("BGM", Mathf.Log10(_bgmSlider.value) * 20);
+    }
+
+    public void SetSfxVolume()
+    {
+        _audioMixer.SetFloat("SFX", Mathf.Log10(_sfxSlider.value) * 20);
+    }
     
     private CanvasGroup _canvasGroup;
     

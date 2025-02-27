@@ -2230,7 +2230,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 5948145652549134104}
   m_HandleRect: {fileID: 438654201831770070}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
@@ -4111,7 +4111,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 7863061170186970163}
   m_HandleRect: {fileID: 7172753220638199041}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
@@ -4245,6 +4245,9 @@ MonoBehaviour:
   _whitePanel: {fileID: 3445101507408955826}
   _redPanel: {fileID: 1709523226606744644}
   _countDownText: {fileID: 7151388516671453662}
+  _audioMixer: {fileID: 24100000, guid: fecb1e304d6ccda49a5d7c1b6e83d1ed, type: 2}
+  _bgmSlider: {fileID: 5441064181504073237}
+  _sfxSlider: {fileID: 4502599398573134511}
 --- !u!225 &2046159344707731026
 CanvasGroup:
   m_ObjectHideFlags: 0
