@@ -10627,7 +10627,7 @@ GameObject:
   - component: {fileID: 1664635546046633477}
   - component: {fileID: 3990647661040894028}
   m_Layer: 0
-  m_Name: TinySparkles
+  m_Name: hjfgdsgsdf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16147,7 +16147,7 @@ MonoBehaviour:
   <ComboCounterParam>k__BackingField: {fileID: 11400000, guid: 957ad57126cf8ea48b4a36fbdce99a1a, type: 2}
   playerFSM: {fileID: 11400000, guid: 7bd9d4f0a5115834e825bdfb15ffdfbd, type: 2}
   attackLockIcon: {fileID: 1159133147360323708}
-  <isBannedAttack>k__BackingField: 1
+  <isBannedAttack>k__BackingField: 0
   <isLockedWindow>k__BackingField: 1
   <isDialogue>k__BackingField: 0
   <MaxJumpCount>k__BackingField: 1
@@ -21467,7 +21467,7 @@ GameObject:
   - component: {fileID: 3258981971781560065}
   - component: {fileID: 7966732912529544126}
   m_Layer: 0
-  m_Name: Glow
+  m_Name: kljghkjgf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26298,7 +26298,7 @@ GameObject:
   - component: {fileID: 4681159529606032734}
   - component: {fileID: 471448047049748252}
   m_Layer: 0
-  m_Name: Glow
+  m_Name: fsdgfhg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31833,9 +31833,9 @@ Transform:
   m_GameObject: {fileID: 3147153115368229966}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 50.08, y: -41.63, z: 0.0055032307}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.64, y: 0.64, z: 0.64}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7609390308176621428}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -36879,7 +36879,7 @@ Transform:
   m_GameObject: {fileID: 3476047012755616658}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 48.239147, y: -39.51561, z: 0.0055032307}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46992,7 +46992,7 @@ Transform:
   m_GameObject: {fileID: 4093188001215323490}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 47.258575, y: -40.772392, z: 0.0055032307}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -51948,7 +51948,7 @@ GameObject:
   - component: {fileID: 1906123295122624527}
   - component: {fileID: 8267814472774671825}
   m_Layer: 0
-  m_Name: NovaCircle
+  m_Name: hgfjhjkjkfg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56743,7 +56743,7 @@ GameObject:
   - component: {fileID: 176905279112901659}
   - component: {fileID: 8304482622036985525}
   m_Layer: 0
-  m_Name: Sparks
+  m_Name: asfdfds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61601,7 +61601,7 @@ GameObject:
   - component: {fileID: 7313668770584618411}
   - component: {fileID: 6357892866084407128}
   m_Layer: 0
-  m_Name: MiniParticles
+  m_Name: jfhgdhgdf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66420,9 +66420,9 @@ Transform:
   m_GameObject: {fileID: 5621944234918412371}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 44.47, y: -41.9, z: 0.0055032307}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.52, y: 0.52, z: 0.52}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5277650336701109}
   m_Father: {fileID: 7609390308176621428}
@@ -71605,7 +71605,7 @@ GameObject:
   - component: {fileID: 2707298045128871407}
   - component: {fileID: 3826977545908294894}
   m_Layer: 0
-  m_Name: Nova
+  m_Name: gfhsh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87748,7 +87748,7 @@ GameObject:
   - component: {fileID: 4492136387171281416}
   - component: {fileID: 6455866650710723101}
   m_Layer: 0
-  m_Name: NovaCloud
+  m_Name: hgdhvc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

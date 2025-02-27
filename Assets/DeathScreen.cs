@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,8 +12,14 @@ public class DeathScreen : MonoBehaviour
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
+    private void Start()
+    {
+        canvasGroup.interactable = false;
+    }
+
     public void DeathScreenFadeIn()
     {
+        canvasGroup.interactable = true;
         DOTween.To(() => canvasGroup.alpha, x => canvasGroup.alpha = x, 1, 1).OnComplete(()=> Time.timeScale = 0f);
     }
 
