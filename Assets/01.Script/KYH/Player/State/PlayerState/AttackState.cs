@@ -48,6 +48,13 @@ public class AttackState : EntityState
 
         AttackDataSO attackData = _attackCompo.GetAttackData($"PlayerCombo{_comboCounter}");
         _mover.EffectorPlayer.PlayEffect($"Combo{_comboCounter}AttackEffect");
+        if(_comboCounter == 2)
+        {
+            AudioManager.Instance.PlaySound2D($"SwordAttack{_comboCounter}", 0, false, SoundType.SfX);
+            AudioManager.Instance.PlaySound2D($"SwordAttack{0}", 0.5f, false, SoundType.SfX);
+        }
+        else
+            AudioManager.Instance.PlaySound2D($"SwordAttack{_comboCounter}", 0, false, SoundType.SfX);
         Vector2 movement = attackData.movement;
         movement.x *= atkDirection;
         _mover.AddForceToEntity(movement);

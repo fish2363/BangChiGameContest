@@ -18,7 +18,8 @@ public class DashAttackState : EntityState
     {
         base.Enter();
         _mover.CanManualMove = false;
-
+        AudioManager.Instance.PlaySound2D($"SwordAttack{1}", 0.5f, false, SoundType.SfX);
+        AudioManager.Instance.PlaySound2D($"SwordAttack{2}", 0, false, SoundType.SfX);
         _player.TurnOnTimer();
 
         SetAttackData();

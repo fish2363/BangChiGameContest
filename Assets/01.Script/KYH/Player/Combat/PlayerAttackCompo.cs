@@ -85,6 +85,7 @@ public class PlayerAttackCompo : MonoBehaviour, IEntityComponent, IAfterInit
         if (success)
         {
             _mover.EffectorPlayer.PlayEffect("HitEffect");
+            AudioManager.Instance.PlaySound2D("HitSuccess", 0,false,SoundType.SfX);
             Debug.Log($"<color=red>Damaged! - {damage}</color>");
         }
     }

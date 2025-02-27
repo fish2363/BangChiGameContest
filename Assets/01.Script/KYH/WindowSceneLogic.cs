@@ -289,25 +289,27 @@ public class WindowSceneLogic : MonoBehaviour
     public void Photo(string appName, string appDescript)
     {
         if (DuplicateCheck() == false) return;
+        //if (Answer(appDescript, appName) == 1)
+        //{
+        //    string filePath = Application.dataPath + @"\ScreenShot.png";
+        //    ProcessStartInfo startInfo = new ProcessStartInfo(filePath)
+        //    {
+        //        UseShellExecute = true
+        //    };
+        //    Process.Start(startInfo);
+
+        //    string strPath = Application.dataPath + @"\ScreenShot.png";
+
+        //    print(strPath);
         if (Answer(appDescript, appName) == 1)
         {
-            string filePath = Application.dataPath + @"\ScreenShot.png";
-            ProcessStartInfo startInfo = new ProcessStartInfo(filePath)
-            {
-                UseShellExecute = true
-            };
-            Process.Start(startInfo);
-
-            string strPath = Application.dataPath + @"\ScreenShot.png";
-
-            print(strPath);
+            Process.Start("https://www.youtube.com/@jjangfish");
             isExecute = false;
-
-            //Process.Start($"ms-photos:viewer?fileName={strPath}");
         }
         else
             return;
+        isExecute = false;
+
+            //Process.Start($"ms-photos:viewer?fileName={strPath}");
+        }
     }
-
-
-}

@@ -14,6 +14,7 @@ public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInit
 
     [HideInInspector] public bool IsShield { get; set; } = false;
     [HideInInspector] public bool IsInvincibility { get; set; } = false;
+    [HideInInspector] public bool IsCounter { get; set; } = false;
 
     #region Initialize section
 
@@ -38,7 +39,7 @@ public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInit
 
     public void ApplyDamage(float damage, Vector2 direction, Vector2 knockBackPower, bool isPowerAttack, Entity dealer)
     {
-        if (_entity.IsDead || IsInvincibility) return;
+        if (_entity.IsDead || IsInvincibility|| IsCounter) return;
 
         if(!IsShield)
             _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, maxHealth);

@@ -17,7 +17,7 @@ public class Stage1Logic : MonoBehaviour
             swapEvt.isForceSwap = true;
             swapEvt.rightCamera = forceChangeCamera;
             cameraChannel.RaiseEvent(swapEvt);
-
+            AudioManager.Instance.PlaySound2D("Stage1BattleField", 0,true,SoundType.BGM);
             _player.isBannedAttack = false;
             _player.isLockedWindow = false;
             _player.transform.position = gameObject.transform.position;
