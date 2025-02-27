@@ -31,6 +31,7 @@ public class WallSlideState : EntityState
         {
             Debug.Log("°¹¹ß");
             _player.ChangeState("FALL");
+            _player.ResetJumpCount();
             return;
         }
 

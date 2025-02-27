@@ -6,9 +6,16 @@ public class BossTrigger : MonoBehaviour
     public GameObject Boss;
     public PlayableDirector director;
     public string SongName;
+    public bool isDirectStart;
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if(isDirectStart)
+        {
+            StartBoss();
+            return;
+        }
+
         if(collision.gameObject.CompareTag("Player"))
         {
             if(director!=null)
@@ -20,7 +27,8 @@ public class BossTrigger : MonoBehaviour
     public void StartBoss()
     {
         Boss.SetActive(true);
-        AudioManager.Instance.PlaySound2D("SongName",0,true,SoundType.BGM);
+        AudioManager.Instance.StopAllLoopSound();
+        AudioManager.Instance.PlaySound2D(SongName,0,true,SoundType.BGM);
         FindAnyObjectByType<Player>().GetCompo<EntityMover>().CanManualMove = true;
     }
 }

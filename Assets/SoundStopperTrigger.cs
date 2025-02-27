@@ -13,4 +13,9 @@ public class SoundStopperTrigger : MonoBehaviour
         AudioManager.Instance.StopLoopSound(AudioManager.Instance.CurrentMainBGMName);
     }
 
+    public void StopNameSound(string songName)
+    {
+        AudioManager.Instance.StopLoopSound(songName);
+    }
+
 }

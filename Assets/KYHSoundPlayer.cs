@@ -12,6 +12,7 @@ public class KYHSoundPlayer : MonoBehaviour//찬민이가 SoundPlayer 만들어놓고 어�
 
     public void PlaySound()
     {
+        print("dddddddddddddddddddddddddd");
         AudioManager.Instance.PlaySound2D(bgmName, 0, isLoop, soundType);
     }
 }

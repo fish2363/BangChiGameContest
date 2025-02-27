@@ -154,6 +154,7 @@ public class BGManager : MonoSingleton<BGManager>
 
     public void SetDefaultBG()
     {
+        if (defaultBGByte == null) return;
         if (defaultBGByte.Equals(null))
         {
             return;

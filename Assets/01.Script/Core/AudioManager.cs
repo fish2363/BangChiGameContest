@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -94,6 +95,7 @@ public class AudioManager : MonoBehaviour
         {
             if (audioPlayer.ClipName == clipName)
             {
+                DOTween.To(()=> audioPlayer.GetComponent<AudioSource>().volume, x => audioPlayer.GetComponent<AudioSource>().volume = x, 0 , 1f);
                 mInstantiatedSounds.Remove(audioPlayer);
                 Destroy(audioPlayer.gameObject);
                 return;
@@ -106,6 +108,7 @@ public class AudioManager : MonoBehaviour
     {
         foreach (TemporarySoundPlayer audioPlayer in mInstantiatedSounds)
         {
+                DOTween.To(() => audioPlayer.GetComponent<AudioSource>().volume, x => audioPlayer.GetComponent<AudioSource>().volume = x, 0, 1f);
                 mInstantiatedSounds.Remove(audioPlayer);
                 Destroy(audioPlayer.gameObject);
                 return;

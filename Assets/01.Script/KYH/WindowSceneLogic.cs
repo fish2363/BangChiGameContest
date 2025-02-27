@@ -213,7 +213,7 @@ public class WindowSceneLogic : MonoBehaviour
     {
         windowFinder.SetActive(false);
         FindAnyObjectByType<Player>().isDialogue = false;
-        isExecute = true;
+        isExecute = false;
     }
 
     public void SerchFile(string appName, string appDescript)
@@ -226,6 +226,7 @@ public class WindowSceneLogic : MonoBehaviour
 
     private void MakeDirectory()
     {
+        print("됐냐");
         string npcFolder_path = CreateDirectory("마왕의 위치정보");
         string itemFolder_path = CreateDirectory("버려진 폴더");
 

@@ -14,12 +14,12 @@ public class DeathScreen : MonoBehaviour
 
     private void Start()
     {
-        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
     }
 
     public void DeathScreenFadeIn()
     {
-        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
         DOTween.To(() => canvasGroup.alpha, x => canvasGroup.alpha = x, 1, 1).OnComplete(()=> Time.timeScale = 0f);
     }
 

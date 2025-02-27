@@ -29,7 +29,7 @@ public class PlayerAirState : EntityState
 
         bool isFrontMove = Mathf.Abs(xInput + _renderer.FacingDirection) > 1;
 
-        if(_mover.IsWallDetected(_renderer.FacingDirection))
+        if(_mover.IsWallDetected(_renderer.FacingDirection) && !_mover.IsGroundDetected())
         {
             Debug.Log("ししししししししししししししししししししししししししししししししししししし");
             if (isFrontMove)
