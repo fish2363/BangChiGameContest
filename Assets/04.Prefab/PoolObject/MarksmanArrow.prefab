@@ -52,7 +52,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _damage: 4
-  _knockbackForce: {x: 1, y: 0}
+  _knockbackForce: {x: 0, y: 0}
   totalFlightTime: 0.5
 --- !u!50 &5294812719079920678
 Rigidbody2D:
