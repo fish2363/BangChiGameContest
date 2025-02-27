@@ -147,12 +147,12 @@ MonoBehaviour:
   _kingSkeletonAttacks:
   - damage: 6
     force: {x: 3, y: 3}
-    attackBoxSize: {x: 4.1, y: 3}
+    attackBoxSize: {x: 4.1, y: 8.5}
     attackRadius: 0
     castType: 1
   - damage: 4
     force: {x: 6, y: 0}
-    attackBoxSize: {x: 5, y: 2.5}
+    attackBoxSize: {x: 5, y: 4.5}
     attackRadius: 0
     castType: 1
   _attack3CoolTime: 5
