@@ -115,7 +115,7 @@ public class KingSkeleton : Enemy
         base.Update();
         _curTime += Time.deltaTime;
         if (_curTime >= _attack3CoolTime &&
-            (_currentState != EnemyStateType.Attack && _currentState != EnemyStateType.Attack2))
+            (_currentState != EnemyStateType.Attack && _currentState != EnemyStateType.Attack2) && !IsDead)
         {
             TransitionState(EnemyStateType.Attack3);
             _curTime = 0;
