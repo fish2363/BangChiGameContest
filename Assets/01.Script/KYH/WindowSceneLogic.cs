@@ -84,7 +84,6 @@ public class WindowSceneLogic : MonoBehaviour
         else
         {
             isExecute = false;
-            return;
         }
     }
 
@@ -100,7 +99,6 @@ public class WindowSceneLogic : MonoBehaviour
         else
         {
             isExecute = false;
-            return;
         }
     }
 
@@ -116,7 +114,6 @@ public class WindowSceneLogic : MonoBehaviour
         else
         {
             isExecute = false;
-            return;
         }
     }
     public void Tip(string appName, string appDescript)
@@ -164,7 +161,6 @@ public class WindowSceneLogic : MonoBehaviour
         else
         {
             isExecute = false;
-            return;
         }
     }
     private void Start()
@@ -319,8 +315,7 @@ public class WindowSceneLogic : MonoBehaviour
             isExecute = false;
         }
         else
-            return;
-        isExecute = false;
+            isExecute = false;
 
             //Process.Start($"ms-photos:viewer?fileName={strPath}");
         }

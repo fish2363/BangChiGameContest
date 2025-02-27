@@ -100931,7 +100931,7 @@ MonoBehaviour:
     m_Bits: 2112
   whatIsWallSlide:
     serializedVersion: 2
-    m_Bits: 16448
+    m_Bits: 18496
   <_moveSpeed>k__BackingField: 6
   <_jumpPower>k__BackingField: 7
   <EffectorPlayer>k__BackingField: {fileID: 1867563480142839539}
