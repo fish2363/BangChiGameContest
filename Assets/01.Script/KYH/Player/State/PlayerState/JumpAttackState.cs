@@ -40,6 +40,8 @@ public class JumpAttackState : EntityState
         base.Update();
         if (_isTriggerCall)
             _player.ChangeState("FALL");
+        if(_player.isDialogue)
+            _player.ChangeState("IDLE");
     }
 
     public override void Exit()
