@@ -8,7 +8,7 @@ using UnityEngine.Audio;
 public enum SoundType
 {
     BGM,
-    VfX
+    SfX
 }
 
 
@@ -18,7 +18,9 @@ public class AudioManager : MonoBehaviour
     /// 오디오 믹서, 오디오의 타입별로 사운드를 조절할 수 있도록 한다.
     /// </summary>
     [SerializeField] private AudioMixer mAudioMixer;
-    [SerializeField] private AudioMixerGroup audioGroup;
+    [SerializeField] private AudioMixerGroup sfxGroup;
+    [SerializeField] private AudioMixerGroup bgmGroup;
+
 
     //옵션에서 설정된 현재 배경음악과 효과 사운드의 불륨이다. 효과는 BGM을 제외한 모든 소리의 불륨을 담당한다.
     private float mCurrentBGMVolume, mCurrentEffectVolume;
@@ -36,6 +38,8 @@ public class AudioManager : MonoBehaviour
     private List<TemporarySoundPlayer> mInstantiatedSounds;
 
     public static AudioManager Instance;
+
+    [field : SerializeField] public string CurrentMainBGMName { get; private set; }
 
     private void Awake()
     {
@@ -83,7 +87,22 @@ public class AudioManager : MonoBehaviour
     /// 루프 사운드 중 리스트에 있는 오브젝트를 이름으로 찾아 제거한다.
     /// </summary>
     /// <param name="clipName"></param>
-    public void StopLoopSound()
+    public void StopLoopSound(string clipName)
+    {
+        print(clipName);
+        foreach (TemporarySoundPlayer audioPlayer in mInstantiatedSounds)
+        {
+            if (audioPlayer.ClipName == clipName)
+            {
+                mInstantiatedSounds.Remove(audioPlayer);
+                Destroy(audioPlayer.gameObject);
+                return;
+            }
+            Debug.LogWarning(clipName + "을 찾을 수 없습니다");
+        }
+    }
+
+    public void StopAllLoopSound()
     {
         foreach (TemporarySoundPlayer audioPlayer in mInstantiatedSounds)
         {
@@ -98,7 +117,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="clipName">오디오 클립 이름</param>
     /// <param name="type">오디오 유형(BGM, EFFECT 등.)</param>
-    public void PlaySound2D(string clipName, float delay = 0f, bool isLoop = false, SoundType type = SoundType.VfX)
+    public void PlaySound2D(string clipName, float delay = 0f, bool isLoop = false, SoundType type = SoundType.SfX)
     {
         GameObject obj = new GameObject("TemporarySoundPlayer 2D");
         TemporarySoundPlayer soundPlayer = obj.AddComponent<TemporarySoundPlayer>();
@@ -107,7 +126,13 @@ public class AudioManager : MonoBehaviour
         if (isLoop) { AddToList(soundPlayer); }
 
         soundPlayer.InitSound2D(GetClip(clipName));
-        soundPlayer.Play(audioGroup, delay, isLoop);
+        if(type == SoundType.BGM)
+            soundPlayer.Play(bgmGroup, delay, isLoop);
+        else
+            soundPlayer.Play(sfxGroup, delay, isLoop);
+
+        if(isLoop && type == SoundType.BGM)
+        CurrentMainBGMName = clipName;
     }
 
     /// <summary>
@@ -119,7 +144,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="attachToTarget"></param>
     /// <param name="minDistance"></param>
     /// <param name="maxDistance"></param>
-    public void PlaySound3D(string clipName, Transform audioTarget, float delay = 0f, bool isLoop = false, SoundType type = SoundType.VfX, bool attachToTarget = true, float minDistance = 0.0f, float maxDistance = 50.0f)
+    public void PlaySound3D(string clipName, Transform audioTarget, float delay = 0f, bool isLoop = false, SoundType type = SoundType.SfX, bool attachToTarget = true, float minDistance = 0.0f, float maxDistance = 50.0f)
     {
         GameObject obj = new GameObject("TemporarySoundPlayer 3D");
         obj.transform.localPosition = audioTarget.transform.position;
@@ -132,14 +157,14 @@ public class AudioManager : MonoBehaviour
 
         soundPlayer.InitSound3D(GetClip(clipName), minDistance, maxDistance);
 
-        soundPlayer.Play(audioGroup, delay, isLoop);
+        soundPlayer.Play(sfxGroup, delay, isLoop);
     }
 
     //씬이 로드될 때 옵션 매니저에의해 모든 사운드 불륨을 저장된 옵션의 크기로 초기화시키는 함수.
     public void InitVolumes(float bgm, float fbx)
     {
         SetVolume(SoundType.BGM, bgm);
-        SetVolume(SoundType.VfX, fbx);
+        SetVolume(SoundType.SfX, fbx);
     }
 
     //옵션을 변경할 때 소리의 불륨을 조절하는 함수

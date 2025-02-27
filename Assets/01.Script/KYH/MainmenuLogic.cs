@@ -61,7 +61,7 @@ public class MainmenuLogic : MonoBehaviour
     public IEnumerator GameStart()
     {
         isStart = true;
-        AudioManager.Instance.StopLoopSound();
+        AudioManager.Instance.StopAllLoopSound();
         for (int i = 0; i < 70; i++)
         {
             if(_camera.Lens.OrthographicSize > 0)

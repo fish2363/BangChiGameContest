@@ -25,6 +25,8 @@ public class StartATalkEachOther : GameEvent
     public float panTime;
     public PanDirection npcDirection;
 
+    public string changeSongName;
+
     public CinemachineCamera leftCamera;
     public CinemachineCamera rightCamera;
 }

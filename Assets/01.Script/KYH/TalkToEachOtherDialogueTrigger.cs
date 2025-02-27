@@ -19,6 +19,8 @@ public class TalkToEachOtherDialogueTrigger : MonoBehaviour
     public CinemachineCamera leftCamera;
     public CinemachineCamera rightCamera;
 
+    public string songName;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (dialogue.Length < 1) return;
@@ -35,6 +37,7 @@ public class TalkToEachOtherDialogueTrigger : MonoBehaviour
             events.director = director;
             events.leftCamera = leftCamera;
             events.rightCamera = rightCamera;
+            events.changeSongName = songName;
 
             dialogueChannel.RaiseEvent(events);
         }

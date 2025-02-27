@@ -19,6 +19,7 @@ public class BossTrigger : MonoBehaviour
     public void StartBoss()
     {
         Boss.SetActive(true);
+        AudioManager.Instance.PlaySound2D("SlimeKing",0,true,SoundType.BGM);
         FindAnyObjectByType<Player>().GetCompo<EntityMover>().CanManualMove = true;
     }
 }

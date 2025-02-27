@@ -11,7 +11,7 @@ public class Stage2Logic : MonoBehaviour
 
     public void Restart()
     {
-        AudioManager.Instance.StopLoopSound();
+        AudioManager.Instance.StopAllLoopSound();
         SceneManager.LoadScene(SceneManager.GetActiveScene().ToString());
     }
 }
