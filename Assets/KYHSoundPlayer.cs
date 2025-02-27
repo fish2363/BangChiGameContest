@@ -5,7 +5,7 @@ public class KYHSoundPlayer : MonoBehaviour//찬민이가 SoundPlayer 만들어놓고 어�
     public string bgmName;
     public SoundType soundType;
     public bool isLoop;
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         AudioManager.Instance.PlaySound2D(bgmName,0,isLoop,soundType);
     }

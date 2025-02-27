@@ -82,7 +82,10 @@ public class WindowSceneLogic : MonoBehaviour
             isExecute = false;
         }
         else
+        {
+            isExecute = false;
             return;
+        }
     }
 
     public void FishProfile(string appName, string appDescript)
@@ -95,7 +98,10 @@ public class WindowSceneLogic : MonoBehaviour
             isExecute = false;
         }
         else
+        {
+            isExecute = false;
             return;
+        }
     }
 
     public void LCMProfile(string appName, string appDescript)
@@ -108,7 +114,10 @@ public class WindowSceneLogic : MonoBehaviour
             isExecute = false;
         }
         else
+        {
+            isExecute = false;
             return;
+        }
     }
     public void Tip(string appName, string appDescript)
     {
@@ -149,11 +158,14 @@ public class WindowSceneLogic : MonoBehaviour
 
         if (Answer(appDescript, appName) == 1)
         {
-            Process.Start("https://ggm.gondr.net/user/profile/327");
+            Process.Start("https://mandlemandle.com/");
             isExecute = false;
         }
         else
+        {
+            isExecute = false;
             return;
+        }
     }
     private void Start()
     {
