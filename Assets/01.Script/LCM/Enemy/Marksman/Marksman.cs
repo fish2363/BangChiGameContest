@@ -57,6 +57,7 @@ public class Marksman : Enemy
         var arrow = PoolManager.Instance.Pop(_arrow.poolName) as MarksmanBullet;
         arrow.transform.position = _firePos.position;
         arrow.ThrowObject(TargetTrm.position);
+        AudioManager.Instance.PlaySound2D("MarksmanAttack", 0,false,SoundType.SfX);
     }
 
     public override void Dead()
@@ -65,6 +66,7 @@ public class Marksman : Enemy
         gameObject.layer = DeadBodyLayer;
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
+        AudioManager.Instance.PlaySound2D("MarksmanDead", 0,false,SoundType.SfX);
     }
 
     public void Spawn()

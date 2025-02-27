@@ -9,6 +9,7 @@ public enum QueenSlimeBuffType
     Defend,
     Heal
 }
+
 public class QueenSlime : Enemy
 {
     public UnityEvent<QueenSlimeBuffType> OnBuff;
@@ -17,6 +18,7 @@ public class QueenSlime : Enemy
     private int _rand;
 
     [SerializeField] private PoolItemSO _healSmoke;
+
     protected override void Awake()
     {
         base.Awake();
@@ -34,9 +36,10 @@ public class QueenSlime : Enemy
                 // ignore
             }
         }
+
         TransitionState(EnemyStateType.Idle);
     }
-    
+
     protected override void AfterInitialize()
     {
         base.AfterInitialize();
@@ -48,14 +51,13 @@ public class QueenSlime : Enemy
         base.OnDestroy();
         GetCompo<EntityHealth>().OnKnockback -= HandleKnockBack;
     }
-    
+
     private void HandleKnockBack(Vector2 knockBackForce)
     {
-        
     }
+
     protected override void HandleHit()
     {
-        
     }
 
     protected override void HandleDead() => Dead();
@@ -63,13 +65,12 @@ public class QueenSlime : Enemy
     public override void RandomAttack()
     {
         _rand = UnityEngine.Random.Range(0, 3);
-        if(_rand == 0)
+        if (_rand == 0)
             OnBuff?.Invoke(QueenSlimeBuffType.Attack);
-        else if(_rand == 1)
+        else if (_rand == 1)
             OnBuff?.Invoke(QueenSlimeBuffType.Defend);
         else
             OnBuff?.Invoke(QueenSlimeBuffType.Heal);
-        
     }
 
     public override void Attack()
@@ -77,15 +78,18 @@ public class QueenSlime : Enemy
         if (_rand == 0)
         {
             OnAttack?.Invoke();
+            AudioManager.Instance.PlaySound2D("QueenSlimeBuff1", 0, false, SoundType.SfX);
         }
         else if (_rand == 1)
         {
             OnDefendBuff?.Invoke();
+            AudioManager.Instance.PlaySound2D("QueenSlimeBuff2", 0, false, SoundType.SfX);
         }
         else
         {
             EffectPlayer smoke = PoolManager.Instance.Pop(_healSmoke.poolName) as EffectPlayer;
             smoke.SetPositionAndPlay(transform.position);
+            AudioManager.Instance.PlaySound2D("QueenSlimeBuff3", 0, false, SoundType.SfX);
         }
     }
 
@@ -95,5 +99,6 @@ public class QueenSlime : Enemy
         gameObject.layer = DeadBodyLayer;
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
+        AudioManager.Instance.PlaySound2D("QueenSlimeDead", 0, false, SoundType.SfX);
     }
 }

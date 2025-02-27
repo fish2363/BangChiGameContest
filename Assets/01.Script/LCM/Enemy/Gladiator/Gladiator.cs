@@ -55,7 +55,7 @@ public class Gladiator : Enemy, ICounterable
 
     public override void Attack()
     {
-        
+        AudioManager.Instance.PlaySound2D("GladiatorAttack", 0, false, SoundType.SfX);
     }
 
     public override void Dead()
@@ -64,6 +64,7 @@ public class Gladiator : Enemy, ICounterable
         gameObject.layer = DeadBodyLayer;
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
+        AudioManager.Instance.PlaySound2D("GladiatorDead", 0, false, SoundType.SfX);
     }
 
     public void Spawn()

@@ -18,16 +18,18 @@ public class BossBullet : MonoBehaviour, IPoolable
     [SerializeField] private float _damage;
     [SerializeField] private Vector2 _knockbackForce;
 
+    [SerializeField] private string _bulletAudio;
+
     private Vector2 _moveDir;
 
     public UnityEvent OnDeadEvent;
-    
+
 
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
-    
+
     public void Initialize(Vector2 moveDir)
     {
         _moveDir = moveDir;
@@ -56,14 +58,16 @@ public class BossBullet : MonoBehaviour, IPoolable
             other.gameObject.GetComponentInChildren<EntityHealth>()
                 .ApplyDamage(_damage, transform.position, _knockbackForce, false, null);
             OnDeadEvent?.Invoke();
-            PoolManager.Instance.Push(this);
+            if(_bulletAudio.Length > 0)
+                AudioManager.Instance.PlaySound2D(_bulletAudio,0,false,SoundType.SfX);
         }
-
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             OnDeadEvent?.Invoke();
-            PoolManager.Instance.Push(this);
+            if(_bulletAudio.Length > 0)
+                AudioManager.Instance.PlaySound2D(_bulletAudio,0,false,SoundType.SfX);
         }
+        PoolManager.Instance.Push(this);
     }
 
     public void ResetItem()

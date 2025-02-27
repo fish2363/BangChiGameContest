@@ -10,6 +10,7 @@ public class QueenSlime_AttackState : EnemyState
     protected override void EnterState()
     {
         base.EnterState();
+        AudioManager.Instance.PlaySound2D("QueenSlimeAttack",0,false,SoundType.SfX);
         mass = _enemy.RbCompo.mass;
         _enemy.RbCompo.mass = 100;
         _enemy.RandomAttack();

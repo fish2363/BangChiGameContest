@@ -57,6 +57,7 @@ public class Wolf : Enemy, ICounterable
     {
         RbCompo.AddForce(Vector2.up * 2f, ForceMode2D.Impulse);
         RbCompo.AddForce(GetMovementDirection() * _dashPower, ForceMode2D.Impulse);
+        AudioManager.Instance.PlaySound2D("WolfAttack",0.5f,false, SoundType.SfX);
     }
     public override void Dead()
     {
@@ -64,6 +65,7 @@ public class Wolf : Enemy, ICounterable
         gameObject.layer = DeadBodyLayer;
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
+        AudioManager.Instance.PlaySound2D("WolfDead",0.5f,false, SoundType.SfX);
     }
     
     #region Counter section

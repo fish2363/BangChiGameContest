@@ -73,6 +73,13 @@ public class KingSkeleton : Enemy
         _attackIndex = 0;
         _enemyAttackCompo.AttackSetting(_kingSkeletonAttacks[_attackIndex].damage * _attackDamageMultiple, _kingSkeletonAttacks[_attackIndex].force,
             _kingSkeletonAttacks[_attackIndex].attackBoxSize, _kingSkeletonAttacks[_attackIndex].attackRadius, _kingSkeletonAttacks[_attackIndex].castType);
+        StartCoroutine(AttackAudioCoroutine());
+    }
+
+    private IEnumerator AttackAudioCoroutine()
+    {
+        yield return new WaitForSeconds(0.7f);
+        AudioManager.Instance.PlaySound2D("KingSkeletonAttack",2f,false,SoundType.SfX);
     }
 
     public override void Attakc2()
@@ -80,6 +87,13 @@ public class KingSkeleton : Enemy
         _attackIndex = 1;
         _enemyAttackCompo.AttackSetting(_kingSkeletonAttacks[_attackIndex].damage * _attackDamageMultiple, _kingSkeletonAttacks[_attackIndex].force,
             _kingSkeletonAttacks[_attackIndex].attackBoxSize, _kingSkeletonAttacks[_attackIndex].attackRadius, _kingSkeletonAttacks[_attackIndex].castType);
+        StartCoroutine(Attack2AudioCoroutine());
+    }
+    
+    private IEnumerator Attack2AudioCoroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        AudioManager.Instance.PlaySound2D("KingSkeletonAttack2",2f,false,SoundType.SfX);
     }
 
     public override void Attakc3()
@@ -108,6 +122,7 @@ public class KingSkeleton : Enemy
         gameObject.layer = DeadBodyLayer;
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
+        AudioManager.Instance.PlaySound2D("KingSkeletonDead",0,false,SoundType.SfX);
     }
 
     protected override void Update()
@@ -128,7 +143,9 @@ public class KingSkeleton : Enemy
         _attackDamageMultiple = 2f;
         yield return new WaitForSeconds(_buffTime);
         _buffPart.Stop();
-        _buffExplosionPart.Play();
+        _buffExplosionPart.gameObject.SetActive(true);
         _attackDamageMultiple = 1f;
+        yield return new WaitForSeconds(1f);
+        _buffExplosionPart.gameObject.SetActive(false);
     }
 }
