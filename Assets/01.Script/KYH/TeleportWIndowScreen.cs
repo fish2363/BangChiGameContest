@@ -81,7 +81,7 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
     {
         _mover.CanManualMove = false;
         prevTrans = _player.transform.position;
-        _mover.EffectorPlayer.PlayEffect("ReadyEnterWindow",false);
+        _mover.EffectorPlayer.PlayEffect("ReadyEnterWindow",true);
         yield return new WaitForSeconds(2f);
         _mover.EffectorPlayer.PlayEffect("EnterWindow", true);
         AudioManager.Instance.PlaySound2D("WindowEnterSFX");
@@ -132,7 +132,9 @@ public class TeleportWIndowScreen : MonoBehaviour,IEntityComponent,IAfterInit
     {
         isEnterWindow = true;
         isFirst = true;
-        StartCoroutine(WindowEffect());
+        prevSongName = AudioManager.Instance.CurrentMainBGMName;
+        AudioManager.Instance.StopAllLoopSound();
+        coroutine = StartCoroutine(WindowEffect());
     }
 
     public void ComebackPrevTrans()

@@ -89,6 +89,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="clipName"></param>
     public void StopLoopSound(string clipName)
     {
+        print(clipName);
         foreach (TemporarySoundPlayer audioPlayer in mInstantiatedSounds)
         {
             if (audioPlayer.ClipName == clipName)

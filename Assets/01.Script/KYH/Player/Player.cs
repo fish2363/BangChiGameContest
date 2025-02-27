@@ -138,7 +138,6 @@ public class Player : Entity
         if(isCounting)
         {
             float diffSec = targetTime += Time.deltaTime;
-            print(diffSec);
             if (diffSec < MaxDashCoolTime)
             {
                 CoolTimeSecondValueChangeSlider(diffSec);

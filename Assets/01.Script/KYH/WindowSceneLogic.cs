@@ -133,10 +133,14 @@ public class WindowSceneLogic : MonoBehaviour
         }
     }
 
-    public void Setting(string appName, string appDescript)
+    public void ComeBack()
     {
-        if (DuplicateCheck() == false) return;
-
+        for (int i = 0; i < app.Length; i++)
+        {
+            app[i].transform.position = appPos[i];
+            app[i].GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+            isExecute = false;
+        }
     }
 
     public void Mandle(string appName, string appDescript)

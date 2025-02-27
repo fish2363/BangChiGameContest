@@ -868,6 +868,18 @@ PrefabInstance:
       propertyPath: m_BlocksRaycasts
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4118882340396813763, guid: 19bb0d3fd7cf0f44c8c92f694fba557d, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118882340396813763, guid: 19bb0d3fd7cf0f44c8c92f694fba557d, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118882340396813763, guid: 19bb0d3fd7cf0f44c8c92f694fba557d, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 5948145652549134104, guid: 19bb0d3fd7cf0f44c8c92f694fba557d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
