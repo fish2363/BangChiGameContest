@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
@@ -9,37 +10,38 @@ public class Player : Entity
     [field: SerializeField] public InputReader PlayerInput { get; private set; }
     private StateMachine _stateMachine;
 
-    [field: SerializeField]
-    public AnimParamSO ComboCounterParam { get; private set; }
+    [field: SerializeField] public AnimParamSO ComboCounterParam { get; private set; }
 
-    [SerializeField]
-    private StateListSO playerFSM;
+    [SerializeField] private StateListSO playerFSM;
     private EntityMover _mover;
 
     public GameObject attackLockIcon;
 
-    [field:SerializeField]public bool isBannedAttack { get; set; } = false;
-    [field:SerializeField]public bool isLockedWindow { get; set; } = false;
-    [field:SerializeField]public bool isDialogue { get; set; } = false;
+    [field: SerializeField] public bool isBannedAttack { get; set; } = false;
+    [field: SerializeField] public bool isLockedWindow { get; set; } = false;
+    [field: SerializeField] public bool isDialogue { get; set; } = false;
 
-    [field : SerializeField]public int MaxJumpCount { get; set; }
+    [field: SerializeField] public int MaxJumpCount { get; set; }
     private int _currentJumpCount;
     public bool CanJump => _currentJumpCount > 0;
 
     public int TipCount { get; set; }
 
-    [field : SerializeField] public float MaxDashCoolTime { get; set; }
+    [field: SerializeField] public float MaxDashCoolTime { get; set; }
 
     [SerializeField] private CanvasGroup dashCanvasGroup;
     [SerializeField] private CanvasGroup hpBarCanvasGroup;
 
 
+    private EntityHealth _healthCompo;
 
     protected override void Awake()
     {
         base.Awake();
-        _stateMachine = new StateMachine(this,playerFSM);
+        _stateMachine = new StateMachine(this, playerFSM);
+        _healthCompo = GetCompo<EntityHealth>();
     }
+
     private void Start()
     {
         _stateMachine.ChangeState("IDLE");
@@ -47,7 +49,7 @@ public class Player : Entity
 
     public void BannedAttack(bool isValue)
     {
-        print("½ºÀ¾");
+        print("ï¿½ï¿½ï¿½ï¿½");
         isBannedAttack = isValue;
     }
 
@@ -55,13 +57,16 @@ public class Player : Entity
     {
         _stateMachine.UpdateStateMachine();
     }
+
     private void HandleAnimationEnd()
     {
         _stateMachine.CurrentState.AnimationEndTrigger();
     }
+
     public void ChangeState(string newState) => _stateMachine.ChangeState(newState);
 
     public bool MoveStopOrGo(bool isMove) => _mover.CanManualMove = isMove;
+
     protected override void OnDestroy()
     {
         GetCompo<EntityAnimationTrigger>().OnAnimationEnd -= HandleAnimationEnd;
@@ -82,6 +87,7 @@ public class Player : Entity
         GetCompo<EntityRenderer>().OnFlip += Flip;
         _currentJumpCount = MaxJumpCount;
     }
+
     private void Flip(bool LeftOrRight)
     {
         if (LeftOrRight)
@@ -93,9 +99,9 @@ public class Player : Entity
             hpBarCanvasGroup.transform.Rotate(0, 0, 0);
         }
     }
+
     protected override void HandleHit()
     {
-
     }
 
     private void HandleKnockBack(Vector2 knockBackForce)
@@ -104,17 +110,18 @@ public class Player : Entity
         _mover.KnockBack(knockBackForce, knockBackTime);
     }
 
-    
+
     protected override void HandleDead()
     {
         if (IsDead) return;
         gameObject.layer = DeadBodyLayer;
         IsDead = true;
-        print("²Ð µðÁü");
+        print("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         _stateMachine.ChangeState("DEAD");
     }
 
-    #region ´ë½¬ÄðÅ¸ÀÓ
+    #region ï¿½ë½¬ï¿½ï¿½Å¸ï¿½ï¿½
+
     private bool isCounting;
 
     private float targetTime;
@@ -126,16 +133,16 @@ public class Player : Entity
     {
         MaxDashCoolTime = time;
     }
-    
+
     public void TurnOnTimer()
     {
-        dashCanvasGroup.DOFade(1,0.5f);
+        dashCanvasGroup.DOFade(1, 0.5f);
         isCounting = true;
     }
 
     private void FixedUpdate()
     {
-        if(isCounting)
+        if (isCounting)
         {
             float diffSec = targetTime += Time.deltaTime;
             if (diffSec < MaxDashCoolTime)
@@ -173,5 +180,68 @@ public class Player : Entity
             _backSlider.value = second;
         }
     }
+
+    #endregion
+
+    private bool _isShield;
+    private bool _isInvincibility;
+
+    #region TakeItemFunc
+
+    public void TakeItem(ItemType itemType, float healAmount)
+    {
+        if (itemType == ItemType.Heal)
+        {
+            _mover.EffectorPlayer.PlayEffect("GreenHealEffect", false);
+            _healthCompo.TakeHeal(healAmount);
+        }
+        else if (itemType == ItemType.Shield)
+        {
+            if (!_isShield)
+            {
+                StartCoroutine(ShieldCoroutine());
+            }
+        }
+        else if (itemType == ItemType.MoreHeal)
+        {
+            _mover.EffectorPlayer.PlayEffect("RedHealEffect", false);
+            _healthCompo.TakeHeal(healAmount);
+        }
+        else
+        {
+            if (!_isInvincibility)
+            {
+                StartCoroutine(InvincibilityCoroutine());
+            }
+        }
+    }
+
+
+    private float _shieldCoolTime = 10f;
+
+    private IEnumerator ShieldCoroutine()
+    {
+        _isShield = true;
+        _mover.EffectorPlayer.PlayEffect("MagicShieldBlue");
+        _healthCompo.IsShield = true;
+        yield return new WaitForSeconds(_shieldCoolTime);
+        _mover.EffectorPlayer.StopEffect("MagicShieldBlue");
+        _healthCompo.IsShield = false;
+        _isShield = false;
+    }
+
+    private float _invincibilityCoolTime = 5f;
+
+    private IEnumerator InvincibilityCoroutine()
+    {
+        _isInvincibility = true;
+        _mover.EffectorPlayer.PlayEffect("InvincibilityBuffEffect");
+        _healthCompo.IsInvincibility = true;
+        yield return new WaitForSeconds(_invincibilityCoolTime);
+        _isInvincibility = false;
+        _mover.EffectorPlayer.StopEffect("InvincibilityBuffEffect");
+        _healthCompo.IsInvincibility = false;
+    }
+
     #endregion
 }

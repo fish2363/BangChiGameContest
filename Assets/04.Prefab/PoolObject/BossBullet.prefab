@@ -19269,7 +19269,7 @@ MonoBehaviour:
   _speed: 10
   _bulletLifeTime: 3
   _damage: 5
-  _knockbackForce: {x: 2, y: 2}
+  _knockbackForce: {x: 0, y: 0}
   OnDeadEvent:
     m_PersistentCalls:
       m_Calls:

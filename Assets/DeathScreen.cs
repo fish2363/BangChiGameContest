@@ -19,7 +19,7 @@ public class DeathScreen : MonoBehaviour
     public void ReStart()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().ToString());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Trash()

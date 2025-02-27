@@ -1,9 +1,7 @@
-using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class Font : MonoBehaviour, ITakeable
 {
