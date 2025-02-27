@@ -62,6 +62,7 @@ public class LargeSlime : Enemy
         var bullet = PoolManager.Instance.Pop(_verticalBullet.poolName) as LargeSlimeBullet;
         bullet.transform.position = transform.position;
         bullet.ThrowObject(TargetTrm.position);
+        AudioManager.Instance.PlaySound2D("LargeSlimeAttack",0,false,SoundType.SfX);
     }
 
     public override void Attakc2()
@@ -77,6 +78,7 @@ public class LargeSlime : Enemy
             var bullet = PoolManager.Instance.Pop(_horizontalBullet.poolName) as BossBullet;
             bullet.transform.position = _firePos.position;
             bullet.Initialize(transform.localScale.x >= 0f ? Vector2.right : Vector2.left);
+            AudioManager.Instance.PlaySound2D("LargeSlimeAttack2",0,false,SoundType.SfX);
         }
     }
 
@@ -95,5 +97,6 @@ public class LargeSlime : Enemy
         gameObject.layer = DeadBodyLayer;
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
+        AudioManager.Instance.PlaySound2D("LargeSlimeDead",0,false,SoundType.SfX);
     }
 }

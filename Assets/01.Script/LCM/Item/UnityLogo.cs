@@ -55,7 +55,7 @@ public class UnityLogo : MonoBehaviour, ITakeable
         OnCameraShakeing?.Invoke();
         yield return new WaitForSeconds(1.5f);
 
-        yield return _blackCircle.transform.DOScale(1000f, 4f).WaitForCompletion();
+        yield return _blackCircle.transform.DOScale(3000f, 4f).WaitForCompletion();
 
         yield return new WaitForSeconds(0.5f);
         

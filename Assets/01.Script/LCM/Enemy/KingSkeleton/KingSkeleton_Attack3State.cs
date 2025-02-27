@@ -13,6 +13,7 @@ public class KingSkeleton_Attack3State : EnemyState
         _enemy.RbCompo.linearVelocity = Vector2.zero;
         mass = _enemy.RbCompo.mass;
         _enemy.RbCompo.mass = 100;
+        AudioManager.Instance.PlaySound2D("KingSkeletonAttack3",0,false,SoundType.SfX);
     }
     
     public override void UpdateState()

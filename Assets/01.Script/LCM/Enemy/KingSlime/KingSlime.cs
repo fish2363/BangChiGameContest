@@ -71,6 +71,7 @@ public class KingSlime : Enemy, ICounterable
         _attackIndex = 0;
         _enemyAttackCompo.AttackSetting(_kingSlimeAttacks[_attackIndex].damage, _kingSlimeAttacks[_attackIndex].force,
             _kingSlimeAttacks[_attackIndex].attackBoxSize, _kingSlimeAttacks[_attackIndex].attackRadius, _kingSlimeAttacks[_attackIndex].castType);
+        AudioManager.Instance.PlaySound2D("KingSlimeAttack",0,false,SoundType.SfX);
     }
 
     public override void Attakc2()
@@ -78,6 +79,7 @@ public class KingSlime : Enemy, ICounterable
         _attackIndex = 1;
         _enemyAttackCompo.AttackSetting(_kingSlimeAttacks[_attackIndex].damage, _kingSlimeAttacks[_attackIndex].force,
             _kingSlimeAttacks[_attackIndex].attackBoxSize, _kingSlimeAttacks[_attackIndex].attackRadius, _kingSlimeAttacks[_attackIndex].castType);
+        AudioManager.Instance.PlaySound2D("KingSlimeAttack2",0,false,SoundType.SfX);
     }
 
     public override void Attakc3()
@@ -94,6 +96,7 @@ public class KingSlime : Enemy, ICounterable
         RbCompo.AddForce(new Vector2(dir.x, 1f) * _jumpPower, ForceMode2D.Impulse);
         yield return new WaitForSeconds(1f);
         OnAttack3?.Invoke();
+        AudioManager.Instance.PlaySound2D("KingSlimeAttack3",0,false,SoundType.SfX);
     }
 
     public override void RandomAttack()
@@ -113,6 +116,7 @@ public class KingSlime : Enemy, ICounterable
         gameObject.layer = DeadBodyLayer;
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
+        AudioManager.Instance.PlaySound2D("KingSlimeDead",0,false,SoundType.SfX);
     }
 
     #region Counter section

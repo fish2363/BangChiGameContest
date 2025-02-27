@@ -54,12 +54,12 @@ public class Bear : Enemy, ICounterable
 
     public override void Attack()
     {
-        
+        AudioManager.Instance.PlaySound2D("BearAttack", 0, false, SoundType.SfX);
     }
 
     public override void Attakc2()
     {
-        
+        AudioManager.Instance.PlaySound2D("BearAttack", 0, false, SoundType.SfX);
     }
 
     public override void RandomAttack()
@@ -77,6 +77,7 @@ public class Bear : Enemy, ICounterable
         gameObject.layer = DeadBodyLayer;
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
+        AudioManager.Instance.PlaySound2D("BearDead", 0, false, SoundType.SfX);
     }
     #region Counter section
     public bool CanCounter { get; private set; }

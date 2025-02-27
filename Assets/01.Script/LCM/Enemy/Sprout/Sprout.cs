@@ -55,7 +55,7 @@ public class Sprout : Enemy, ICounterable
 
     public override void Attack()
     {
-        
+        AudioManager.Instance.PlaySound2D("SproutAttack",0,false,SoundType.SfX);
     }
 
     public override void Dead()
@@ -64,6 +64,7 @@ public class Sprout : Enemy, ICounterable
         gameObject.layer = DeadBodyLayer;
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
+        AudioManager.Instance.PlaySound2D("SproutDead",0,false,SoundType.SfX);
     }
 
     #region Counter section

@@ -70,6 +70,7 @@ public class LargeSlimeBullet : VerticalBullet
             {
                 player.GetComponentInChildren<EntityHealth>().ApplyDamage(_damage, transform.position, _knockbackForce,false,null);
             }
+            AudioManager.Instance.PlaySound2D("LargeSlimeBullet",0,false,SoundType.SfX);
             PoolManager.Instance.Push(this);
         }
         

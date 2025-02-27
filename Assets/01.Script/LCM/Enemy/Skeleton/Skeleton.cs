@@ -53,12 +53,12 @@ public class Skeleton : Enemy, ICounterable
 
     public override void Attack()
     {
-        
+        AudioManager.Instance.PlaySound2D("SkeletonAttack",0.2f,false,SoundType.SfX);
     }
 
     public override void Attakc2()
     {
-        
+        AudioManager.Instance.PlaySound2D("SkeletonAttack",0,false,SoundType.SfX);
     }
     public override void Dead()
     {
@@ -66,6 +66,7 @@ public class Skeleton : Enemy, ICounterable
         gameObject.layer = DeadBodyLayer;
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
+        AudioManager.Instance.PlaySound2D("SkeletonDead",0,false,SoundType.SfX);
     }
     
 

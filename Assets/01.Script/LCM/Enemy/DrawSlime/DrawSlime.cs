@@ -62,6 +62,8 @@ public class DrawSlime : Enemy, ICounterable
 
         RbCompo.AddForce(movementDirection * _attackDashPower, ForceMode2D.Impulse);
         RbCompo.AddForce(Vector2.up * 2f, ForceMode2D.Impulse); // 살짝 위로 뛰도록
+        
+        AudioManager.Instance.PlaySound2D("DrawSlimeAttack",0,false,SoundType.SfX);
     }
 
     public override void Dead()
@@ -71,6 +73,7 @@ public class DrawSlime : Enemy, ICounterable
         IsDead = true;
         print("꽥 디짐");
         TransitionState(EnemyStateType.Dead);
+        AudioManager.Instance.PlaySound2D("DrawSlimeDead",0,false,SoundType.SfX);
     }
 
     #region Counter section

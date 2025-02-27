@@ -53,6 +53,7 @@ public class Vampire : Enemy
 
     public override void Attack()
     {
+        AudioManager.Instance.PlaySound2D("VampireAttack",0,false,SoundType.SfX);
         StartCoroutine(AttackCoroutine());
     }
 
@@ -66,7 +67,7 @@ public class Vampire : Enemy
 
     public override void Attakc2()
     {
-        
+        AudioManager.Instance.PlaySound2D("VampireAttack2",0,false,SoundType.SfX);
     }
 
     public override void RandomAttack()
@@ -84,5 +85,6 @@ public class Vampire : Enemy
         gameObject.layer = DeadBodyLayer;
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
+        AudioManager.Instance.PlaySound2D("VampireDead",0,false,SoundType.SfX);
     }
 }
