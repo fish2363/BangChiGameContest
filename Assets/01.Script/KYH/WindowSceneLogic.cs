@@ -212,6 +212,8 @@ public class WindowSceneLogic : MonoBehaviour
     public void WindowBoxSetFalse()
     {
         windowFinder.SetActive(false);
+        FindAnyObjectByType<Player>().isDialogue = false;
+        isExecute = true;
     }
 
     public void SerchFile(string appName, string appDescript)
