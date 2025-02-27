@@ -40169,6 +40169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueChannel: {fileID: 11400000, guid: 00eb403ff41ca1d459baaab272b32eba, type: 2}
   npcChatText: {fileID: 0}
+  turnPlayer: 0
   cameraChannel: {fileID: 11400000, guid: 1487f5c2d032fed48aadf135d4bc9d42, type: 2}
   firstEvent:
     m_PersistentCalls:
