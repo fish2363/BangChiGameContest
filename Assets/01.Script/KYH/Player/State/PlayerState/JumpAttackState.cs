@@ -20,6 +20,8 @@ public class JumpAttackState : EntityState
         _mover.SetGravityScale(0.1f); //순간적으로 공중에 멈추도록
         _mover.CanManualMove = false;
         _mover.EffectorPlayer.PlayEffect("JumpAttackEffect");
+        AudioManager.Instance.PlaySound2D($"SwordAttack{2}", 0, false, SoundType.SfX);
+        AudioManager.Instance.PlaySound2D($"SwordAttack{0}", 0.5f, false, SoundType.SfX);
         SetAttackData();
     }
 

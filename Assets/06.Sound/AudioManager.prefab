@@ -52,8 +52,7 @@ MonoBehaviour:
   sfxGroup: {fileID: -8943004555405831832, guid: fecb1e304d6ccda49a5d7c1b6e83d1ed, type: 2}
   bgmGroup: {fileID: -9069961246597469371, guid: fecb1e304d6ccda49a5d7c1b6e83d1ed, type: 2}
   mPreloadClips:
-  - {fileID: 8300000, guid: 523fe7678fd6e1144a98d1addc448d79, type: 3}
-  - {fileID: 8300000, guid: b216e4dc33f3a3647a68878545876db7, type: 3}
+  - {fileID: 8300000, guid: 9dc559cd9fdc2ef45920ed608432ee87, type: 3}
   - {fileID: 8300000, guid: 7cc99e7327b666148b5d7051115d09e4, type: 3}
   - {fileID: 8300000, guid: cf84dafd0b6ffd04095aaeba35eb727a, type: 3}
   - {fileID: 8300000, guid: 7aac1b97aefa03748b27004f2e6cf79d, type: 3}
@@ -74,4 +73,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 74e2d8c3a630827479b3450b822fdda7, type: 3}
   - {fileID: 8300000, guid: 0f572107fc417894f92c9baca0dae4c2, type: 3}
   - {fileID: 8300000, guid: 387c4cd8c9e92b1439e5acd3013b149a, type: 3}
+  - {fileID: 8300000, guid: d28fd2e92bab8f64da80d99a2553f232, type: 3}
+  - {fileID: 8300000, guid: bff63831604c07f43a18ec3c2a07a9f2, type: 3}
+  - {fileID: 8300000, guid: d8a4e31cec4fcb84da31a565efadb490, type: 3}
+  - {fileID: 8300000, guid: fe259cb75135b804cbcab5cf1491933e, type: 3}
+  - {fileID: 8300000, guid: 219859b6ca322d54f9bcee2710f4c26a, type: 3}
   <CurrentMainBGMName>k__BackingField: 
