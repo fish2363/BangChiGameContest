@@ -20,6 +20,7 @@ public class BossSpinSword : Entity, IPoolable
     private IEnumerator SwordAttackCoroutine()
     {
         yield return new WaitForSeconds(_waitTime);
+        AudioManager.Instance.PlaySound2D("BossSpinSword",0,false,SoundType.SfX);
         _spinEffect.gameObject.SetActive(true);
         yield return new WaitForSeconds(_waitTime);
         OnExplosion?.Invoke();
