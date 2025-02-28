@@ -93,10 +93,12 @@ public class Player : Entity
         if (LeftOrRight)
         {
             hpBarCanvasGroup.transform.Rotate(0, 180f, 0);
+            dashCanvasGroup.transform.Rotate(0, 180f, 180f);
         }
         else
         {
             hpBarCanvasGroup.transform.Rotate(0, 0, 0);
+            dashCanvasGroup.transform.Rotate(0, 0, 0);
         }
     }
 
