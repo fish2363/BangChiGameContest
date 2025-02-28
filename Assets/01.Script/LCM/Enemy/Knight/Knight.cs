@@ -117,6 +117,7 @@ public class Knight : Enemy
         yield return new WaitForSeconds(1.5f);
         _pageTwoParticle.Play();
         yield return new WaitForSeconds(3f);
+        AudioManager.Instance.PlaySound2D("BossExplosion",0,false,SoundType.SfX);
         _pageTwoExplosionParticle.Play();
         yield return new WaitForSeconds(2f);
         _hitCount = 0;
@@ -229,6 +230,7 @@ public class Knight : Enemy
     private IEnumerator Attack4Coroutine()
     {
         _attack4EnergyParticle.Play();
+        AudioManager.Instance.PlaySound2D("KnightAttack4Charging",0,false,SoundType.SfX);
         yield return new WaitForSeconds(1.6f);
         _attack4Particle.Play();
         AudioManager.Instance.PlaySound2D("KnightAttack4",0,false,SoundType.SfX);

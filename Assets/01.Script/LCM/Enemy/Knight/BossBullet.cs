@@ -47,7 +47,8 @@ public class BossBullet : MonoBehaviour, IPoolable
         if (_curTime >= _bulletLifeTime)
         {
             OnDeadEvent?.Invoke();
-            AudioManager.Instance.PlaySound2D(_bulletAudio, 0, false, SoundType.SfX);
+            if (_bulletAudio.Length > 0)
+                AudioManager.Instance.PlaySound2D(_bulletAudio, 0, false, SoundType.SfX);
             PoolManager.Instance.Push(this);
         }
     }

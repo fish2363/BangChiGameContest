@@ -50,6 +50,7 @@ public class UnityLogo : MonoBehaviour, ITakeable
 
     private IEnumerator ItemEffect()
     {
+        AudioManager.Instance.PlaySound2D("UnityExplosion",0,false,SoundType.SfX);
         OnCameraShakeing?.Invoke();
         yield return new WaitForSeconds(1.5f);
         OnCameraShakeing?.Invoke();

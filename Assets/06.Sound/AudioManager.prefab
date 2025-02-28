@@ -134,7 +134,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3236bc7d5d2d9b741857bf828e606213, type: 3}
   - {fileID: 8300000, guid: 9c87a52f88e78cd45ae163685d9dc369, type: 3}
   - {fileID: 8300000, guid: ebdac12be06899345a4ddc0b3b264b2a, type: 3}
-  - {fileID: 8300000, guid: b2d1545e6a5915f42baaf23c126d76e2, type: 3}
   - {fileID: 8300000, guid: 9ca342b1afc8e3c499f5b6d59ec92ede, type: 3}
   - {fileID: 8300000, guid: 6138f72a4e8762a4d94d936b3aac0e60, type: 3}
   - {fileID: 8300000, guid: 778b77f1484d26d4db93cc5675b9d799, type: 3}
@@ -142,4 +141,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a92113139d2f6f446a9fd2202782e21d, type: 3}
   - {fileID: 8300000, guid: 1ba7dbb8c3a4ded4cb712ec2b1642c53, type: 3}
   - {fileID: 8300000, guid: 646e5f89f1a956646b3d546d238c3c18, type: 3}
+  - {fileID: 8300000, guid: de051b495483b81449afc09c6d0d1ef8, type: 3}
+  - {fileID: 8300000, guid: 45ae8bd361557104ca5aa6bdcae120f6, type: 3}
+  - {fileID: 8300000, guid: 12f415ffc8970e54d9f1e7ff6148e53f, type: 3}
+  - {fileID: 8300000, guid: c0d2ff3e51935e94eb6880776d13b4a2, type: 3}
+  - {fileID: 8300000, guid: d20f949a059b59d4995f35457beb9f54, type: 3}
+  - {fileID: 8300000, guid: 82b7701729c01b241a53e95273f9fafa, type: 3}
+  - {fileID: 8300000, guid: 445b04f6f1f617e449b4c3aa20acc88b, type: 3}
+  - {fileID: 8300000, guid: f83c8d0c1f5e1214eb915db1e64e24e0, type: 3}
   <CurrentMainBGMName>k__BackingField: 
