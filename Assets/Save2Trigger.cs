@@ -6,7 +6,7 @@ public class Save2Trigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            StageChecker.Instance.SavePoint();
+            Stage2Checker.Instance.SavePoint();
             gameObject.SetActive(false);
         }
     }
