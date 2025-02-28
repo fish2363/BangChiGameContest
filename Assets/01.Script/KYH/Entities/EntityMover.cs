@@ -31,7 +31,7 @@ public class EntityMover : MonoBehaviour, IEntityComponent
 
     #endregion
 
-    public bool CanManualMove { get; set; } = true; //³Ë¹é´çÇÏ°Å³ª ±âÀý½Ã ÀÌµ¿ºÒ°¡
+    public bool CanManualMove { get; set; } = true; //ï¿½Ë¹ï¿½ï¿½ï¿½Ï°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ò°ï¿½
     public CapsuleCollider2D BodyCollider { get; private set; }
 
     public void Initialize(Entity entity)
@@ -110,8 +110,6 @@ public class EntityMover : MonoBehaviour, IEntityComponent
         
         float boxHeight = 0.05f;
         Vector2 boxSize = new Vector2(groundBoxWidth, boxHeight);
-        if (Physics2D.BoxCast(groundCheckTrm.position, boxSize, 0, Vector2.down, groundCheckDistance, whatIsGround))
-            print("¶¥¿¡ ´êÀ½");
         return Physics2D.BoxCast(groundCheckTrm.position, boxSize, 0, Vector2.down, groundCheckDistance, whatIsGround);
     }
 
@@ -123,7 +121,7 @@ public class EntityMover : MonoBehaviour, IEntityComponent
         Bounds colliderBound = BodyCollider.bounds;
         Vector2 center = colliderBound.center;
         Vector2 size = colliderBound.size;
-        size.y -= 0.2f; //¹Ù´Ú¿¡ ´êÁö ¾Êµµ·Ï »çÀÌÁî¸¦ ÁÙ¿©ÁØ´Ù.
+        size.y -= 0.2f; //ï¿½Ù´Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½î¸¦ ï¿½Ù¿ï¿½ï¿½Ø´ï¿½.
 
         RaycastHit2D hit = Physics2D.BoxCast(center, size, 0, dashDirection, maxDistance, whatIsGround);
 
