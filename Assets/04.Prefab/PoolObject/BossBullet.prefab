@@ -19268,7 +19268,7 @@ MonoBehaviour:
   _poolName: BossBullet
   _speed: 10
   _bulletLifeTime: 3
-  _damage: 5
+  _damage: 6
   _knockbackForce: {x: 0, y: 0}
   _bulletAudio: KnightBullet
   OnDeadEvent:
