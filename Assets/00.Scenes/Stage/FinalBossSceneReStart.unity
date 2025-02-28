@@ -12431,11 +12431,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 882250262248305051, guid: 763b794f174535840a82f576a84874fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -32.72
+      value: -30.17
       objectReference: {fileID: 0}
     - target: {fileID: 882250262248305051, guid: 763b794f174535840a82f576a84874fd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.95
+      value: -1.9620001
       objectReference: {fileID: 0}
     - target: {fileID: 882250262248305051, guid: 763b794f174535840a82f576a84874fd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13324,7 +13324,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: a4f9ce6badd36924093bac8ec4269dba, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -20681,6 +20681,7 @@ GameObject:
   - component: {fileID: 1661184658}
   - component: {fileID: 1661184661}
   - component: {fileID: 1661184662}
+  - component: {fileID: 1661184663}
   m_Layer: 16
   m_Name: Square
   m_TagString: Untagged
@@ -20776,6 +20777,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100b0c285b19ec74cab682a80b9635e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1661184663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661184657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856f67c350acdea4481e28ee10977e11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  director: {fileID: 1421027806}
 --- !u!1 &1676033501
 GameObject:
   m_ObjectHideFlags: 0

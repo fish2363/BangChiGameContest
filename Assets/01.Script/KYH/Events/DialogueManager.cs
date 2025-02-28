@@ -157,6 +157,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
     {
         print("dddd");
         
+        if(currentDialogue != null)
         StartCoroutine(EachOhterTypingRoutine(currentDialogue[talkNum]));
     }
 
