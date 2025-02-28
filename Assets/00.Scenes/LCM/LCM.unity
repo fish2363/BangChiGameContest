@@ -526,9 +526,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Google
-
-    Chrome'
+  m_text: "\uB9CC\uB4E4\uB798"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e653d03543252af4eb68f5fee355543c, type: 2}
   m_sharedMaterial: {fileID: -5413731535355335794, guid: e653d03543252af4eb68f5fee355543c, type: 2}
@@ -791,7 +789,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: itch.io
+  m_text: "\uBA54\uC2E0\uC800\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e653d03543252af4eb68f5fee355543c, type: 2}
   m_sharedMaterial: {fileID: -5413731535355335794, guid: e653d03543252af4eb68f5fee355543c, type: 2}
@@ -1869,7 +1867,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Discord
+  m_text: "\uD504\uB85C\uD544"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e653d03543252af4eb68f5fee355543c, type: 2}
   m_sharedMaterial: {fileID: -5413731535355335794, guid: e653d03543252af4eb68f5fee355543c, type: 2}
@@ -2575,7 +2573,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Notion
+  m_text: Youtube
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e653d03543252af4eb68f5fee355543c, type: 2}
   m_sharedMaterial: {fileID: -5413731535355335794, guid: e653d03543252af4eb68f5fee355543c, type: 2}
@@ -3344,9 +3342,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Microsoft
-
-    Edge'
+  m_text: "\uC9C0\uB3C4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e653d03543252af4eb68f5fee355543c, type: 2}
   m_sharedMaterial: {fileID: -5413731535355335794, guid: e653d03543252af4eb68f5fee355543c, type: 2}
@@ -4602,7 +4598,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: edc9a2b6ca15dda45a17a63ea38d04eb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fc2d246ff79c20a48858f7c0d99ebfc5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4971,7 +4967,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Instagram
+  m_text: "\uD504\uB85C\uD544"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e653d03543252af4eb68f5fee355543c, type: 2}
   m_sharedMaterial: {fileID: -5413731535355335794, guid: e653d03543252af4eb68f5fee355543c, type: 2}
@@ -5215,7 +5211,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD398\uAE30 \uC608\uC815"
+  m_text: "\uD3D0\uAE30 \uC608\uC815"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e653d03543252af4eb68f5fee355543c, type: 2}
   m_sharedMaterial: {fileID: -5413731535355335794, guid: e653d03543252af4eb68f5fee355543c, type: 2}
