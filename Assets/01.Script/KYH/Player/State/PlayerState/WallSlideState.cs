@@ -21,6 +21,7 @@ public class WallSlideState : EntityState
         _mover.SetLimitYSpeed(WALL_SLIDE_LIMIT_SPEED);
         _mover.SetGravityScale(WALL_SLIDE_GRAVITY_SCALE);
         _mover.EffectorPlayer.PlayEffect("WallRideEffect");
+        AudioManager.Instance.PlaySound2D("WallSlide",0,true,SoundType.SfX);
     }
 
     public override void Update()
@@ -44,6 +45,7 @@ public class WallSlideState : EntityState
 
     public override void Exit()
     {
+        AudioManager.Instance.StopLoopSound("WallSlide");
         _mover.EffectorPlayer.StopEffect("WallRideEffect");
         _mover.SetGravityScale(1f);
         _mover.SetLimitYSpeed(NORMAL_LIMIT_SPEED);

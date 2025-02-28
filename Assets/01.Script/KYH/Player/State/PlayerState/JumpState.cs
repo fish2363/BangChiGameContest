@@ -9,6 +9,7 @@ public class JumpState : PlayerAirState
     public override void Enter()
     {
         base.Enter();
+        AudioManager.Instance.PlaySound2D("PlayerJump",0,false,SoundType.SfX);
         _player.DecreaseJumpCount();
         _mover.StopImmediately(true);
         _mover.Jump();
