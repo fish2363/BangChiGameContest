@@ -76,7 +76,7 @@ public class EscFunction : MonoBehaviour
         if(_isAnotherPanelShow) return;
         _isEnd = false;
         _whitePanel.DOFade(0f, 1.5f).SetUpdate(true);
-        _escPanel.rectTransform.DOMoveY(-460f, 1.5f).SetEase(Ease.InSine).SetUpdate(true).onComplete = () =>
+        _escPanel.rectTransform.DOMoveY(-460f, 1.5f).SetEase(Ease.InOutBounce).SetUpdate(true).onComplete = () =>
         {
             _isEnd = true;
         };
