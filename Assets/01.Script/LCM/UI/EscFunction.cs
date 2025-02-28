@@ -20,6 +20,8 @@ public class EscFunction : MonoBehaviour
 
     [SerializeField] private Slider _bgmSlider;
     [SerializeField] private Slider _sfxSlider;
+    
+    private bool _isAnotherPanelShow = false;
 
     // 볼륨 조절
     public void SetBgmVolume()
@@ -55,6 +57,7 @@ public class EscFunction : MonoBehaviour
         // 설정과 상호작용했을때 창 띄우는 메소드
         if(!IsEnd()) return;
         
+        
         _isEnd = false;
         Time.timeScale = 0;
         _whitePanel.DOFade(0.5f, 1.5f).SetUpdate(true);
@@ -70,9 +73,10 @@ public class EscFunction : MonoBehaviour
         // Esc창 닫는 메소드
         if(!IsEnd()) return;
         
+        if(_isAnotherPanelShow) return;
         _isEnd = false;
         _whitePanel.DOFade(0f, 1.5f).SetUpdate(true);
-        _escPanel.rectTransform.DOMoveY(-460f, 1.5f).SetEase(Ease.InOutBounce).SetUpdate(true).onComplete = () =>
+        _escPanel.rectTransform.DOMoveY(-460f, 1.5f).SetEase(Ease.InSine).SetUpdate(true).onComplete = () =>
         {
             _isEnd = true;
         };
@@ -89,6 +93,7 @@ public class EscFunction : MonoBehaviour
         _isEnd = false;
         _whitePanel.DOColor(Color.red, 1.5f).SetUpdate(true);
         _whitePanel.DOFade(0.5f, 1.5f).SetUpdate(true);
+        _isAnotherPanelShow = true;
         _checkPanel.rectTransform.DOMoveY(540f, 1.5f).SetEase(Ease.InBounce).SetUpdate(true).onComplete = () =>
         {
             _isEnd = true;
@@ -124,6 +129,7 @@ public class EscFunction : MonoBehaviour
         if(!IsEnd()) return;
         
         _isEnd = false;
+        _isAnotherPanelShow = false;
         _whitePanel.DOColor(Color.white, 1.5f).SetUpdate(true);
         _whitePanel.DOFade(0.5f, 1.5f).SetUpdate(true);
         _checkPanel.rectTransform.DOMoveY(-460f, 1.5f).SetEase(Ease.InBounce).SetUpdate(true).onComplete = () =>
@@ -152,6 +158,7 @@ public class EscFunction : MonoBehaviour
         _isEnd = false;
         _whitePanel.DOColor(Color.white, 1.5f).SetUpdate(true);
         _whitePanel.DOFade(0.5f, 1.5f).SetUpdate(true);
+        _isAnotherPanelShow = false;
         _checkPanel.rectTransform.DOMoveY(-460f, 1.5f).SetEase(Ease.InSine).SetUpdate(true);
         _warningPanel.rectTransform.DOMoveY(-460f, 1.5f).SetEase(Ease.InSine).SetUpdate(true).onComplete = () =>
         {

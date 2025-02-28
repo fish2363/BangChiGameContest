@@ -73,13 +73,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   intensity:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.453
   xMultiplier:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.816
   yMultiplier:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.783
   center:
     m_OverrideState: 0

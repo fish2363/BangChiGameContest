@@ -155,6 +155,7 @@ public class Knight : Enemy
         _attackIndex = 0;
         _enemyAttackCompo.AttackSetting(_knightAttacks[_attackIndex].damage, _knightAttacks[_attackIndex].force,
             _knightAttacks[_attackIndex].attackBoxSize, _knightAttacks[_attackIndex].attackRadius, _knightAttacks[_attackIndex].castType);
+        StartCoroutine(AttackCoroutine());
     }
 
     public override void Attakc2()
@@ -163,7 +164,7 @@ public class Knight : Enemy
         _enemyAttackCompo.AttackSetting(_knightAttacks[_attackIndex].damage, _knightAttacks[_attackIndex].force,
             _knightAttacks[_attackIndex].attackBoxSize, _knightAttacks[_attackIndex].attackRadius, _knightAttacks[_attackIndex].castType);
         RbCompo.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
-        RbCompo.AddForce(transform.right * 2f, ForceMode2D.Impulse);
+        RbCompo.AddForce(new Vector2(GetMovementDirection().x * 2f,0), ForceMode2D.Impulse);
         StartCoroutine(Attack2Coroutine());
     }
     public override void Attakc3()
@@ -198,18 +199,30 @@ public class Knight : Enemy
         StartCoroutine(Attack6Coroutine());
     }
 
+    private IEnumerator AttackCoroutine()
+    {
+        AudioManager.Instance.PlaySound2D("KnightAttack",0,false,SoundType.SfX);
+        yield return new WaitForSeconds(0.3f);
+        AudioManager.Instance.PlaySound2D("KnightAttack",0,false,SoundType.SfX);
+        yield return new WaitForSeconds(0.7f);
+        AudioManager.Instance.PlaySound2D("KnightAttack",0,false,SoundType.SfX);
+    }
+
 
     private IEnumerator Attack2Coroutine()
     {
         yield return new WaitForSeconds(0.65f);
+        AudioManager.Instance.PlaySound2D("KnightAttack2",0,false,SoundType.SfX);
         _attack2Particle.Play();
     }
     private IEnumerator Attack3Coroutine()
     {
         yield return new WaitForSeconds(0.6f);
+        AudioManager.Instance.PlaySound2D("KnightAttack3",0,false,SoundType.SfX);
         _attack3Particle.transform.Rotate(180,0,0);
         _attack3Particle.Play();
         yield return new WaitForSeconds(0.8f);
+        AudioManager.Instance.PlaySound2D("KnightAttack3",0,false,SoundType.SfX);
         _attack3Particle.transform.Rotate(180,0,0);
         _attack3Particle.Play();
     }
@@ -218,6 +231,7 @@ public class Knight : Enemy
         _attack4EnergyParticle.Play();
         yield return new WaitForSeconds(1.6f);
         _attack4Particle.Play();
+        AudioManager.Instance.PlaySound2D("KnightAttack4",0,false,SoundType.SfX);
     }
     private IEnumerator Attack5Coroutine()
     {
@@ -226,10 +240,12 @@ public class Knight : Enemy
         var bullet1 = PoolManager.Instance.Pop(_bossBullet.poolName) as BossBullet;
         bullet1.Initialize(transform.localScale.x >= 0f ? Vector2.right : Vector2.left);
         bullet1.transform.position = transform.position;
+        AudioManager.Instance.PlaySound2D("KnightAttack5",0,false,SoundType.SfX);
         yield return new WaitForSeconds(0.4f);
         var bullet2 = PoolManager.Instance.Pop(_bossBullet.poolName) as BossBullet;
         bullet2.Initialize(transform.localScale.x >= 0f ? Vector2.right : Vector2.left);
         bullet2.transform.position = transform.position;
+        AudioManager.Instance.PlaySound2D("KnightAttack5",0,false,SoundType.SfX);
     }
     private IEnumerator Attack6Coroutine()
     {
@@ -238,6 +254,7 @@ public class Knight : Enemy
         _attack6TrailParticle.Play();
         yield return new WaitForSeconds(1.5f);
         AddForceToEntity(new Vector2(_moveDir.x,0).normalized * _dashPower);
+        AudioManager.Instance.PlaySound2D("KnightAttack6",0,false,SoundType.SfX);
         yield return new WaitForSeconds(0.8f);
         _attack6TrailParticle.Stop();
     }
@@ -322,6 +339,7 @@ public class Knight : Enemy
         IsDead = true;
         TransitionState(EnemyStateType.Dead);
         AllEffectEnd();
+        AudioManager.Instance.PlaySound2D("KnightDead",0,false,SoundType.SfX);
     }
 
     private void OnEnable()
