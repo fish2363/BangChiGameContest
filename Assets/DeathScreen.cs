@@ -31,6 +31,7 @@ public class DeathScreen : MonoBehaviour
 
     public void FinalBossSceneStart()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("FinalBossSceneReStart");
     }
 

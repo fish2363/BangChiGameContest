@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Scenes/Stage/Credit.unity
     guid: 63c5a7b8bd4bf834aab9c6be8ed80181
+  - enabled: 1
+    path: Assets/00.Scenes/Stage/FinalBossSceneReStart.unity
+    guid: a3a80b2bb8e3161449ecdda7f93c129a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
