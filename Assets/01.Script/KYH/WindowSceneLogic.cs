@@ -124,7 +124,7 @@ public class WindowSceneLogic : MonoBehaviour
         events.textType = TextType.Help;
         events.isDefunct = true;
         events.TextSkipKey = KeyCode.Mouse0;
-
+        isExecute = false;
         textChannel.RaiseEvent(events);
     }
 

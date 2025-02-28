@@ -10,14 +10,15 @@ public class BossTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(isDirectStart)
+        if (collision.gameObject.CompareTag("Player"))
         {
+            if (isDirectStart)
+            {
             StartBoss();
             return;
-        }
+            }
 
-        if(collision.gameObject.CompareTag("Player"))
-        {
+        
             if(director!=null)
             director.Play();
             collision.GetComponent<Player>().GetCompo<EntityMover>().CanManualMove = false;

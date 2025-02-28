@@ -15574,8 +15574,20 @@ PrefabInstance:
       value: 1.3000488
       objectReference: {fileID: 0}
     - target: {fileID: 6132881456696196546, guid: 675c114a1682b1f4ea78ccd44bc0f20c, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6132881456696196546, guid: 675c114a1682b1f4ea78ccd44bc0f20c, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6132881456696196546, guid: 675c114a1682b1f4ea78ccd44bc0f20c, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 6132881456696196546, guid: 675c114a1682b1f4ea78ccd44bc0f20c, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 6940848343560220836, guid: 675c114a1682b1f4ea78ccd44bc0f20c, type: 3}
       propertyPath: m_Sprite

@@ -13,7 +13,7 @@ public class CreditLogic : MonoBehaviour
     private Image credit;
     void Start()
     {
-        //AudioManager.Instance.PlaySound2D("EndingBGM",0,true,SoundType.BGM);
+        AudioManager.Instance.PlaySound2D("EndingBGM",0,true,SoundType.BGM);
         EndingScene();
     }
 
@@ -26,8 +26,6 @@ public class CreditLogic : MonoBehaviour
     private IEnumerator CreditRoutine()
     {
         yield return new WaitForSeconds(1f);
-        credit.GetComponent<RectTransform>().DOLocalMoveY(5000, 30);
-        yield return new WaitForSeconds(30f);
-        SceneManager.LoadScene("StartMenu");
+        credit.GetComponent<RectTransform>().DOLocalMoveY(8008f, 120).OnComplete(()=> SceneManager.LoadScene("StartMenu"));
     }
 }

@@ -13,7 +13,7 @@ public class MainmenuLogic : MonoBehaviour
     private CinemachineCamera _camera;
     private bool isStart;
     public Image black;
-
+    public GameObject pp;
     private void Awake()
     {
         rectTransform = background.GetComponent<RectTransform>();
@@ -69,6 +69,7 @@ public class MainmenuLogic : MonoBehaviour
             _camera.Lens.Dutch += 5f;
             yield return new WaitForSeconds(0.01f);
         }
+        pp.SetActive(false);
         black.DOFade(1,1).OnComplete(()=> SceneManager.LoadScene("LCM"));
     }
 }
