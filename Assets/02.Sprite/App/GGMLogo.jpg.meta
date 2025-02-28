@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GGMLogo_0: 2275012412645751715
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

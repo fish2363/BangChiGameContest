@@ -29,6 +29,11 @@ public class DeathScreen : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void FinalBossSceneStart()
+    {
+        SceneManager.LoadScene("FinalBossSceneReStart");
+    }
+
     public void Trash()
     {
         #if UNITY_EDITOR
