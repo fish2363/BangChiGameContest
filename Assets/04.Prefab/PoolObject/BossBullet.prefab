@@ -19270,6 +19270,7 @@ MonoBehaviour:
   _bulletLifeTime: 3
   _damage: 5
   _knockbackForce: {x: 0, y: 0}
+  _bulletAudio: KnightBullet
   OnDeadEvent:
     m_PersistentCalls:
       m_Calls:

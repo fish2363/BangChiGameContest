@@ -25,7 +25,10 @@ public class BossRoomDoor : MonoBehaviour
         var enemys = Physics2D.OverlapCircleAll(transform.position, _atkRadius, _whatIsEnemy);
         foreach (var enemy in enemys)
         {
-            enemy.GetComponent<Enemy>().Dead();
+            if (enemy.TryGetComponent(out Enemy enemyCompo))
+            {
+                enemyCompo.Dead();
+            }
         }
         _particle.Play();
         yield return new WaitForSeconds(_corTime);

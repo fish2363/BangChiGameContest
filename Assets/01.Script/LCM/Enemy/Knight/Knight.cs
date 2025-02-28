@@ -250,6 +250,7 @@ public class Knight : Enemy
     private IEnumerator Attack6Coroutine()
     {
         Vector2 _moveDir = GetMovementDirection();
+        AudioManager.Instance.PlaySound2D("KnightAttack6Charging",0,false,SoundType.SfX);
         _attack6Particle.Play();
         _attack6TrailParticle.Play();
         yield return new WaitForSeconds(1.5f);
@@ -365,6 +366,7 @@ public class Knight : Enemy
     public override void CreateShield()
     {
         _shieldParticle.Play();
+        AudioManager.Instance.PlaySound2D("KnightShield",0,false,SoundType.SfX);
         _nowTime = Time.time;
         _isTakeShield = true;
         _isAlreadyExplosion = false;
