@@ -13,7 +13,7 @@ public class Stage2Logic : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (StageChecker.Instance.GetSaveData())
+        if (Stage2Checker.Instance.GetSaveData())
         {
             SwapCameraEvent swapEvt = CameraEvents.SwapCameraEvent;
             swapEvt.isForceSwap = true;

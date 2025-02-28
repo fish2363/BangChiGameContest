@@ -27,7 +27,7 @@ public class TextPopUp : MonoBehaviour
     {
         Sequence mySequence = DOTween.Sequence();
 
-        popUp.gameObject.SetActive(true);
+        uiPopUp.gameObject.SetActive(true);
         mySequence.Append(popUp.rectTransform.DOMove(middle.position, 1)).Join(popUp.GetComponent<CanvasGroup>().DOFade(0, 1f)).Append(uiPopUp.GetComponent<CanvasGroup>().DOFade(1, 0.1f)).Append
         (uiPopUp.rectTransform.DOScale(3f, 1f).SetEase(Ease.InBounce)).Join(blackPanel.DOFade(0.5f,0.5f));
 
@@ -41,7 +41,7 @@ public class TextPopUp : MonoBehaviour
 
         mySequence.Append(uiPopUp.rectTransform.DOScale(1.518f, 1f).SetEase(Ease.InBounce)).Join(uiPopUp.GetComponent<CanvasGroup>().DOFade(0, 1f)).Append
         (popUp.rectTransform.DOMove(prevTrans.position, 1)).Join(popUp.GetComponent<CanvasGroup>().DOFade(1, 0.2f)).Join(blackPanel.DOFade(0f, 0.5f));
-        popUp.gameObject.SetActive(false);
+        uiPopUp.gameObject.SetActive(false);
 
 
         mySequence.Play();
