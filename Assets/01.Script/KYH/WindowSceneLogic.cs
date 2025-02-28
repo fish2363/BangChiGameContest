@@ -41,6 +41,7 @@ public class WindowSceneLogic : MonoBehaviour
 
     string desktop_path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
+
     private void Awake()
     {
         foreach (GameObject pos in app)
@@ -182,6 +183,7 @@ public class WindowSceneLogic : MonoBehaviour
                 OnTextEvent?.Invoke();
                 UnityEngine.Debug.Log("¼º°ø");
                 isMoveTime = false;
+                
                 FindAnyObjectByType<Player>().isDialogue =false;
             }
         }
