@@ -47,6 +47,7 @@ public class Font : MonoBehaviour, ITakeable
         OnInteraction?.Invoke();
         _wall.SetActive(false);
         _dialogue.SetActive(true);
+        AudioManager.Instance.PlaySound2D("Nuke",0,false,SoundType.SfX);
         gameObject.SetActive(false);
     }
 

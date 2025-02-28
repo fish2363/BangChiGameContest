@@ -51,6 +51,9 @@ public class GameIcon : MonoBehaviour, ITakeable
             .SetEase(Ease.InOutSine);
 
         _boardRenderer.DOFade(0f, 2f);
+        
+        AudioManager.Instance.StopAllLoopSound();
+        AudioManager.Instance.PlaySound2D("Unity",0,true,SoundType.BGM);
     }
 
 
@@ -66,9 +69,11 @@ public class GameIcon : MonoBehaviour, ITakeable
     {
         OnCameraShakeing?.Invoke();
         _explosionParticle.Play();
+        AudioManager.Instance.PlaySound2D("GameExplosion",0,false,SoundType.SfX);
         yield return new WaitForSeconds(1.5f);
         _explosionParticle.Play();
         OnCameraShakeing?.Invoke();
+        AudioManager.Instance.PlaySound2D("GameExplosion",0,false,SoundType.SfX);
         yield return new WaitForSeconds(0.5f);
         _camera.Priority = 20;
         _boardRenderer.DOFade(1f, 4f);
