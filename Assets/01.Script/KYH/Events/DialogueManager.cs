@@ -48,7 +48,7 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
 
     private bool isSwap;
 
-    #region ÇÏµåÄÚµùÀÔ´Ï´Ù ½Ã°£ÀÌ ¾ø¾î¿ä
+    #region ï¿½Ïµï¿½ï¿½Úµï¿½ï¿½Ô´Ï´ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
     public UnityEvent firstEvent;
     public UnityEvent secondEvent;
     public UnityEvent thirdEvent;
@@ -295,7 +295,6 @@ public class DialogueManager : MonoBehaviour, IEntityComponent
         }
         else
         {
-            print("ÀÌ°Å ½ÇÇàµÊ");
             ShowChatBox(talker.textBoxCanvas);
             npcChatText.text = null;
         }

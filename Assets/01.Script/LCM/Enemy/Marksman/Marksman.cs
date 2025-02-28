@@ -30,7 +30,6 @@ public class Marksman : Enemy
     {
         base.AfterInitialize();
         GetCompo<EntityHealth>().OnKnockback += HandleKnockBack;
-        print("아");
     }
 
     protected override void OnDestroy()
