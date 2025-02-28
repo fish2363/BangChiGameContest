@@ -239,6 +239,10 @@ public class WindowSceneLogic : MonoBehaviour
         //var writer = new StreamWriter(File.Open(path, FileMode.OpenOrCreate));
         //writer.Close();
 
+        var writer = new StreamWriter(File.Open(path, FileMode.OpenOrCreate));
+        writer.WriteLine("이 파일을 '마왕의 위치정보' 폴더로 옮겨주세요");
+        writer.Close();
+
         FileInfo file = new FileInfo(path);
         if (!file.Exists)  //해당 파일이 없으면 생성하고 파일 닫기
         {
